@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UnknownFormatConversionException;
 
 public class Message {
-    private final static Config messagesConfig = new Config("message/messages.yml");
+    private final static Config messagesConfig = new Config("message/messages.yml", false);
 
     public static @NotNull String get(@NotNull String path) {
         String str = messagesConfig.getConfiguration().getString(path);

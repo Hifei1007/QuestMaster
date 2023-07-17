@@ -1,6 +1,8 @@
 package me.hifei.questmaster.running.config;
 
 import me.hifei.questmaster.QuestMasterPlugin;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.jetbrains.annotations.NotNull;
@@ -12,39 +14,34 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class Config {
-    private final @NotNull File file;
     private final @NotNull String name;
-    private final @NotNull FileConfiguration configuration;
+    private final @NotNull Configuration configuration;
 
-    public Config(@NotNull String name) {
+    public Config(@NotNull String name, boolean needSave) {
         this.name = name;
-        file = new File(QuestMasterPlugin.instance.getDataFolder(), name);
-        if (!file.exists()) {
-            QuestMasterPlugin.instance.saveResource(name, false);
-        }
-        configuration = YamlConfiguration.loadConfiguration(file);
         InputStream stream = QuestMasterPlugin.instance.getResource(name);
-        if (stream == null) return;
-        configuration.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(stream, StandardCharsets.UTF_8)));
+        if (stream == null) {
+            configuration = new MemoryConfiguration();
+            return;
+        }
+        Configuration streamConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(stream, StandardCharsets.UTF_8));
+        if (needSave) {
+            File file = new File(QuestMasterPlugin.instance.getDataFolder(), name);
+            if (!file.exists()) {
+                QuestMasterPlugin.instance.saveResource(name, false);
+            }
+            configuration = YamlConfiguration.loadConfiguration(file);
+            configuration.setDefaults(streamConfig);
+        } else {
+            configuration = streamConfig;
+        }
     }
 
-    public @NotNull File getFile() {
-        return file;
-    }
-
-    public String getName() {
+    public @NotNull String getName() {
         return name;
     }
 
-    public @NotNull FileConfiguration getConfiguration() {
+    public @NotNull Configuration getConfiguration() {
         return configuration;
-    }
-
-    public void save() {
-        try {
-            configuration.save(getFile());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

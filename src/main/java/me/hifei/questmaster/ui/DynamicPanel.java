@@ -51,11 +51,11 @@ public abstract class DynamicPanel extends Panel {
     }
 
     protected void loadTemplate(@NotNull String path) {
-        Config config = new Config(path);
+        Config config = new Config(path, false);
         setConfig(config.getConfiguration());
         if (!configMap.containsKey(getClass())) {
             try {
-                configMap.put(getClass(), new Config("message/" + path));
+                configMap.put(getClass(), new Config("message/" + path, false));
             } catch (RuntimeException ignored) {
             }
         }
