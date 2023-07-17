@@ -26,9 +26,15 @@ public class QuestTypeCollectItem implements QuestType {
         QuestTableCollectItem[] table = QuestTableCollectItem.values();
         Random random = new Random();
         double target = DifficultTool.nextDifficult();
+        int tryCount = 0;
         do {
             item = table[random.nextInt(table.length)];
-        } while (target < item.difficult);
+            tryCount++;
+            if (tryCount > 100) {
+                target = DifficultTool.nextDifficult();
+                tryCount = 0;
+            }
+        } while (target < item.difficult || target > item.difficult * 64 * 5);
         int count = (int)Math.ceil((target) / (item.difficult));
         return new QuestTypeCollectItem(item, count, target);
     }
