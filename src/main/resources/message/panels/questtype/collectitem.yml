@@ -1,0 +1,12 @@
+submit.lore.not_team_member: "&c你不是此团队成员!"
+submit.lore.1: "&e点击提交1个物品!"
+submit.lore.8: "&e点击提交8个物品!"
+submit.lore.64: "&e点击提交64个物品!"
+submit.lore.all: "&e点击提交全部%s个物品!"
+
+timer.name: "&a剩余时间:&c&l %s"
+item.name: "&a剩余物品:&c&l %s"
+item.lore.1: "&7共"
+item.lore.2: "&c%s&b 盒"
+item.lore.3: "&c%s&b 组"
+item.lore.4: "&c%s&b 个"

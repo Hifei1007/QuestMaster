@@ -1,0 +1,175 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 6
+title: '&8任务大师 - 传送'
+refresh-delay: 1
+_dynamic:
+  mode_select:
+    material: ARROW
+    name: '&7模式: &b选择模式'
+    lore:
+      - ''
+      - '&7选择一个传送点,'
+      - '&7然后进行传送或删除!'
+      - ''
+      - '&b> 选择模式'
+      - '&7- 传送模式'
+      - '&7- 删除模式'
+      - ''
+      - '&e点击切换!'
+    commands:
+      - event= teleport_mode_teleport
+  mode_teleport:
+    material: ENDER_EYE
+    name: '&7模式: &b传送模式'
+    lore:
+      - ''
+      - '&7点击一个传送点,'
+      - '&7然后直接进行传送!'
+      - ''
+      - '&7- 选择模式'
+      - '&b> 传送模式'
+      - '&7- 删除模式'
+      - ''
+      - '&e点击切换!'
+    commands:
+      - event= teleport_mode_remove
+  mode_remove:
+    material: DISPENSER
+    name: '&7模式: &b删除模式'
+    lore:
+      - ''
+      - '&7选择一个传送点,'
+      - '&7然后快速删除!'
+      - ''
+      - '&7- 选择模式'
+      - '&7- 传送模式'
+      - '&b> 删除模式'
+      - ''
+      - '&e点击切换!'
+    commands:
+      - event= teleport_mode_select
+  location:
+    material: BEDROCK
+    name: '&4&l错误!未加载动态内容!'
+    lore:
+      - '&7传送点'
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    commands: []
+  player:
+    material: BEDROCK
+    name: '&4&l错误!未加载动态内容!'
+    lore:
+      - '&7团队成员'
+      - '&4&l错误!未加载动态内容!'
+      - ''
+      - '&e点击传送!'
+    commands: []
+  select_location:
+    material: END_PORTAL_FRAME
+    name: '&a传送点传送'
+    lore:
+      - ''
+      - '&e点击查看!'
+    commands:
+      - event= teleport_select_location
+  select_player:
+    material: BEDROCK
+    name: '&a团队成员传送'
+    lore:
+      - ''
+      - '&e点击查看!'
+    commands:
+      - event= teleport_select_player
+  add_location:
+    material: WRITABLE_BOOK
+    name: '&a新建传送点'
+    lore:
+      - ''
+      - '&e点击新建!'
+    commands:
+      - event= teleport_add_location
+  remove_location:
+    material: DROPPER
+    name: '&c删除此传送点'
+    lore:
+      - ''
+      - '&e点击删除!'
+    commands:
+      - event= teleport_remove_location
+  remove_location_confirm:
+    material: RED_TERRACOTTA
+    name: '&c确认删除此传送点'
+    lore:
+      - ''
+      - '&e再次点击以确认!'
+    commands:
+      - event= teleport_remove_location_confirm
+  teleport_location:
+    material: ENDER_PEARL
+    name: '&a传送至此传送点'
+    lore:
+      - ''
+      - '&e点击传送!'
+    commands:
+      - event= teleport_teleport_location
+      - cpc
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+  air:
+    material: AIR
+    stack: 1
+empty: emptyitem
+item:
+  '10':
+    material: AIR
+  '11':
+    material: AIR
+  '12':
+    material: AIR
+  '13':
+    material: AIR
+  '14':
+    material: AIR
+  '15':
+    material: AIR
+  '16':
+    material: AIR
+  '19':
+    material: AIR
+  '20':
+    material: AIR
+  '21':
+    material: AIR
+  '22':
+    material: AIR
+  '23':
+    material: AIR
+  '24':
+    material: AIR
+  '25':
+    material: AIR
+  '28':
+    material: AIR
+  '29':
+    material: AIR
+  '30':
+    material: AIR
+  '31':
+    material: AIR
+  '32':
+    material: AIR
+  '33':
+    material: AIR
+  '34':
+    material: AIR
+  '49':
+    material: ARROW
+    name: '&a返回'
+    stack: 1
+    commands:
+      - event= teleport_back

@@ -1,0 +1,82 @@
+command.forcestop.fail.game_not_started: "&c游戏尚未开始, 不可强制结束!"
+command.forcestop.success: "&a你强制结束了游戏!"
+command.forcestop.success_broadcast: "%s&c&l强制结束了游戏!"
+command.start.usage: "&c用法: /start <goal>"
+command.start.fail.wrong_number: "&cgoal设置错误!应该是一个大于0的整数!"
+command.start.fail.game_started: "&c游戏已经开始!"
+command.start.success: "&a你开始了游戏!"
+
+difficult.easy: "&a简单&r"
+difficult.normal: "&e普通&r"
+difficult.hard: "&c困难&r"
+difficult.very_hard: "&4极难&r"
+difficult.hell: "&4&l地狱&r"
+
+game.task.complete1: "&7[&c!&7] 你们完成了任务 [%s&7]!"
+game.task.complete2: "&7[&e!&7] %s&7完成了任务 [%s&7]!"
+game.task.complete.change: "&7[&a+&e%.2f &a+&b%.2f &a+&6%.2f&7] (&a+%.2fs&7)"
+game.task.timeup1: "&7[&c!&7] 你们的任务 [%s&7] 超时!"
+game.task.timeup2: "&7[&e!&7] %s&7的任务 [%s&7] 超时!"
+game.task.timeup.change: "&7[&c-&b%.2f &c-&6%.2f&7]"
+game.start.title: "&c&l游戏开始!"
+game.start.subtitle: "&a目标是&e%s&a, 你是%s"
+game.start.message: "&c&l游戏开始, 目标是%s!"
+game.stop.message: "&c&l游戏结束!"
+game.victory.title: "%s&a&l获得了胜利!"
+game.victory.subtitle: "%s&a已经获得了&e%.2f&a分!"
+game.victory.message: "%s&a&l获得了胜利!"
+game.task.get1: "&7[&c!&7] 你们获得了新任务 [%s&7]!"
+game.task.get2: "&7[&e!&7] %s&7获得了新任务 [%s&7]!"
+
+team.join: "&7[&c!&7] 玩家%s&7加入了队伍!"
+team.leave: "&7[&c!&7] 玩家%s&7离开了队伍!"
+team.null: "&7未选择队伍"
+team.red: "&c红队&r"
+team.blue: "&9蓝队&r"
+
+chat.started.shout: "&7[&6喊话&7] %s&7: %s"
+chat.started.team: "&7[%s&7] %s&7: %s"
+chat.not_started: "%s&7: %s"
+
+tablist.not_started.header: "&c&l任务大师&r\n\n&7游戏未开始\n"
+tablist.not_started.footer: "\n%s\n\n&c&l任务大师 by Hifei1007"
+tablist.started.header: "&c&l任务大师&r\n\n&e%s&7 [&c%.2f&7 / &9%.2f&7]\n"
+tablist.started.footer: "\n%s\n\n&c&l任务大师 by Hifei1007"
+tablist.started.footer_bar: "%s &e%.2f &b%.2f &6%.2f"
+
+quest.collectitem.submit: "&7[&c!&7] [%s&7] 为任务 [%s&7] 提交了 [&e&l%s x%s&r&7]!"
+quest.collectitem.name: "%s &7收集物品 &e&l%s x%s&r"
+quest.empty: ""
+quest.process: "&a进度:&l %s/%s (%.2f%s)"
+quest.difficult: "&a难度值:&c&l %.2f"
+quest.timer: "&a剩余时间:&c&l %s"
+quest.score: "&a分数:&c %.2f"
+quest.point: "&a奖励点数:&c %.2f点 &l(-%.2f点若失败)"
+quest.coin: "&a奖励金币:&c %.2f &l(-%.2f若失败)"
+quest.time: "&a奖励额外时间:&c %.2f秒"
+quest.button_text: "&e点击查看"
+quest.process_bar: "&c%s &e%s/%s &a&l(%.2f%s)"
+
+scoreboard.name: "&e&l任务大师"
+scoreboard.date: "&7%s &8QuestMaster"
+scoreboard.empty: ""
+scoreboard.team: "%s &e%.2f &b%.2f &6%.2f"
+scoreboard.score: "&e%s&7 [&c%.2f&7 / &9%.2f&7]"
+scoreboard.plugin: "&eQuestMaster"
+
+location.format: "%s &7| &bX&7:&e%.2f &bY&7:&e%.2f &bZ&7:&e%.2f"
+location.overworld: "&a主世界"
+location.nether: "&c地狱"
+location.the_end: "&e末地"
+
+teleport.location: "&7[&a!&7] 你传送至传送点 [%s&7]!"
+teleport.player1: "&7[&a!&7] 你传送至 [%s&7]!"
+teleport.player2: "&7[&a!&7] [%s&7] 传送至你!"
+teleport.add_location: "&7[&e!&7] [%s&7] 新建了传送点 [%s&7]!"
+teleport.remove_location: "&7[&e!&7] [%s&7] 删除了传送点 [%s&7]!"
+
+upgrade.upgrade: '&7[&e!&7] [%s&7] 升级了 [&b%s &e%s -> %s&7]!'
+
+error.cant_open: '&4&l无法打开动态面板 [%s]!'
+error.cant_close: '&4&l无法关闭动态面板 [%s]!'
+error.runnable_crash: '&4&l一个BukkitRunnable因为发生异常而被锁定了!'

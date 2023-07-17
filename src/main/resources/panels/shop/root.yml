@@ -1,0 +1,35 @@
+perm: default
+rows: 6
+title: "&8任务大师 - 商店"
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+empty: emptyitem
+item:
+  '30':
+    material: DIAMOND
+    name: '&a增益商店'
+    lore:
+      - ''
+      - '&7购买能够同时增益'
+      - '&7整个队伍的升级!'
+      - ''
+      - '&e点击查看!'
+    commands:
+      - event= shop_root_open_teamupgrade
+  '32':
+    material: GOLD_INGOT
+    name: '&a物品商店'
+    lore:
+      - ''
+      - '&7快速购买物品!'
+      - ''
+      - '&c&lVERY COMING SOON'
+  '49':
+    material: ARROW
+    name: '&a返回'
+    stack: 1
+    commands:
+      - event= shop_root_back

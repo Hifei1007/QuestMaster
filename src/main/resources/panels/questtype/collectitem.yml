@@ -1,0 +1,104 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 6
+title: '&4&l错误!未加载动态内容!'
+refresh-delay: 1
+_dynamic:
+  timer_1:
+    material: CLOCK
+    name: '&4&l错误!未加载动态内容!'
+  timer_2:
+    material: CLOCK
+    enchanted: true
+    name: '&4&l错误!未加载动态内容!'
+  timer_empty:
+    material: BLACK_STAINED_GLASS_PANE
+    name: '&4&l错误!未加载动态内容!'
+  item_empty:
+    material: GREEN_STAINED_GLASS_PANE
+    name: '&4&l错误!未加载动态内容!'
+  item_shulker:
+    material: SHULKER_BOX
+    name: '&4&l错误!未加载动态内容!'
+    stack: 1
+  item_stack:
+    material: BEDROCK
+    name: '&4&l错误!未加载动态内容!'
+    enchanted: true
+  item_single:
+    material: BEDROCK
+    name: '&4&l错误!未加载动态内容!'
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+  dynamicitem:
+    material: BEDROCK
+    name: '&4&l抱歉!似乎出现了一些问题!'
+    stack: 1
+    lore:
+      - '&4这个位置应该是一个动态物品!'
+      - '&4你应该立刻报告这个问题!'
+empty: emptyitem
+item:
+  '1':
+    material: GOLD_INGOT
+    name: '&4&l错误!未加载动态内容!'
+    stack: 1
+  '3':
+    material: DIAMOND
+    name: '&4&l错误!未加载动态内容!'
+    stack: 1
+  '5':
+    material: GOLD_NUGGET
+    name: '&4&l错误!未加载动态内容!'
+    stack: 1
+  '7':
+    material: CLOCK
+    name: '&4&l错误!未加载动态内容!'
+    stack: 1
+  '13':
+    material: cpi= dynamicitem
+  '19':
+    material: CHEST
+    name: '&a提交: 1个物品'
+    stack: 1
+    lore:
+      - ''
+      - '&c你没有足够的物品!'
+    commands:
+      - event= collectitem_submit_1
+  '21':
+    material: CHEST
+    name: '&a提交: 8个物品'
+    stack: 8
+    lore:
+      - ''
+      - '&c你没有足够的物品!'
+    commands:
+      - event= collectitem_submit_8
+  '23':
+    material: CHEST
+    name: '&a提交: 64个物品'
+    stack: 64
+    lore:
+      - ''
+      - '&c你没有足够的物品!'
+    commands:
+      - event= collectitem_submit_64
+  '25':
+    material: ENDER_CHEST
+    name: '&a提交: 全部物品'
+    stack: 1
+    lore:
+      - ''
+      - '&c你没有任何物品!'
+    commands:
+      - event= collectitem_submit_all
+  '31':
+    material: ARROW
+    name: '&a返回'
+    stack: 1
+    commands:
+      - event= quest_main_back

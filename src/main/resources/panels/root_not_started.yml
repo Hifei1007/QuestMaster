@@ -1,0 +1,84 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 6
+title: '&8任务大师 - 主菜单'
+_dynamic:
+  blue_not_join:
+    material: BLUE_WOOL
+    name: '&9蓝队'
+    stack: 1
+    lore:
+      - '&7你不是这个队伍的成员!'
+      - ''
+      - '&e点击加入!'
+    commands:
+      - event= root_not_started_join_blue
+  red_not_join:
+    material: RED_WOOL
+    name: '&c红队'
+    stack: 1
+    lore:
+      - '&7你不是这个队伍的成员!'
+      - ''
+      - '&e点击加入!'
+    commands:
+      - event= root_not_started_join_red
+  blue_join:
+    material: BLUE_WOOL
+    enchanted: true
+    name: '&9蓝队'
+    stack: 1
+    lore:
+      - '&7你已经是这个队伍的成员!'
+  red_join:
+    material: RED_WOOL
+    enchanted: true
+    name: '&c红队'
+    stack: 1
+    lore:
+      - '&7你已经是这个队伍的成员!'
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+  dynamicitem:
+    material: BEDROCK
+    name: '&4&l抱歉!似乎出现了一些问题!'
+    stack: 1
+    lore:
+      - '&4这个位置应该是一个动态物品!'
+      - '&4你应该立刻报告这个问题!'
+  author_1:
+    material: cps= Hifei1007
+    name: '&a&l本插件作者: Hifei1007'
+    stack: 1
+  author_2:
+    material: cps= Rockyhawk99
+    name: '&aCommandPanels作者: Rockyhawk99'
+    stack: 1
+empty: emptyitem
+item:
+  '21':
+    material: cpi= author_1
+  '23':
+    material: cpi= author_2
+  '29':
+    material: cpi= dynamicitem
+  '33':
+    material: cpi= dynamicitem
+  '40':
+    material: HOPPER
+    name: '&a退出所有队伍'
+    stack: 1
+    lore:
+      - ''
+      - '&e点击退出!'
+    commands:
+      - event= root_not_started_clear
+  '49':
+    material: BARRIER
+    name: '&c关闭'
+    stack: 1
+    commands:
+      - cpc

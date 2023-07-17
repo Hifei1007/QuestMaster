@@ -1,0 +1,52 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 6
+title: '&8任务大师 - 任务'
+refresh-delay: 1
+_dynamic:
+  red:
+    material: RED_WOOL
+    name: '&7当前查看队伍: &c红队'
+    stack: 1
+    lore:
+      - ''
+      - '&e点击切换队伍!'
+    commands:
+      - event= quest_to_blue
+  blue:
+    material: BLUE_WOOL
+    name: '&7当前查看队伍: &9蓝队'
+    stack: 1
+    lore:
+      - ''
+      - '&e点击切换队伍!'
+    commands:
+      - event= quest_to_red
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+  dynamicitem:
+    material: BEDROCK
+    name: '&4&l抱歉!似乎出现了一些问题!'
+    stack: 1
+    lore:
+      - '&4这个位置应该是一个动态物品!'
+      - '&4你应该立刻报告这个问题!'
+empty: emptyitem
+item:
+  '8':
+    material: cpi= dynamicitem
+  '29':
+    material: cpi= dynamicitem
+  '31':
+    material: cpi= dynamicitem
+  '33':
+    material: cpi= dynamicitem
+  '49':
+    material: ARROW
+    name: '&a返回'
+    stack: 1
+    commands:
+      - event= quest_back
