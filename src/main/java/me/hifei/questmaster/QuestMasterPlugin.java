@@ -2,6 +2,7 @@ package me.hifei.questmaster;
 
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
+import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
 import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.listeners.ChatListener;
@@ -22,6 +23,10 @@ public class QuestMasterPlugin extends JavaPlugin {
         throw new RuntimeException("IT'S A SPIGOT PLUGIN!");
     }
 
+    public void loadTables() {
+        QuestTableCollectItem.loadConfig();
+    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -33,6 +38,8 @@ public class QuestMasterPlugin extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
+
+        loadTables();
 
         // todo: GameSavingCore.registerClass();
         // todo: GameSavingCore.load();

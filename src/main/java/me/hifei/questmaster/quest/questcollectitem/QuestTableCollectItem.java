@@ -2,72 +2,22 @@ package me.hifei.questmaster.quest.questcollectitem;
 
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
+import me.hifei.questmaster.running.config.Config;
 import org.bukkit.Material;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-public enum QuestTableCollectItem {
-    // Stones
-    DIRT(0.5),
-    SAND(0.5),
-    CLAY(4),
-    CLAY_BALL(1),
-    POLISHED_GRANITE(1.5),
-    GRANITE(1),
-    POLISHED_DIORITE(1.5),
-    DIORITE(1),
-    POLISHED_ANDESITE(1.5),
-    ANDESITE(1),
-    COBBLESTONE(1),
-    STONE(4),
-    STONE_BRICK(4.5),
-    COBBLED_DEEPSLATE(1.5),
-    DEEPSLATE(4.5),
-    POLISHED_DEEPSLATE(5),
+public class QuestTableCollectItem {
+    public static List<TableItemGroup> itemGroups = new ArrayList<>();
 
+    public record TableItem(Material material, String name, double diff) {}
+    public record TableItemGroup(List<TableItem> items, double diff) {}
 
-    // Woods
-    STRIPPED_OAK_LOG(3.5),
-    OAK_LOG(3),
-    STRIPPED_BIRCH_LOG(3.5),
-    BIRCH_LOG(3),
-    STRIPPED_SPRUCE_LOG(3.5),
-    SPRUCE_LOG(3),
-    STRIPPED_ACACIA_LOG(3.5),
-    ACACIA_LOG(3),
-    STRIPPED_JUNGLE_LOG(3.5),
-    JUNGLE_LOG(3),
-    STICK(0.5),
-
-    // Nether
-    NETHERRACK(0.5),
-    WARPED_STEM(3),
-    STRIPPED_WARPED_STEM(3.5),
-    CRIMSON_STEM(3),
-    STRIPPED_CRIMSON_STEM(3.5),
-    SOUL_SAND(1.5),
-    SOUL_SOIL(1.5),
-    BASALT(1.5),
-    POLISHED_BASALT(2),
-    BLACKSTONE(1),
-    POLISHED_BLACKSTONE(1.5),
-
-    // End
-    END_STONE(7),
-    END_ROD(25),
-    END_STONE_BRICKS(9),
-    PURPUR_BLOCK(15),
-    ;
-
-    public final double difficult;
-    public final @NotNull Material material;
-    public final String name;
-    QuestTableCollectItem(double difficult) {
-        this.difficult = difficult;
-        this.material = Material.valueOf(name());
-
+    private static String getTranslate(Material material) {
+        String name;
         String ret = CoreManager.translateMaterialTool.translate_file
                 .get(String.format("block.minecraft.%s", material.getKey().getKey()));
         if (ret == null) {
@@ -76,5 +26,55 @@ public enum QuestTableCollectItem {
         } else {
             name = ret;
         }
+        return name;
+    }
+
+    private static Material getMaterialByString(String string) {
+        return Material.valueOf(string);
+    }
+
+    private static TableItem buildItem(String string, double diff) {
+        Material material = getMaterialByString(string);
+        return new TableItem(material, getTranslate(material), diff);
+    }
+
+    private static List<TableItem> processAliases(List<String> aliases, double diff) {
+        return processAliases(aliases, List.of(""), diff);
+    }
+
+    private static List<TableItem> processAliases(List<String> aliases, List<String> placeHolders, double diff) {
+        List<TableItem> res = new ArrayList<>();
+        for (String alias : aliases) {
+            for (String placeHolder : placeHolders) {
+                res.add(buildItem(alias.replace("$", placeHolder), diff));
+            }
+        }
+        return res;
+    }
+
+    public static TableItem nextItem() {
+        Random random = new Random();
+        TableItemGroup group = itemGroups.get(random.nextInt(itemGroups.size()));
+        return group.items.get(random.nextInt(group.items.size()));
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void loadConfig() {
+        Config config = new Config("table/collectitem.yml", true);
+        List<Map<?, ?>> groups = config.getConfiguration().getMapList("items");
+        List<TableItemGroup> res = new ArrayList<>();
+        for (Map<?, ?> group : groups) {
+            double diff = (double) group.get("diff");
+            if (group.containsKey("name")) {
+                res.add(new TableItemGroup(List.of(buildItem((String) group.get("name"), diff)), diff));
+            }
+            List<String> aliases = (List<String>) group.get("aliases");
+            if (group.containsKey("placeholders")) {
+                res.add(new TableItemGroup(processAliases(aliases, (List<String>) group.get("placeholders"), diff), diff));
+            } else {
+                res.add(new TableItemGroup(processAliases(aliases, diff), diff));
+            }
+        }
+        itemGroups = res;
     }
 }

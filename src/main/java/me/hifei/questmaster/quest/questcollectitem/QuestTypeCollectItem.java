@@ -15,38 +15,40 @@ import java.util.Map;
 import java.util.Random;
 
 public class QuestTypeCollectItem implements QuestType {
-    final QuestTableCollectItem item;
+    final QuestTableCollectItem.TableItem item;
     private final int count;
     private int totalItemCount = 0;
     private Quest quest;
     private final double difficultValue;
 
     public static @NotNull QuestTypeCollectItem create() {
-        QuestTableCollectItem item;
-        QuestTableCollectItem[] table = QuestTableCollectItem.values();
+        QuestTableCollectItem.TableItem item;
         Random random = new Random();
         double target = DifficultTool.nextDifficult();
         int tryCount = 0;
         do {
-            item = table[random.nextInt(table.length)];
+            item = QuestTableCollectItem.nextItem();
             tryCount++;
             if (tryCount > 100) {
                 target = DifficultTool.nextDifficult();
                 tryCount = 0;
             }
-        } while (target < item.difficult || target > item.difficult * 64 * 5);
-        int count = (int)Math.ceil((target) / (item.difficult));
+        } while (target < item.diff() || target > item.diff() * 64 * 5);
+        int count = (int)Math.ceil((target) / (item.diff()));
         return new QuestTypeCollectItem(item, count, target);
     }
 
-    private QuestTypeCollectItem(QuestTableCollectItem req, int count, double difficultValue) {
+    private QuestTypeCollectItem(QuestTableCollectItem.TableItem req, int count, double difficultValue) {
         item = req;
         this.count = count;
         this.difficultValue = difficultValue;
     }
 
     public QuestTypeCollectItem(@NotNull Map<String, Object> serializer) {
-        item = QuestTableCollectItem.valueOf((String) serializer.get("item"));
+        // This feature is already in todo state.
+        // We will don't support this feature for a long time.
+        // item = QuestTableCollectItem.valueOf((String) serializer.get("item"));
+        item = null;
         count = (int) serializer.get("count");
         difficultValue = (double) serializer.get("difficultValue");
     }
@@ -71,7 +73,7 @@ public class QuestTypeCollectItem implements QuestType {
     }
 
     public void addItem(@NotNull Player player, int c) {
-        quest.getTeam().teamBroadcast(Message.get("quest.collectitem.submit", player.getDisplayName(), quest.getName(), item.name, c));
+        quest.getTeam().teamBroadcast(Message.get("quest.collectitem.submit", player.getDisplayName(), quest.getName(), item.name(), c));
         int req = count - totalItemCount;
         if (req >= c) {
             totalItemCount += c;
@@ -132,7 +134,7 @@ public class QuestTypeCollectItem implements QuestType {
 
     @Override
     public @NotNull String name() {
-        return Message.get("quest.collectitem.name", difficult().name, item.name, count);
+        return Message.get("quest.collectitem.name", difficult().name, item.name(), count);
     }
 
     @Override
@@ -148,7 +150,7 @@ public class QuestTypeCollectItem implements QuestType {
     @Override
     public @NotNull ConfigurationSection item() {
         ConfigurationSection item = new MemoryConfiguration();
-        item.set("material", this.item.material.toString());
+        item.set("material", this.item.material().toString());
         item.set("stack", 1);
         item.set("name", name());
         return item;

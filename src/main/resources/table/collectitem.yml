@@ -1,0 +1,89 @@
+items:
+  - diff: 0.5
+    aliases:
+      - $
+    placeholders:
+      - sand
+      - dirt
+  - diff: 1
+    name: clay_ball
+  - diff: 4
+    name: clay
+  - diff: 1
+    aliases:
+      - $
+      - $_stairs
+      - $_slab
+      - $_wall
+      - polished_$
+      - polished_$_stairs
+      - polished_$_slab
+    placeholders:
+      granite
+      andesite
+      diorite
+  - diff: 1.5
+    aliases:
+      - chiseled_deepslate
+      - cracked_deepslate_bricks
+      - cracked_deepslate_tiles
+      - cobbled_deepslate
+      - deepslate_bricks
+      - deepslate_tiles
+      - polished_deepslate
+      - $_stairs
+      - $_slab
+      - $_wall
+    placeholders:
+      - cobbled_deepslate
+      - deepslate_brick
+      - deepslate_tile
+      - polished_deepslate
+  - diff: 4
+    aliases:
+      - stone
+      - stone_stairs
+      - stone_slab
+      - stone_button
+      - smooth_stone
+      - smooth_stone_slab
+      - stone_bricks
+      - cracked_stone_bricks
+      - stone_brick_stairs
+      - stone_brick_slab
+      - stone_brick_wall
+      - chiesled_stone_bricks
+
+#// Woods
+#    STRIPPED_OAK_LOG(3.5),
+#    OAK_LOG(3),
+#    STRIPPED_BIRCH_LOG(3.5),
+#    BIRCH_LOG(3),
+#    STRIPPED_SPRUCE_LOG(3.5),
+#    SPRUCE_LOG(3),
+#    STRIPPED_ACACIA_LOG(3.5),
+#    ACACIA_LOG(3),
+#    STRIPPED_JUNGLE_LOG(3.5),
+#    JUNGLE_LOG(3),
+#    STICK(0.5),
+#
+#    // Nether
+#    NETHERRACK(0.5),
+#    WARPED_STEM(3),
+#    STRIPPED_WARPED_STEM(3.5),
+#    CRIMSON_STEM(3),
+#    STRIPPED_CRIMSON_STEM(3.5),
+#    SOUL_SAND(1.5),
+#    SOUL_SOIL(1.5),
+#    BASALT(1.5),
+#    POLISHED_BASALT(2),
+#    BLACKSTONE(1),
+#    POLISHED_BLACKSTONE(1.5),
+#
+#    // End
+#    END_STONE(7),
+#    END_ROD(25),
+#    END_STONE_BRICKS(9),
+#    PURPUR_BLOCK(15),
+
+

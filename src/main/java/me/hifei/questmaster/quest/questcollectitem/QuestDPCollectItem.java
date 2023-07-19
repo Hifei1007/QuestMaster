@@ -28,7 +28,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         int items = 0;
         for (ItemStack stack : player.getInventory()) {
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material)) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material())) {
                 items += stack.getAmount();
             }
         }
@@ -38,7 +38,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         for (ItemStack stack : player.getInventory()) {
             if (current == 0) break;
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material)) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material())) {
                 if (current < stack.getAmount()) {
                     stack.setAmount(stack.getAmount() - current);
                     current = 0;
@@ -77,7 +77,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         int items = 0;
         for (ItemStack stack : player.getInventory()) {
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material)) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material())) {
                 items += stack.getAmount();
             }
         }
@@ -154,7 +154,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
             getItem(i).set("name", item);
         }
         for (int i = 37; i <= 43; i++) {
-            Material material = ((QuestTypeCollectItem) quest.getType()).item.material;
+            Material material = ((QuestTypeCollectItem) quest.getType()).item.material();
             if (shulkers != 0) {
                 shulkers--;
                 setItem(i, getDynamic("item_shulker"));
