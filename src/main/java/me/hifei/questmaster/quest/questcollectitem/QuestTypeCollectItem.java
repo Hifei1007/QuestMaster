@@ -46,7 +46,7 @@ public class QuestTypeCollectItem implements QuestType {
 
     public QuestTypeCollectItem(@NotNull Map<String, Object> serializer) {
         // This feature is already in todo state.
-        // We will don't support this feature for a long time.
+        // We won't support this feature for a long time.
         // item = QuestTableCollectItem.valueOf((String) serializer.get("item"));
         item = null;
         count = (int) serializer.get("count");
