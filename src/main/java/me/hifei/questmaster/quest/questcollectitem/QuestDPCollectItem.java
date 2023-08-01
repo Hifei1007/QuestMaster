@@ -4,9 +4,9 @@ import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
-import me.hifei.questmaster.ui.UIManager;
 import me.hifei.questmaster.ui.DynamicPanel;
 import me.hifei.questmaster.ui.QuestDynamicPanel;
+import me.hifei.questmaster.ui.UIManager;
 import me.hifei.questmaster.ui.dynamic.DPQuest;
 import me.rockyhawk.commandpanels.api.Panel;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
@@ -190,7 +190,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         modifyItemBar();
     }
 
-    public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition, Quest quest) {
-        DynamicPanel.openDynamic(QuestDPCollectItem.class, panelPosition, player, quest);
+    public static void openDynamic(Player player, PanelPosition panelPosition, Quest quest) {
+        DynamicPanel.openDynamic(panelPosition, new QuestDPCollectItem(player, quest));
     }
 }

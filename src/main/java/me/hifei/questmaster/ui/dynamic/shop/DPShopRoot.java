@@ -14,7 +14,7 @@ public class DPShopRoot extends DynamicPanel {
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition) {
-       DynamicPanel.openDynamic(DPShopRoot.class, panelPosition, player);
+       DynamicPanel.openDynamic(panelPosition, new DPShopRoot(player));
     }
 
     public DPShopRoot(@NotNull Player player) {

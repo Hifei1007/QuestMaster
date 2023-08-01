@@ -2,8 +2,6 @@ package me.hifei.questmaster.ui;
 
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
-import me.hifei.questmaster.api.quest.Quest;
-import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Config;
 import me.hifei.questmaster.running.config.Message;
 import me.rockyhawk.commandpanels.api.Panel;
@@ -13,8 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public abstract class DynamicPanel extends Panel {
@@ -98,34 +94,14 @@ public abstract class DynamicPanel extends Panel {
         return name;
     }
 
-    protected static <T extends DynamicPanel> void openDynamic(@NotNull Class<T> clazz, PanelPosition panelPosition, Object @NotNull ... args) {
-        Panel p = UIManager.API.getOpenPanel((Player) args[0], panelPosition);
+    protected static void openDynamic(PanelPosition panelPosition, DynamicPanel panel) {
+        Panel p = UIManager.API.getOpenPanel(panel.player, panelPosition);
         try {
-            // 挺麻烦的, 向前兼容
-            List<Class<?>> target_interfaces = List.of(Player.class, Quest.class, QuestTeam.class);
-            Class<?>[] classes = new Class<?>[args.length];
-            for (int i = 0; i < args.length; i++) {
-                Class<?> c = args[i].getClass();
-                classes[i] = c;
-                for (Class<?> cl : c.getInterfaces()) {
-                    if (target_interfaces.contains(cl)) {
-                        classes[i] = cl;
-                        break;
-                    }
-                }
-            }
-            Constructor<T> constructor = clazz.getConstructor(classes);
-            T panel = constructor.newInstance(args);
-            try {
-                if (p instanceof DynamicPanel)
-                    UIManager.ins.changeClear((DynamicPanel) p, () -> panel.open((Player) args[0], panelPosition));
-                else panel.open((Player) args[0], panelPosition);
-            } catch (RuntimeException e) {
-                    panel.player.sendMessage(Message.get("error.cant_open", panel.getName()));
-                }
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-                 InvocationTargetException e) {
-            throw new RuntimeException(e);
+            if (p instanceof DynamicPanel)
+                UIManager.ins.changeClear((DynamicPanel) p, () -> panel.open(panel.player, panelPosition));
+            else panel.open(panel.player, panelPosition);
+        } catch (RuntimeException e) {
+            panel.player.sendMessage(Message.get("error.cant_open", panel.getName()));
         }
     }
 

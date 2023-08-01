@@ -7,8 +7,8 @@ import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.listeners.ChatListener;
 import me.hifei.questmaster.running.runners.MainUpdater;
-import me.hifei.questmaster.ui.GUIListener;
 import me.hifei.questmaster.ui.DynamicPanel;
+import me.hifei.questmaster.ui.GUIListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

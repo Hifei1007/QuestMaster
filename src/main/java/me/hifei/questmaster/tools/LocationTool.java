@@ -2,6 +2,7 @@ package me.hifei.questmaster.tools;
 
 import me.hifei.questmaster.running.config.Message;
 import org.bukkit.Location;
+
 import java.util.Objects;
 
 public class LocationTool {

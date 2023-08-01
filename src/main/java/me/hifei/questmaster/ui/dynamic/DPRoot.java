@@ -3,8 +3,8 @@ package me.hifei.questmaster.ui.dynamic;
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
-import me.hifei.questmaster.ui.UIManager;
 import me.hifei.questmaster.ui.DynamicPanel;
+import me.hifei.questmaster.ui.UIManager;
 import me.hifei.questmaster.ui.dynamic.shop.DPShopRoot;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.configuration.ConfigurationSection;
@@ -21,7 +21,7 @@ public class DPRoot extends DynamicPanel {
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition) {
-       DynamicPanel.openDynamic(DPRoot.class, panelPosition, player);
+       DynamicPanel.openDynamic(panelPosition, new DPRoot(player));
     }
 
     @Override

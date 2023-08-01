@@ -4,8 +4,8 @@ import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.LocationTool;
-import me.hifei.questmaster.ui.UIManager;
 import me.hifei.questmaster.ui.DynamicPanel;
+import me.hifei.questmaster.ui.UIManager;
 import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Bukkit;
@@ -120,11 +120,11 @@ public class DPTeleport extends DynamicPanel {
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition) {
-        DynamicPanel.openDynamic(DPTeleport.class, panelPosition, player);
+        DynamicPanel.openDynamic(panelPosition, new DPTeleport(player));
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition, MenuType type) {
-        DynamicPanel.openDynamic(DPTeleport.class, panelPosition, player, type);
+        DynamicPanel.openDynamic(panelPosition, new DPTeleport(player, type));
     }
 
     @Override

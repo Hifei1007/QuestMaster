@@ -3,8 +3,8 @@ package me.hifei.questmaster.ui.dynamic;
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
-import me.hifei.questmaster.ui.UIManager;
 import me.hifei.questmaster.ui.DynamicPanel;
+import me.hifei.questmaster.ui.UIManager;
 import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.entity.Player;
@@ -52,10 +52,10 @@ public class DPQuest extends DynamicPanel {
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition) {
-        DynamicPanel.openDynamic(DPQuest.class, panelPosition, player);
+        DynamicPanel.openDynamic(panelPosition, new DPQuest(player));
     }
 
     public static <T extends Player> void openDynamic(T player, QuestTeam team, PanelPosition panelPosition) {
-        DynamicPanel.openDynamic(DPQuest.class, panelPosition, player, team);
+        DynamicPanel.openDynamic(panelPosition, new DPQuest(player, team));
     }
 }

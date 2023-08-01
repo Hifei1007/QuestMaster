@@ -50,7 +50,7 @@ public class DPShopTeamUpgrade extends DynamicPanel {
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition) {
-       DynamicPanel.openDynamic(DPShopTeamUpgrade.class, panelPosition, player);
+       DynamicPanel.openDynamic(panelPosition, new DPShopTeamUpgrade(player));
     }
 
     public DPShopTeamUpgrade(@NotNull Player player) {
