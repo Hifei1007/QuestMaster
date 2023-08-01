@@ -1,14 +1,23 @@
 items:
+
+  # Overworld Blocks
+
   - diff: 0.5
     aliases:
       - $
     placeholders:
       - sand
       - dirt
+
+  # Clay
+
   - diff: 1
     name: clay_ball
   - diff: 4
     name: clay
+
+  # Granite, Andesite, Diorite, and Blackstone
+
   - diff: 1
     aliases:
       - $
@@ -19,9 +28,13 @@ items:
       - polished_$_stairs
       - polished_$_slab
     placeholders:
-      granite
-      andesite
-      diorite
+      - granite
+      - andesite
+      - diorite
+      - blackstone
+
+  # Deepslate
+
   - diff: 1.5
     aliases:
       - chiseled_deepslate
@@ -39,6 +52,9 @@ items:
       - deepslate_brick
       - deepslate_tile
       - polished_deepslate
+
+  # Stone & Smooth Stone
+
   - diff: 4
     aliases:
       - stone
@@ -54,36 +70,60 @@ items:
       - stone_brick_wall
       - chiesled_stone_bricks
 
-#// Woods
-#    STRIPPED_OAK_LOG(3.5),
-#    OAK_LOG(3),
-#    STRIPPED_BIRCH_LOG(3.5),
-#    BIRCH_LOG(3),
-#    STRIPPED_SPRUCE_LOG(3.5),
-#    SPRUCE_LOG(3),
-#    STRIPPED_ACACIA_LOG(3.5),
-#    ACACIA_LOG(3),
-#    STRIPPED_JUNGLE_LOG(3.5),
-#    JUNGLE_LOG(3),
-#    STICK(0.5),
-#
-#    // Nether
-#    NETHERRACK(0.5),
-#    WARPED_STEM(3),
-#    STRIPPED_WARPED_STEM(3.5),
-#    CRIMSON_STEM(3),
-#    STRIPPED_CRIMSON_STEM(3.5),
-#    SOUL_SAND(1.5),
-#    SOUL_SOIL(1.5),
-#    BASALT(1.5),
-#    POLISHED_BASALT(2),
-#    BLACKSTONE(1),
-#    POLISHED_BLACKSTONE(1.5),
-#
-#    // End
-#    END_STONE(7),
-#    END_ROD(25),
-#    END_STONE_BRICKS(9),
-#    PURPUR_BLOCK(15),
+  # Woods
+
+  - diff: 3
+    aliases:
+      - bamboo_block
+      - stripped_bamboo_block
+      - $_log
+      - stripped_$_log
+      - $_wood
+      - stripped_$_wood
+    placeholders:
+      - oak
+      - birch
+      - spruce
+      - acacia
+      - jungle
+      - dark_oak
+      - mangrove
+      - cherry
+
+  # Nether Stems
+
+  - diff: 3.5
+    aliases:
+      - $_stem
+      - stripped_$_stem
+      - $_hyphae
+      - stripped_$_hyphae
+    placeholders:
+      - crimson
+      - warped
+
+  # Nether Blocks
+
+  - diff: 1.5
+    aliases:
+      - basalt
+      - polished_basalt
+  - diff: 0.5
+    name: netherrack
+
+  # End Items
+
+  - diff: 12
+    aliases:
+      - purpur_block
+      - purpur_stairs
+      - purpur_slab
+      - purpur_pillar
+      - end_stone
+      - end_stone_bricks
+      - end_stone_brick_stairs
+      - end_stone_brick_slab
+      - end_stone_brick_wall
+      - end_rod
 
 
