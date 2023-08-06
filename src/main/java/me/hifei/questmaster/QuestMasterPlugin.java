@@ -47,16 +47,5 @@ public class QuestMasterPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // todo: GameSavingCore.save();
-        for (QuestTeam team : CoreManager.manager.getTeams()) {
-            {
-                team.clear();
-                for (Quest q : team.getQuests()) {
-                    q.drop();
-                }
-            }
-        }
-        DynamicPanel.clear();
-        if (CoreManager.isGameStart()) CoreManager.game.drop();
     }
 }
