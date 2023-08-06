@@ -23,7 +23,6 @@ public class QuestTypeCollectItem implements QuestType {
 
     public static @NotNull QuestTypeCollectItem create() {
         QuestTableCollectItem.TableItem item;
-        Random random = new Random();
         double target = DifficultTool.nextDifficult();
         int tryCount = 0;
         do {
@@ -113,8 +112,8 @@ public class QuestTypeCollectItem implements QuestType {
     public int time() {
         Random random = new Random();
         return
-                (int) (random.nextInt(300, 360) * Math.log10(difficultValue) +
-                                        (int)(difficultValue * random.nextDouble(5, 10)));
+                (int) (random.nextInt(60, 90) * Math.log10(difficultValue) +
+                                        (int)(difficultValue * random.nextDouble(2, 3.5)));
     }
 
     @Override
