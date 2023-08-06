@@ -18,13 +18,43 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT'
     compileOnly 'com.google.code.gson:gson:2.8.9'
     compileOnly 'org.jetbrains:annotations:24.0.1'
-    compileOnly fileTree(dir:'libraries', includes:['*jar'])
+    compileOnly fileTree(dir: 'libraries', includes: ['*jar'])
 }
 
 test {
     useJUnitPlatform()
 }
 
+tasks.register("copyPlugin") {
+    doLast {
+        println "Task Executed"
+        copy {
+            println "Copying plugin"
+            from layout.buildDirectory.dir("libs")
+            include "*.jar"
+            into new File(rootDir, "server/plugins")
+        }
+    }
+}
+
+build {
+    println("Starting build QuestMaster...")
+    doLast {
+        File target = new File(rootDir, "server/plugins")
+        if (!target.exists()) return
+        copy {
+            println "Copying plugin file"
+            from layout.buildDirectory.dir("libs")
+            include "*.jar"
+            into target
+        }
+    }
+}
+
+
+
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
+
