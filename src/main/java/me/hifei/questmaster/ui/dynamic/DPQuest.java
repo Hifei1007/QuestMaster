@@ -28,10 +28,6 @@ public class DPQuest extends DynamicPanel {
     }
     private final QuestTeam team;
 
-    public DPQuest(@NotNull Player player) {
-        this(player, CoreManager.manager.getTeam(player));
-    }
-
     public DPQuest(@NotNull Player player, QuestTeam team) {
         super(player, false);
         this.team = team;
@@ -43,16 +39,21 @@ public class DPQuest extends DynamicPanel {
         if (team == CoreManager.red) setItem(8, getDynamic("red"));
         else if (team == CoreManager.blue) setItem(8, getDynamic("blue"));
         List<Quest> quests = team.getQuests();
-        setItem(29, quests.get(0).getItem(true));
-        getItem(29).set("commands", List.of("event= open_quest_1"));
-        setItem(31, quests.get(1).getItem(true));
-        getItem(31).set("commands", List.of("event= open_quest_2"));
-        setItem(33, quests.get(2).getItem(true));
-        getItem(33).set("commands", List.of("event= open_quest_3"));
+        try {
+            setItem(29, quests.get(0).getItem(true));
+            getItem(29).set("commands", List.of("event= open_quest_1"));
+            setItem(31, quests.get(1).getItem(true));
+            getItem(31).set("commands", List.of("event= open_quest_2"));
+            setItem(33, quests.get(2).getItem(true));
+            getItem(33).set("commands", List.of("event= open_quest_3"));
+        } catch (IndexOutOfBoundsException e) {
+            close();
+            player.closeInventory();
+        }
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition) {
-        DynamicPanel.openDynamic(panelPosition, new DPQuest(player));
+        openDynamic(player, CoreManager.manager.getTeam(player), panelPosition);
     }
 
     public static <T extends Player> void openDynamic(T player, QuestTeam team, PanelPosition panelPosition) {
