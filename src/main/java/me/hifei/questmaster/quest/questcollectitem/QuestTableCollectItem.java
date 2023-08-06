@@ -13,13 +13,17 @@ import java.util.Random;
 public class QuestTableCollectItem {
     public static List<TableItemGroup> itemGroups = new ArrayList<>();
 
-    public record TableItem(Material material, String name, double diff) {}
-    public record TableItemGroup(List<TableItem> items, double diff) {}
+    public record TableItem(Material material, String name, double diff) {
+    }
+
+    public record TableItemGroup(List<TableItem> items, double diff) {
+    }
 
     private static String getTranslate(Material material) {
         String name;
-        String ret = CoreManager.translateMaterialTool.translate_file
-                .get(String.format("block.minecraft.%s", material.getKey().getKey()));
+        Map<String, String> trans = CoreManager.translateMaterialTool.translate_file;
+        String key = material.getKey().getKey();
+        String ret = trans.getOrDefault(String.format("block.minecraft.%s", key), trans.getOrDefault(String.format("item.minecraft.%s", key), null));
         if (ret == null) {
             QuestMasterPlugin.logger.warning("Can't find translate key: " + material);
             name = material.toString();
@@ -30,7 +34,12 @@ public class QuestTableCollectItem {
     }
 
     private static Material getMaterialByString(String string) {
-        return Material.valueOf(string);
+        try {
+            return Material.valueOf(string.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            QuestMasterPlugin.logger.warning("Can't find material: " + string);
+            return Material.AIR;
+        }
     }
 
     private static TableItem buildItem(String string, double diff) {
@@ -45,8 +54,12 @@ public class QuestTableCollectItem {
     private static List<TableItem> processAliases(List<String> aliases, List<String> placeHolders, double diff) {
         List<TableItem> res = new ArrayList<>();
         for (String alias : aliases) {
-            for (String placeHolder : placeHolders) {
-                res.add(buildItem(alias.replace("$", placeHolder), diff));
+            if (alias.contains("$")) {
+                for (String placeHolder : placeHolders) {
+                    res.add(buildItem(alias.replace("$", placeHolder), diff));
+                }
+            } else {
+                res.add(buildItem(alias, diff));
             }
         }
         return res;
@@ -64,15 +77,18 @@ public class QuestTableCollectItem {
         List<Map<?, ?>> groups = config.getConfiguration().getMapList("items");
         List<TableItemGroup> res = new ArrayList<>();
         for (Map<?, ?> group : groups) {
-            double diff = (double) group.get("diff");
+            double diff = ((Number) group.get("diff")).doubleValue();
             if (group.containsKey("name")) {
                 res.add(new TableItemGroup(List.of(buildItem((String) group.get("name"), diff)), diff));
-            }
-            List<String> aliases = (List<String>) group.get("aliases");
-            if (group.containsKey("placeholders")) {
-                res.add(new TableItemGroup(processAliases(aliases, (List<String>) group.get("placeholders"), diff), diff));
+            } else if (group.containsKey("aliases")) {
+                List<String> aliases = (List<String>) group.get("aliases");
+                if (group.containsKey("placeholders")) {
+                    res.add(new TableItemGroup(processAliases(aliases, (List<String>) group.get("placeholders"), diff), diff));
+                } else {
+                    res.add(new TableItemGroup(processAliases(aliases, diff), diff));
+                }
             } else {
-                res.add(new TableItemGroup(processAliases(aliases, diff), diff));
+                QuestMasterPlugin.logger.warning("Found unknown group");
             }
         }
         itemGroups = res;
