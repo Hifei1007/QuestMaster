@@ -39,5 +39,8 @@ public interface QuestManager {
     @NotNull QuestGame createGame(@NotNull List<QuestTeam> teams, int goal);
 
     @NotNull QuestType createType();
+
+    void registerType(Class<QuestType> questTypeClass, int weight);
+
     @NotNull QuestTeamScoreboard createScoreboard(QuestGame game, QuestTeam team);
 }

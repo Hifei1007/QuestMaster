@@ -13,14 +13,23 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class CQuestManager implements QuestManager {
+    private record WeightedQuestType(Class<? extends QuestType> questType, int weight) {
+    }
+
     private final @NotNull List<QuestTeam> teams;
+    private final @NotNull List<WeightedQuestType> questTypeList;
 
     public CQuestManager () {
         teams = new LinkedList<>();
+        questTypeList = new ArrayList<>();
     }
 
     @Override
@@ -86,9 +95,32 @@ public class CQuestManager implements QuestManager {
         return new CQuestGame(teams, goal);
     }
 
+    private @NotNull QuestType createTypeByClass(Class<? extends QuestType> qtClass) {
+        try {
+            Method method = qtClass.getMethod("create");
+            return (QuestType) method.invoke(null);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public @NotNull QuestType createType() {
-        return QuestTypeCollectItem.create();
+        int totalWeight = 0;
+        for (WeightedQuestType qt : questTypeList) {
+            totalWeight += qt.weight;
+        }
+        int r = new Random().nextInt(totalWeight);
+        for (WeightedQuestType qt : questTypeList) {
+            if (r < qt.weight) return createTypeByClass(qt.questType);
+            r -= qt.weight;
+        }
+        throw new RuntimeException("Can't create QuestType object");
+    }
+
+    @Override
+    public void registerType(Class<QuestType> questTypeClass, int weight) {
+        questTypeList.add(new WeightedQuestType(questTypeClass, weight));
     }
 
     @Override
