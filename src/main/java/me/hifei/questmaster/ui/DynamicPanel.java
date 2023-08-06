@@ -88,7 +88,7 @@ public abstract class DynamicPanel extends Panel {
     private static @NotNull String makeName(@NotNull Player player) {
         String name;
         do {
-            name = "dynamic_" + player.getName() + "_" + new Random().nextInt(1000000000);
+            name = "dynamic_" + player.getName() + "_" + new Random().nextInt(10000);
         } while (names.contains(name));
         names.add(name);
         return name;
