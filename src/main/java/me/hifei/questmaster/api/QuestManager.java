@@ -40,7 +40,7 @@ public interface QuestManager {
 
     @NotNull QuestType createType();
 
-    void registerType(Class<QuestType> questTypeClass, int weight);
+    void registerType(Class<? extends QuestType> questTypeClass, int weight);
 
     @NotNull QuestTeamScoreboard createScoreboard(QuestGame game, QuestTeam team);
 }

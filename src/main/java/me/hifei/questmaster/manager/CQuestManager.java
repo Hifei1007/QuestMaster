@@ -119,7 +119,7 @@ public class CQuestManager implements QuestManager {
     }
 
     @Override
-    public void registerType(Class<QuestType> questTypeClass, int weight) {
+    public void registerType(Class<? extends QuestType> questTypeClass, int weight) {
         questTypeList.add(new WeightedQuestType(questTypeClass, weight));
     }
 
