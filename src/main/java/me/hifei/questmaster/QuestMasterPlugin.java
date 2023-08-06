@@ -1,8 +1,11 @@
 package me.hifei.questmaster;
 
+import me.hifei.questmaster.api.QuestManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
+import me.hifei.questmaster.manager.CQuestManager;
 import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
+import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
 import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.listeners.ChatListener;
@@ -27,6 +30,10 @@ public class QuestMasterPlugin extends JavaPlugin {
         QuestTableCollectItem.loadConfig();
     }
 
+    public void registerQuestType() {
+        CoreManager.manager.registerType(QuestTypeCollectItem.class, 1);
+    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -40,6 +47,7 @@ public class QuestMasterPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 
         loadTables();
+        registerQuestType();
 
         // todo: GameSavingCore.registerClass();
         // todo: GameSavingCore.load();
