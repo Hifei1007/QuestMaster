@@ -1,4 +1,4 @@
-package me.hifei.questmaster.ui;
+package me.hifei.questmaster.ui.core;
 
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.running.config.Message;
@@ -57,12 +57,11 @@ public class UIManager {
         listeners.add(consumer);
     }
 
-    public <T extends DynamicPanel> Consumer<PanelCommandEvent> registerListener(Class<T> clazzOnly, Consumer<PanelCommandEvent> consumer) {
+    public <T extends DynamicPanel> void registerListener(Class<T> clazzOnly, Consumer<PanelCommandEvent> consumer) {
         Consumer<PanelCommandEvent> newConsumer = (event) -> {
             if (event.getPanel().getClass() == clazzOnly) consumer.accept(event);
         };
         registerListener(newConsumer);
-        return newConsumer;
     }
 
     public void ungisterEventAll(String id) {

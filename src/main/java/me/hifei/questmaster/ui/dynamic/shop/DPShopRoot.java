@@ -1,7 +1,7 @@
 package me.hifei.questmaster.ui.dynamic.shop;
 
-import me.hifei.questmaster.ui.DynamicPanel;
-import me.hifei.questmaster.ui.UIManager;
+import me.hifei.questmaster.ui.core.DynamicPanel;
+import me.hifei.questmaster.ui.core.UIManager;
 import me.hifei.questmaster.ui.dynamic.DPRoot;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.entity.Player;

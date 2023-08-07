@@ -1,4 +1,4 @@
-package me.hifei.questmaster.ui;
+package me.hifei.questmaster.ui.core;
 
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.Timer;

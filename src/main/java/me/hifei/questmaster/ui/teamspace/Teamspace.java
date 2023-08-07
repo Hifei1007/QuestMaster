@@ -1,6 +1,6 @@
 package me.hifei.questmaster.ui.teamspace;
 
-import me.hifei.questmaster.ui.DynamicPanel;
+import me.hifei.questmaster.ui.core.DynamicPanel;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 

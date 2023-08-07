@@ -1,4 +1,4 @@
-package me.hifei.questmaster.ui;
+package me.hifei.questmaster.ui.core;
 
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
@@ -18,7 +18,7 @@ public abstract class DynamicPanel extends Panel {
     private final static List<DynamicPanel> activePanels = new ArrayList<>();
     private final static Map<Class<? extends DynamicPanel>, Config> configMap = new HashMap<>();
     private BukkitRunnable autoUpdater;
-    protected final @NotNull Player player;
+    protected final Player player;
 
     protected abstract void dynamicModify(Player player);
 
@@ -86,10 +86,12 @@ public abstract class DynamicPanel extends Panel {
 
     private static final List<String> names = new ArrayList<>();
 
-    private static @NotNull String makeName(@NotNull Player player) {
-        String name;
+    private static @NotNull String makeName(Player player) {
+        String name, playerName;
+        if (player == null) playerName = "sync";
+        else playerName = player.getName();
         do {
-            name = "dynamic_" + player.getName() + "_" + new Random().nextInt(10000);
+            name = "dynamic_" + playerName + "_" + new Random().nextInt(10000);
         } while (names.contains(name));
         names.add(name);
         return name;
@@ -113,11 +115,11 @@ public abstract class DynamicPanel extends Panel {
         QuestMasterPlugin.logger.info("Closed dynamic panel " + this.getName());
     }
 
-    public DynamicPanel(@NotNull Player player) {
+    public DynamicPanel(Player player) {
         this(player, true);
     }
 
-    protected DynamicPanel(@NotNull Player player, boolean autoModify) {
+    protected DynamicPanel(Player player, boolean autoModify) {
         super(makeName(player));
         this.player = player;
         if (autoModify) dynamicModify(player);

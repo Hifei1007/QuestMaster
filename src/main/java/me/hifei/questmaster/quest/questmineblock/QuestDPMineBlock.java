@@ -2,8 +2,8 @@ package me.hifei.questmaster.quest.questmineblock;
 
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.state.State;
-import me.hifei.questmaster.ui.DynamicPanel;
-import me.hifei.questmaster.ui.QuestDynamicPanel;
+import me.hifei.questmaster.ui.core.DynamicPanel;
+import me.hifei.questmaster.ui.core.QuestDynamicPanel;
 import me.hifei.questmaster.ui.dynamic.DPQuest;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.entity.Player;

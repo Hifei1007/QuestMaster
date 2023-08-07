@@ -3,8 +3,8 @@ package me.hifei.questmaster.ui.dynamic;
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
-import me.hifei.questmaster.ui.DynamicPanel;
-import me.hifei.questmaster.ui.UIManager;
+import me.hifei.questmaster.ui.core.DynamicPanel;
+import me.hifei.questmaster.ui.core.UIManager;
 import me.hifei.questmaster.ui.dynamic.shop.DPShopRoot;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.configuration.ConfigurationSection;
@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class DPRoot extends DynamicPanel {
+
     static {
         UIManager.ins.registerEvent("root_open_quest", (event -> DPQuest.openDynamic(event.getPlayer(), PanelPosition.Top)));
         UIManager.ins.registerEvent("root_open_teleport", (event -> DPTeleport.openDynamic(event.getPlayer(), PanelPosition.Top)));

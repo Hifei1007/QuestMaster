@@ -1,0 +1,17 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 6
+title: '&8任务大师 - 团队箱子'
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+  dynamicitem:
+    material: BEDROCK
+    name: '&4&l抱歉!似乎出现了一些问题!'
+    stack: 1
+    lore:
+      - '&4这个位置应该是一个动态物品!'
+      - '&4你应该立刻报告这个问题!'
+empty: emptyitem
