@@ -1,5 +1,7 @@
 package me.hifei.questmaster;
 
+import me.hifei.questmaster.api.quest.Quest;
+import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
 import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
 import me.hifei.questmaster.quest.questmineblock.QuestTableMineBlock;
@@ -8,6 +10,7 @@ import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.listeners.ChatListener;
 import me.hifei.questmaster.running.runners.MainUpdater;
+import me.hifei.questmaster.ui.DynamicPanel;
 import me.hifei.questmaster.ui.GUIListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -54,16 +57,12 @@ public class QuestMasterPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // todo: GameSavingCore.save();
+        if (CoreManager.isGameStart()) CoreManager.game.drop();
         for (QuestTeam team : CoreManager.manager.getTeams()) {
             {
                 team.clear();
-                for (Quest q : team.getQuests()) {
-                    q.drop();
-                }
             }
         }
         DynamicPanel.clear();
-        if (CoreManager.isGameStart()) CoreManager.game.drop();
     }
 }
