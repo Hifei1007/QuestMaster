@@ -111,19 +111,4 @@ items:
   - diff: 0.5
     name: netherrack
 
-  # End Items
-
-  - diff: 48
-    aliases:
-      - purpur_block
-      - purpur_stairs
-      - purpur_slab
-      - purpur_pillar
-      - end_stone
-      - end_stone_bricks
-      - end_stone_brick_stairs
-      - end_stone_brick_slab
-      - end_stone_brick_wall
-      - end_rod
-
 
