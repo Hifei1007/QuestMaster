@@ -48,7 +48,6 @@ public class DPQuest extends DynamicPanel {
             getItem(33).set("commands", List.of("event= open_quest_3"));
         } catch (IndexOutOfBoundsException e) {
             close();
-            player.closeInventory();
         }
     }
 

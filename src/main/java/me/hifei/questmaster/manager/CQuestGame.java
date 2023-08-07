@@ -9,6 +9,10 @@ import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.shop.Upgrade;
+import me.hifei.questmaster.ui.DynamicPanel;
+import me.hifei.questmaster.ui.UIManager;
+import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
+import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -160,6 +164,12 @@ public class CQuestGame implements QuestGame {
             t.init();
         });
         Bukkit.broadcastMessage(Message.get("game.stop.message"));
-        runEachPlayer(p -> p.setScoreboard(CoreManager.emptyScoreboard));
+        runEachPlayer(p -> {
+            p.setScoreboard(CoreManager.emptyScoreboard);
+            if (UIManager.API.isPanelOpen(p) && UIManager.API.getOpenPanel(p, PanelPosition.Top) instanceof DynamicPanel dp) {
+                dp.close();
+                DPRootNotStarted.openDynamic(p, PanelPosition.Top);
+            }
+        });
     }
 }
