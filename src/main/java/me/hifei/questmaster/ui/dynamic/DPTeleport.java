@@ -141,8 +141,10 @@ public class DPTeleport extends DynamicPanel {
         setItem(50, getDynamic("select_location"));
 
         assert team != null;
-        if (select != null && !team.locations().contains(select))
-            openDynamic(player, PanelPosition.Top, MenuType.LOCATION);
+        if (select != null && !team.locations().contains(select)) {
+            select = null; // Bug fix: this code will repeat EVERY TICK if open this panel when restart
+            type = MenuType.LOCATION;
+        }
 
         int selectLoc = type == MenuType.LOCATION ? 50 : 48;
         List<String> lore = getItem(selectLoc).getStringList("lore");
