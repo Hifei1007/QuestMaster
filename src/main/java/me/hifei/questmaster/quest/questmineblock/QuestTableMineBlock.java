@@ -1,4 +1,4 @@
-package me.hifei.questmaster.quest.questcollectitem;
+package me.hifei.questmaster.quest.questmineblock;
 
 import me.hifei.questmaster.api.quest.TableItem;
 import me.hifei.questmaster.api.quest.TableItemGroup;
@@ -8,8 +8,8 @@ import org.bukkit.Material;
 
 import java.util.Random;
 
-public class QuestTableCollectItem extends QuestTableTool<Material> {
-    public final static QuestTableCollectItem ins = new QuestTableCollectItem();
+public class QuestTableMineBlock extends QuestTableTool<Material> {
+    public static QuestTableMineBlock ins = new QuestTableMineBlock();
 
     @Override
     protected TableItem<Material> buildItem(String string, double diff) {
@@ -24,7 +24,7 @@ public class QuestTableCollectItem extends QuestTableTool<Material> {
     }
 
     public void loadConfig() {
-        Config config = new Config("table/collectitem.yml", true);
+        Config config = new Config("table/mineblock.yml", true);
         loadConfig0(config);
     }
 }

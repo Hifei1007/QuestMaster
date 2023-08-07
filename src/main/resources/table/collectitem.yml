@@ -2,7 +2,7 @@ items:
 
   # Overworld Blocks
 
-  - diff: 0.5
+  - diff: 2
     aliases:
       - $
     placeholders:
@@ -11,14 +11,14 @@ items:
 
   # Clay
 
-  - diff: 1
-    name: clay_ball
   - diff: 4
+    name: clay_ball
+  - diff: 16
     name: clay
 
   # Granite, Andesite, Diorite, and Blackstone
 
-  - diff: 1
+  - diff: 4
     aliases:
       - $
       - $_stairs
@@ -35,7 +35,7 @@ items:
 
   # Deepslate
 
-  - diff: 1.5
+  - diff: 6
     aliases:
       - chiseled_deepslate
       - cracked_deepslate_bricks
@@ -55,7 +55,7 @@ items:
 
   # Stone & Smooth Stone
 
-  - diff: 4
+  - diff: 16
     aliases:
       - stone
       - stone_stairs
@@ -72,7 +72,7 @@ items:
 
   # Woods
 
-  - diff: 3
+  - diff: 12
     aliases:
       - bamboo_block
       - stripped_bamboo_block
@@ -92,7 +92,7 @@ items:
 
   # Nether Stems
 
-  - diff: 3.5
+  - diff: 14
     aliases:
       - $_stem
       - stripped_$_stem
@@ -104,7 +104,7 @@ items:
 
   # Nether Blocks
 
-  - diff: 1.5
+  - diff: 6
     aliases:
       - basalt
       - polished_basalt
@@ -113,7 +113,7 @@ items:
 
   # End Items
 
-  - diff: 12
+  - diff: 48
     aliases:
       - purpur_block
       - purpur_stairs

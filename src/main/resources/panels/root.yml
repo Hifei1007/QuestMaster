@@ -68,3 +68,20 @@ item:
     stack: 1
     commands:
       - cpc
+  '53':
+    material: BEDROCK
+    name: '&4&l错误!未加载动态内容!'
+    lore:
+      - ''
+      - '&7此设置控制是否应当'
+      - '&7自动提交部分类型任务'
+      - ''
+      - '&7关闭此设置可以避免因'
+      - '&7自动提交失去掉落物'
+      - ''
+      - '&7需要自动提交开启以完成的任务:'
+      - '&e- &b挖掘方块'
+      - ''
+      - '&e点击切换!'
+    commands:
+      - event= root_switch_auto_submit

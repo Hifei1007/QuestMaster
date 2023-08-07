@@ -7,7 +7,6 @@ import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.QuestType;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
-import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

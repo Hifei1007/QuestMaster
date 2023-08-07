@@ -2,7 +2,6 @@ package me.hifei.questmaster.quest.questcollectitem;
 
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
-import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.ui.DynamicPanel;
 import me.hifei.questmaster.ui.QuestDynamicPanel;
@@ -10,7 +9,6 @@ import me.hifei.questmaster.ui.UIManager;
 import me.hifei.questmaster.ui.dynamic.DPQuest;
 import me.rockyhawk.commandpanels.api.Panel;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +26,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         int items = 0;
         for (ItemStack stack : player.getInventory()) {
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material())) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.obj())) {
                 items += stack.getAmount();
             }
         }
@@ -38,7 +36,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         for (ItemStack stack : player.getInventory()) {
             if (current == 0) break;
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material())) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.obj())) {
                 if (current < stack.getAmount()) {
                     stack.setAmount(stack.getAmount() - current);
                     current = 0;
@@ -77,7 +75,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         int items = 0;
         for (ItemStack stack : player.getInventory()) {
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.material())) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.obj())) {
                 items += stack.getAmount();
             }
         }
@@ -103,81 +101,6 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         }
     }
 
-    private void modifyTimerBar() {
-        Timer timer = quest.getTimer();
-        long hours = timer.hour();
-        String time = getMessage("timer.name", timer.remaining());
-        for (int i = 46; i <= 50; i++) {
-            setItem(i, getDynamic("timer_empty"));
-            getItem(i).set("name", time);
-        }
-        for (int i = 46; i <= 50; i++) {
-            if (hours != 0) {
-                hours--;
-                setItem(i, getDynamic("timer_1"));
-                getItem(i).set("stack", 60);
-                getItem(i).set("name", time);
-            } else {
-                setItem(i, getDynamic("timer_1"));
-                getItem(i).set("stack", timer.minute());
-                getItem(i).set("name", time);
-                break;
-            }
-        }
-        setItem(51, getDynamic("timer_empty"));
-        getItem(51).set("name", time);
-
-        long second = timer.second();
-        if (second == 0) second = 60;
-        setItem(52, getDynamic("timer_2"));
-        getItem(52).set("name", time);
-        getItem(52).set("stack", second);
-    }
-
-    public void modifyItemBar() {
-        int items = quest.getTotalCount() - quest.getCurrentCount();
-        String item = getMessage("item.name", items);
-        long shulkers = items / (64 * 27);
-        items %= (64 * 27);
-        long stacks = items / 64;
-        items %= 64;
-        List<String> lore = List.of(
-                getMessage("item.lore.1"),
-                getMessage("item.lore.2", shulkers),
-                getMessage("item.lore.3", stacks),
-                getMessage("item.lore.4", items)
-        );
-
-        for (int i = 37; i <= 43; i++) {
-            setItem(i, getDynamic("item_empty"));
-            getItem(i).set("lore", lore);
-            getItem(i).set("name", item);
-        }
-        for (int i = 37; i <= 43; i++) {
-            Material material = ((QuestTypeCollectItem) quest.getType()).item.material();
-            if (shulkers != 0) {
-                shulkers--;
-                setItem(i, getDynamic("item_shulker"));
-                getItem(i).set("lore", lore);
-                getItem(i).set("name", item);
-            } else if (stacks != 0) {
-                setItem(i, getDynamic("item_stack"));
-                getItem(i).set("material", material);
-                getItem(i).set("lore", lore);
-                getItem(i).set("name", item);
-                getItem(i).set("stack", stacks);
-                stacks = 0;
-            } else if (items != 0) {
-                setItem(i, getDynamic("item_single"));
-                getItem(i).set("material", material);
-                getItem(i).set("lore", lore);
-                getItem(i).set("name", item);
-                getItem(i).set("stack", items);
-                items = 0;
-            }
-        }
-    }
-
     @Override
     public void dynamicModify(Player player) {
         if (quest.getState() == State.DROP) {
@@ -186,8 +109,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         loadTemplate("panels/questtype/collectitem.yml");
         super.dynamicModify(player);
         modifyAddItemBar();
-        modifyTimerBar();
-        modifyItemBar();
+        modifyItemBar(((QuestTypeCollectItem) quest.getType()).item.obj());
     }
 
     public static void openDynamic(Player player, PanelPosition panelPosition, Quest quest) {

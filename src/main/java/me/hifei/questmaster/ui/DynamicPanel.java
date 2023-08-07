@@ -6,6 +6,7 @@ import me.hifei.questmaster.running.config.Config;
 import me.hifei.questmaster.running.config.Message;
 import me.rockyhawk.commandpanels.api.Panel;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -129,5 +130,12 @@ public abstract class DynamicPanel extends Panel {
         for (DynamicPanel panel : panelList) {
             panel.close();
         }
+    }
+
+    public void modifyItem(int i, Material material, List<String> lore, String name, Integer stack) {
+        if (material != null) getItem(i).set("material", material);
+        if (lore != null) getItem(i).set("lore", lore);
+        if (name != null) getItem(i).set("name", name);
+        if (stack != null) getItem(i).set("stack", stack);
     }
 }

@@ -18,6 +18,9 @@ public class DPRoot extends DynamicPanel {
         UIManager.ins.registerEvent("root_open_quest", (event -> DPQuest.openDynamic(event.getPlayer(), PanelPosition.Top)));
         UIManager.ins.registerEvent("root_open_teleport", (event -> DPTeleport.openDynamic(event.getPlayer(), PanelPosition.Top)));
         UIManager.ins.registerEvent("root_open_shop", (event -> DPShopRoot.openDynamic(event.getPlayer(), PanelPosition.Top)));
+        UIManager.ins.registerEvent("root_switch_auto_submit",
+                (event -> CoreManager.autoSubmitMode.put(event.getPlayer().getName(),
+                        !CoreManager.autoSubmitMode.getOrDefault(event.getPlayer().getName(), true))));
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition) {
@@ -40,6 +43,15 @@ public class DPRoot extends DynamicPanel {
         getItem(11).set("name", getMessage("score.name", team.score()));
         getItem(13).set("name", getMessage("point.name", team.point()));
         getItem(15).set("name", getMessage("coin.name", team.coin()));
+        boolean autoSubmit = CoreManager.autoSubmitMode.getOrDefault(player.getName(), true);
+        if (autoSubmit) {
+            getItem(53).set("material", "LIME_DYE");
+            getItem(53).set("name", "&e自动提交&7: &a开启");
+        }
+        else {
+            getItem(53).set("material", "GRAY_DYE");
+            getItem(53).set("name", "&e自动提交&7: &c关闭");
+        }
     }
 
     public DPRoot(@NotNull Player player) {

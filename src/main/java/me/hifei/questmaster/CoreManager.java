@@ -11,6 +11,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scoreboard.Scoreboard;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class CoreManager {
@@ -18,6 +20,7 @@ public class CoreManager {
     public final static QuestManager manager = new CQuestManager();
     public static QuestTeam red = manager.createTeam(Message.get("team.red"), ChatColor.RED);
     public static QuestTeam blue = manager.createTeam(Message.get("team.blue"), ChatColor.BLUE);
+    public final static Map<String, Boolean> autoSubmitMode = new HashMap<>();
     public final static Scoreboard emptyScoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
 
     public static QuestGame game;

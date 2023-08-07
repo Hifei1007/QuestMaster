@@ -1,11 +1,12 @@
-package me.hifei.questmaster.quest.questcollectitem;
+package me.hifei.questmaster.quest.questmineblock;
 
+import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.quest.*;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.DifficultTool;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
@@ -16,19 +17,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class QuestTypeCollectItem implements QuestType {
+public class QuestTypeMineBlock implements QuestType {
     final TableItem<Material> item;
-    private final int count;
-    private int totalItemCount = 0;
     private Quest quest;
     private final double difficultValue;
+    private final int count;
+    private int totalItemCount = 0;
 
-    public static @NotNull QuestTypeCollectItem create() {
+    public final Map<String, Integer> combo = new HashMap<>();
+    public final Map<String, Long> lastCombo = new HashMap<>();
+
+    static {
+        Bukkit.getPluginManager().registerEvents(new QuestListenerMineBlock(), QuestMasterPlugin.instance);
+    }
+
+    public static @NotNull QuestTypeMineBlock create() {
         TableItem<Material> item;
         double target = DifficultTool.nextDifficult();
         int tryCount = 0;
         do {
-            item = QuestTableCollectItem.ins.nextItem();
+            item = QuestTableMineBlock.ins.nextItem();
             tryCount++;
             if (tryCount > 100) {
                 target = DifficultTool.nextDifficult();
@@ -36,32 +44,18 @@ public class QuestTypeCollectItem implements QuestType {
             }
         } while (target < item.diff() || target > item.diff() * 64 * 5);
         int count = (int) Math.ceil((target) / (item.diff()));
-        return new QuestTypeCollectItem(item, count, target);
+        return new QuestTypeMineBlock(item, count, target);
     }
 
-    private QuestTypeCollectItem(TableItem<Material> req, int count, double difficultValue) {
+    private QuestTypeMineBlock(TableItem<Material> req, int count, double difficultValue) {
         item = req;
         this.count = count;
         this.difficultValue = difficultValue;
     }
 
-    public QuestTypeCollectItem(@NotNull Map<String, Object> serializer) {
-        // This feature is already in todo state.
-        // We won't support this feature for a long time.
-        // item = QuestTableCollectItem.valueOf((String) serializer.get("item"));
-        item = null;
-        count = (int) serializer.get("count");
-        difficultValue = (double) serializer.get("difficultValue");
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        serializer.put("item", item.name());
-        serializer.put("count", count);
-        serializer.put("difficultValue", difficultValue);
-        return serializer;
+    public void addCount() {
+        totalItemCount++;
+        if (totalItemCount == count) quest.complete();
     }
 
     @Override
@@ -69,25 +63,9 @@ public class QuestTypeCollectItem implements QuestType {
         return quest;
     }
 
+    @Override
     public void sendQuestObject(Quest q) {
         quest = q;
-    }
-
-    public void addItem(@NotNull Player player, int c) {
-        player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 10.0f, 1.0f);
-        quest.getTeam().teamBroadcast(Message.get("quest.collectitem.submit", player.getDisplayName(), quest.getName(), item.name(), c));
-        int req = count - totalItemCount;
-        if (req >= c) {
-            totalItemCount += c;
-            if (count == totalItemCount) quest.complete();
-        } else {
-            totalItemCount = count;
-            quest.complete();
-        }
-    }
-
-    public int maxRequire() {
-        return count - totalItemCount;
     }
 
     @Override
@@ -136,7 +114,7 @@ public class QuestTypeCollectItem implements QuestType {
 
     @Override
     public @NotNull String name() {
-        return Message.get("quest.collectitem.name", difficult().name, item.name(), count);
+        return Message.get("quest.mineblock.name", difficult().name, item.name(), count);
     }
 
     @Override
@@ -160,6 +138,15 @@ public class QuestTypeCollectItem implements QuestType {
 
     @Override
     public void openPanel(@NotNull Player player) {
-        QuestDPCollectItem.openDynamic(player, PanelPosition.Top, quest);
+        QuestDPMineBlock.openDynamic(player, PanelPosition.Top, quest);
+    }
+
+    @NotNull
+    @Override
+    public Map<String, Object> serialize() {
+        // This feature is already in todo state.
+        // We won't support this feature for a long time.
+        // And it means we won't write any new code for new feature of this feature.
+        return new HashMap<>();
     }
 }

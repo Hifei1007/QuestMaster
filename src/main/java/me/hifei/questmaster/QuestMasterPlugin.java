@@ -1,16 +1,13 @@
 package me.hifei.questmaster;
 
-import me.hifei.questmaster.api.QuestManager;
-import me.hifei.questmaster.api.quest.Quest;
-import me.hifei.questmaster.api.team.QuestTeam;
-import me.hifei.questmaster.manager.CQuestManager;
 import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
 import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
+import me.hifei.questmaster.quest.questmineblock.QuestTableMineBlock;
+import me.hifei.questmaster.quest.questmineblock.QuestTypeMineBlock;
 import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.listeners.ChatListener;
 import me.hifei.questmaster.running.runners.MainUpdater;
-import me.hifei.questmaster.ui.DynamicPanel;
 import me.hifei.questmaster.ui.GUIListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,11 +24,13 @@ public class QuestMasterPlugin extends JavaPlugin {
     }
 
     public void loadTables() {
-        QuestTableCollectItem.loadConfig();
+        QuestTableCollectItem.ins.loadConfig();
+        QuestTableMineBlock.ins.loadConfig();
     }
 
     public void registerQuestType() {
         CoreManager.manager.registerType(QuestTypeCollectItem.class, 1);
+        CoreManager.manager.registerType(QuestTypeMineBlock.class, 1);
     }
 
     @Override

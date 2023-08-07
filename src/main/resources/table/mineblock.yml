@@ -1,0 +1,16 @@
+items:
+  # Granite, Andesite, Diorite, and Blackstone
+  - diff: 6
+    aliases:
+      - $
+      - $_stairs
+      - $_slab
+      - $_wall
+      - polished_$
+      - polished_$_stairs
+      - polished_$_slab
+    placeholders:
+      - granite
+      - andesite
+      - diorite
+      - blackstone
