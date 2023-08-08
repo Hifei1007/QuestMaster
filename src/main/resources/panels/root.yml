@@ -62,12 +62,6 @@ item:
       - '&e点击查看!'
     commands:
       - event= root_open_shop
-  '33':
-    material: CHEST
-    name: '&a团队箱子'
-    lore:
-      - ''
-      - '&e点击查看!'
   '49':
     material: BARRIER
     name: '&c关闭'
