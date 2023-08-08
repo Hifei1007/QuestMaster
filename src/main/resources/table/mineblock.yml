@@ -41,6 +41,8 @@ items:
       - andesite
       - fern
       - grass
+      - tuff
+      - calcite
   - diff: 5
     name: coal_ore
   - diff: 10

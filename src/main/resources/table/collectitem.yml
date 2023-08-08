@@ -18,7 +18,7 @@ items:
     placeholders:
       - red_sand
       - calcite
-      - tiff
+      - tuff
       - dripstone_block
 
   # Clay
@@ -187,7 +187,7 @@ items:
   - diff: 125
     aliases:
       - ancient_debris
-      - netherite_scarp
+      - netherite_scrap
 
   # Item Drops
   - diff: 25
