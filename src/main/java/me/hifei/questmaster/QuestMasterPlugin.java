@@ -31,8 +31,8 @@ public class QuestMasterPlugin extends JavaPlugin {
     }
 
     public void registerQuestType() {
-        CoreManager.manager.registerType(QuestTypeCollectItem.class, 2);
-        CoreManager.manager.registerType(QuestTypeMineBlock.class, 1);
+        CoreManager.manager.registerType(QuestTypeCollectItem.class, 3);
+        CoreManager.manager.registerType(QuestTypeMineBlock.class, 2);
     }
 
     @Override

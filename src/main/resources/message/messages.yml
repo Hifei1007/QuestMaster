@@ -12,7 +12,7 @@ difficult.hard: "&c困难&r"
 difficult.very_hard: "&4极难&r"
 difficult.hell: "&4&l地狱&r"
 
-game.task.complete1: "&7[&c!&7] 你们完成了任务 [%s&7]!"
+game.task.complete1: "&7[&a√&7] 你们完成了任务 [%s&7]!"
 game.task.complete2: "&7[&e!&7] %s&7完成了任务 [%s&7]!"
 game.task.complete.change: "&7[&a+&e%.2f &a+&b%.2f &a+&6%.2f&7] (&a+%.2fs&7)"
 game.task.timeup1: "&7[&c!&7] 你们的任务 [%s&7] 超时!"
