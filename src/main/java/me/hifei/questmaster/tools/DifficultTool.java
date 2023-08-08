@@ -11,23 +11,23 @@ public class DifficultTool {
         Random random = new Random();
         int i = random.nextInt(1000);
         /*
-        EASY: 55%
-        NORMAL: 40%
-        HARD: 4%
-        VERY_HARD 0.7%
-        HELL 0.3%
+        EASY: 65%
+        NORMAL: 33%
+        HARD: 1.3%
+        VERY_HARD 0.5%
+        HELL 0.2%
          */
 
         Difficult difficult;
-        if (i < 550) difficult = Difficult.EASY;
-        else if (i < 950) difficult = Difficult.NORMAL;
-        else if (i < 990) difficult = Difficult.HARD;
-        else if (i < 997) difficult = Difficult.VERY_HARD;
+        if (i < 650) difficult = Difficult.EASY;
+        else if (i < 980) difficult = Difficult.NORMAL;
+        else if (i < 993) difficult = Difficult.HARD;
+        else if (i < 998) difficult = Difficult.VERY_HARD;
         else difficult = Difficult.HELL;
 
-        double value = random.nextDouble(difficult.start, difficult.end);
-        while (random.nextBoolean()) {
-            value *= random.nextDouble(0.5, 2);
+        double value = difficult.start * random.nextDouble(1, 1.5);
+        while (random.nextBoolean() && value <= difficult.end) {
+            value *= random.nextDouble(1, 1.5);
         }
         return Math.max(random.nextDouble(3, 8), value);
     }
