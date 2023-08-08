@@ -4,6 +4,7 @@ import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;
+import me.hifei.questmaster.shop.DamageUpgrade;
 import me.hifei.questmaster.shop.DefenseUpgrade;
 import me.hifei.questmaster.shop.Upgrade;
 import me.hifei.questmaster.shop.teamchest.TeamChestUpgrade;
@@ -78,6 +79,10 @@ public class CQuestTeam implements QuestTeam {
         upgrades.put("teamchest_1", new TeamChestUpgrade(1));
         upgrades.put("teamchest_2", new TeamChestUpgrade(2));
         upgrades.put("teamchest_3", new TeamChestUpgrade(3));
+        upgrades.put("damage_magic", new DamageUpgrade(DamageUpgrade.DamageType.MAGIC, this));
+        upgrades.put("damage_projectile", new DamageUpgrade(DamageUpgrade.DamageType.PROJECTILE, this));
+        upgrades.put("damage_explosion", new DamageUpgrade(DamageUpgrade.DamageType.EXPLOSION, this));
+        upgrades.put("damage_weapon", new DamageUpgrade(DamageUpgrade.DamageType.WEAPON, this));
     }
 
     @NotNull

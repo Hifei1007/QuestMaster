@@ -12,15 +12,66 @@ item:
   '27':
     material: DIAMOND_SWORD
     name: '&a伤害增加升级'
+  '29':
+    material: SPLASH_POTION
+    potion: INSTANT_DAMAGE false false
+    nbt:
+      HideFlags: 63
+    name: '&7升级: &a魔法伤害增加'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    commands:
+      - event= shop_teamupgrade_damage_magic
+  '30':
+    material: ARROW
+    name: '&7升级: &a弹射物伤害增加'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    commands:
+      - event= shop_teamupgrade_damage_projectile
+  '31':
+    material: TNT
+    name: '&7升级: &a爆炸伤害增加'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    commands:
+      - event= shop_teamupgrade_damage_explosion
+  '32':
+    material: IRON_SWORD
+    name: '&7升级: &a近战伤害增加 '
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - '&4&l错误!未加载动态内容!'
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    commands:
+      - event= shop_teamupgrade_damage_weapon
   '36':
     material: DIAMOND_CHESTPLATE
-    name: '&a伤害减少升级'
+    name: '&a伤害防御升级'
   '38':
     material: SPLASH_POTION
     potion: INSTANT_DAMAGE false false
     nbt:
       HideFlags: 63
-    name: '&7升级: &a魔法伤害减少'
+    name: '&7升级: &a魔法伤害防御'
     lore:
       - ''
       - '&4&l错误!未加载动态内容!'
@@ -32,7 +83,7 @@ item:
       - event= shop_teamupgrade_defense_magic
   '39':
     material: LAVA_BUCKET
-    name: '&7升级: &a火焰伤害减少'
+    name: '&7升级: &a火焰伤害防御'
     lore:
       - ''
       - '&4&l错误!未加载动态内容!'
@@ -44,7 +95,7 @@ item:
       - event= shop_teamupgrade_defense_fire
   '40':
     material: ARROW
-    name: '&7升级: &a弹射物伤害减少'
+    name: '&7升级: &a弹射物伤害防御'
     lore:
       - ''
       - '&4&l错误!未加载动态内容!'
@@ -56,7 +107,7 @@ item:
       - event= shop_teamupgrade_defense_projectile
   '41':
     material: TNT
-    name: '&7升级: &a爆炸伤害减少'
+    name: '&7升级: &a爆炸伤害防御'
     lore:
       - ''
       - '&4&l错误!未加载动态内容!'
@@ -68,7 +119,7 @@ item:
       - event= shop_teamupgrade_defense_explosion
   '42':
     material: FEATHER
-    name: '&7升级: &a摔落伤害减少'
+    name: '&7升级: &a摔落伤害防御'
     lore:
       - ''
       - '&4&l错误!未加载动态内容!'
@@ -80,7 +131,7 @@ item:
       - event= shop_teamupgrade_defense_fall
   '43':
     material: IRON_SWORD
-    name: '&7升级: &a近战伤害减少'
+    name: '&7升级: &a近战伤害防御'
     lore:
       - ''
       - '&4&l错误!未加载动态内容!'

@@ -33,6 +33,18 @@ public class DPShopTeamUpgrade extends DynamicPanel {
     public final static int[] weaponDefenseUpgradeTable = {
             0, 10, 25, 40, 0
     };
+    public final static int[] magicDamageUpgradeTable = {
+            0, 10, 20, 30, 40, 50, 0
+    };
+    public final static int[] projectileDamageUpgradeTable = {
+            0, 10, 25, 40, 60, 80, 0
+    };
+    public final static int[] explosionDamageUpgradeTable = {
+            0, 10, 20, 30, 40, 50, 0
+    };
+    public final static int[] weaponDamageUpgradeTable = {
+            0, 10, 25, 40, 60, 80, 0
+    };
 
     static {
         UIManager.ins.registerEvent("shop_teamupgrade_back", (event -> DPShopRoot.openDynamic(event.getPlayer(), PanelPosition.Top)));
@@ -46,6 +58,10 @@ public class DPShopTeamUpgrade extends DynamicPanel {
                 case "shop_teamupgrade_defense_explosion" -> upgrade(event.getPlayer(), team, team.getUpgrades().get("defense_explosion"), explosionDefenseUpgradeTable);
                 case "shop_teamupgrade_defense_fall" -> upgrade(event.getPlayer(), team, team.getUpgrades().get("defense_fall"), fallDefenseUpgradeTable);
                 case "shop_teamupgrade_defense_weapon" -> upgrade(event.getPlayer(), team, team.getUpgrades().get("defense_weapon"), weaponDefenseUpgradeTable);
+                case "shop_teamupgrade_damage_magic" -> upgrade(event.getPlayer(), team, team.getUpgrades().get("damage_magic"), magicDamageUpgradeTable);
+                case "shop_teamupgrade_damage_projectile" -> upgrade(event.getPlayer(), team, team.getUpgrades().get("damage_projectile"), projectileDamageUpgradeTable);
+                case "shop_teamupgrade_damage_explosion" -> upgrade(event.getPlayer(), team, team.getUpgrades().get("damage_explosion"), explosionDamageUpgradeTable);
+                case "shop_teamupgrade_damage_weapon" -> upgrade(event.getPlayer(), team, team.getUpgrades().get("damage_weapon"), weaponDamageUpgradeTable);
             }
         }));
     }
@@ -68,15 +84,15 @@ public class DPShopTeamUpgrade extends DynamicPanel {
         upgrade.addLevel(1);
     }
 
-    private void updateDefenseUpgrade(QuestTeam team, int slot, int[] table, Upgrade upgrade, String name) {
+    private void updateUpgrade(QuestTeam team, int slot, int[] table, Upgrade upgrade, String name) {
         List<String> lore = getItem(slot).getStringList("lore");
         int require = table[upgrade.getLevel() + 1];
         lore.set(1, getMessage("upgrade.level", upgrade.getLevel(), upgrade.getMaxLevel()));
         if (upgrade.getLevel() == upgrade.getMaxLevel()) {
-            lore.set(2, getMessage("defense." + name + ".lore_max", upgrade.getLevel() * 20, "%"));
+            lore.set(2, getMessage(name + ".lore_max", upgrade.getLevel() * 20, "%"));
             lore.set(3, getMessage("upgrade.lore.max"));
         } else {
-            lore.set(2, getMessage("defense." + name + ".lore", upgrade.getLevel() * 20,
+            lore.set(2, getMessage(name + ".lore", upgrade.getLevel() * 20,
                     "%", (upgrade.getLevel() + 1) * 20, "%"));
             lore.set(3, getMessage("upgrade.lore.point", require));
         }
@@ -95,16 +111,24 @@ public class DPShopTeamUpgrade extends DynamicPanel {
         Map<String, Upgrade> upgrades = team.getUpgrades();
 
         Upgrade magicDefenseUpgrade = upgrades.get("defense_magic");
-        updateDefenseUpgrade(team, 38, magicDefenseUpgradeTable, magicDefenseUpgrade, "magic");
+        updateUpgrade(team, 38, magicDefenseUpgradeTable, magicDefenseUpgrade, "defense.magic");
         Upgrade fireDefenseUpgrade = upgrades.get("defense_fire");
-        updateDefenseUpgrade(team, 39, fireDefenseUpgradeTable, fireDefenseUpgrade, "fire");
+        updateUpgrade(team, 39, fireDefenseUpgradeTable, fireDefenseUpgrade, "defense.fire");
         Upgrade projectileDefenseUpgrade = upgrades.get("defense_projectile");
-        updateDefenseUpgrade(team, 40, projectileDefenseUpgradeTable, projectileDefenseUpgrade, "projectile");
+        updateUpgrade(team, 40, projectileDefenseUpgradeTable, projectileDefenseUpgrade, "defense.projectile");
         Upgrade explosionDefenseUpgrade = upgrades.get("defense_explosion");
-        updateDefenseUpgrade(team, 41, explosionDefenseUpgradeTable, explosionDefenseUpgrade, "explosion");
+        updateUpgrade(team, 41, explosionDefenseUpgradeTable, explosionDefenseUpgrade, "defense.explosion");
         Upgrade fallDefenseUpgrade = upgrades.get("defense_fall");
-        updateDefenseUpgrade(team, 42, fallDefenseUpgradeTable, fallDefenseUpgrade, "fall");
+        updateUpgrade(team, 42, fallDefenseUpgradeTable, fallDefenseUpgrade, "defense.fall");
         Upgrade weaponDefenseUpgrade = upgrades.get("defense_weapon");
-        updateDefenseUpgrade(team, 43, weaponDefenseUpgradeTable, weaponDefenseUpgrade, "weapon");
+        updateUpgrade(team, 43, weaponDefenseUpgradeTable, weaponDefenseUpgrade, "defense.weapon");
+        Upgrade magicDamageUpgrade = upgrades.get("damage_magic");
+        updateUpgrade(team, 29, magicDamageUpgradeTable, magicDamageUpgrade, "damage.magic");
+        Upgrade projectileDamageUpgrade = upgrades.get("damage_projectile");
+        updateUpgrade(team, 30, projectileDamageUpgradeTable, projectileDamageUpgrade, "damage.projectile");
+        Upgrade explosionDamageUpgrade = upgrades.get("damage_explosion");
+        updateUpgrade(team, 31, explosionDamageUpgradeTable, explosionDamageUpgrade, "damage.explosion");
+        Upgrade weaponDamageUpgrade = upgrades.get("damage_weapon");
+        updateUpgrade(team, 32, weaponDamageUpgradeTable, weaponDamageUpgrade, "damage.weapon");
     }
 }
