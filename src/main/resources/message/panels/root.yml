@@ -1,3 +1,11 @@
 score.name: "&a分数:&c %.2f"
 point.name: "&a点数:&c %.2f"
 coin.name: "&a金币:&c %.2f"
+
+teamchest.name: "&a团队箱子: &a#%s"
+teamchest.locked: "&c未解锁"
+teamchest.size: "&b大小&7: &a%s &7(&b%s&7/&b%s&7)"
+teamchest.unlock: "&e右键点击解锁 &7(&a%s &6金币&7)"
+teamchest.upgrade: "&e右键点击升级 &7(&a%s &6金币&7)"
+teamchest.open: "&e左键点击打开!"
+teamchest.require: "&c团队的资源不足以升级! (需要 &a%s &6金币&c)"

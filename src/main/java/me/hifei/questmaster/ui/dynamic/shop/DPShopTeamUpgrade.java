@@ -7,6 +7,7 @@ import me.hifei.questmaster.shop.Upgrade;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.UIManager;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -62,6 +63,7 @@ public class DPShopTeamUpgrade extends DynamicPanel {
         if (upgrade.getLevel() == upgrade.getMaxLevel()) return;
         if (team.point() < table[upgrade.getLevel() + 1]) return;
         team.setPoint(team.point() - table[upgrade.getLevel() + 1]);
+        player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 10.0f, 1.0f);
         team.teamBroadcast(Message.get("upgrade.upgrade", player.getDisplayName(), upgrade.getName(), upgrade.getLevel(), upgrade.getLevel() + 1));
         upgrade.addLevel(1);
     }

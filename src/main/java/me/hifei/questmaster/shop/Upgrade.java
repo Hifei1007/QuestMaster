@@ -44,7 +44,8 @@ public abstract class Upgrade implements Stateful {
     public abstract String getName();
 
     protected @Nullable Listener getListener() {
-        return null;
+        return new Listener() {
+        };
     }
 
     protected void tick() {

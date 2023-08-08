@@ -79,6 +79,7 @@ teleport.add_location: "&7[&e!&7] [%s&7] 新建了传送点 [%s&7]!"
 teleport.remove_location: "&7[&e!&7] [%s&7] 删除了传送点 [%s&7]!"
 
 upgrade.upgrade: '&7[&e!&7] [%s&7] 升级了 [&b%s &e%s -> %s&7]!'
+upgrade.teamchest.name: '&b团队箱子 #%s'
 
 error.cant_open: '&4&l无法打开动态面板 [%s]!'
 error.cant_close: '&4&l无法关闭动态面板 [%s]!'

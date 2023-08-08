@@ -6,6 +6,7 @@ import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.shop.DefenseUpgrade;
 import me.hifei.questmaster.shop.Upgrade;
+import me.hifei.questmaster.shop.teamchest.TeamChestUpgrade;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -74,6 +75,9 @@ public class CQuestTeam implements QuestTeam {
         upgrades.put("defense_explosion", new DefenseUpgrade(DefenseUpgrade.DamageType.EXPLOSION, this));
         upgrades.put("defense_fall", new DefenseUpgrade(DefenseUpgrade.DamageType.FALL, this));
         upgrades.put("defense_weapon", new DefenseUpgrade(DefenseUpgrade.DamageType.WEAPON, this));
+        upgrades.put("teamchest_1", new TeamChestUpgrade(1));
+        upgrades.put("teamchest_2", new TeamChestUpgrade(2));
+        upgrades.put("teamchest_3", new TeamChestUpgrade(3));
     }
 
     @NotNull

@@ -64,15 +64,15 @@ public class UIManager {
         registerListener(newConsumer);
     }
 
-    public void ungisterEventAll(String id) {
+    public void unregisterEventAll(String id) {
         m.remove(id);
     }
 
-    public void ungisterEventAll(Consumer<PanelCommandEvent> c) {
+    public void unregisterEventAll(Consumer<PanelCommandEvent> c) {
         m.forEach((key, value) -> value.remove(c));
     }
 
-    public void ungisterEventAall(String id, Consumer<PanelCommandEvent> c) {
+    public void unregisterEventAll(String id, Consumer<PanelCommandEvent> c) {
         if (m.containsKey(id)) m.get(id).remove(c);
     }
 }
