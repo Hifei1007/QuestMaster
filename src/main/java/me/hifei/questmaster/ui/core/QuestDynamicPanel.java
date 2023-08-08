@@ -1,9 +1,12 @@
 package me.hifei.questmaster.ui.core;
 
+import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.Timer;
+import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.ui.dynamic.DPQuest;
+import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -92,6 +95,13 @@ public class QuestDynamicPanel extends DynamicPanel {
 
 
     public void dynamicModify(Player player) {
+        if (quest.getState() == State.DROP) {
+            if (CoreManager.game.getState() == State.DROP) {
+                DPRootNotStarted.openDynamic(player, PanelPosition.Top);
+            } else {
+                DPQuest.openDynamic(player, PanelPosition.Top);
+            }
+        }
         getConfig().set("title", quest.getName());
         getItem(1).set("name", Message.get("quest.score", quest.getReward().score()));
         getItem(3).set("name", Message.get("quest.point", quest.getReward().point(), quest.getReward().point() / 10));

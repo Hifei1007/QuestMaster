@@ -103,9 +103,6 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
 
     @Override
     public void dynamicModify(Player player) {
-        if (quest.getState() == State.DROP) {
-            DPQuest.openDynamic(player, PanelPosition.Top);
-        }
         loadTemplate("panels/questtype/collectitem.yml");
         super.dynamicModify(player);
         modifyAddItemBar();
