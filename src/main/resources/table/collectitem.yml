@@ -108,7 +108,7 @@ items:
     aliases:
       - basalt
       - polished_basalt
-  - diff: 0.5
+  - diff: 2
     name: netherrack
 
 

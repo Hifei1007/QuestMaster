@@ -93,8 +93,8 @@ public class QuestTypeMineBlock implements QuestType {
     public int time() {
         Random random = new Random();
         return
-                (int) (random.nextInt(60, 90) * Math.log10(difficultValue) +
-                        (int) (difficultValue * random.nextDouble(2, 3.5)));
+                (int) (random.nextInt(90, 120) * Math.log10(difficultValue) +
+                        (int) (difficultValue * random.nextDouble(4, 7)));
     }
 
     @Override

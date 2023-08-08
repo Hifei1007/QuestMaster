@@ -26,10 +26,10 @@ public class DifficultTool {
         else difficult = Difficult.HELL;
 
         double value = difficult.start * random.nextDouble(1, 1.5);
-        while (random.nextBoolean() && value <= difficult.end) {
+        while ((random.nextBoolean() || random.nextBoolean()) && value <= difficult.end) {
             value *= random.nextDouble(1, 1.5);
         }
-        return Math.max(random.nextDouble(3, 8), value);
+        return Math.min(difficult.end, value);
     }
 
     public static @NotNull Difficult getDifficult(double value) {
