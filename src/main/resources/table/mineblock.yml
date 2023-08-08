@@ -1,16 +1,85 @@
 items:
-  # Granite, Andesite, Diorite, and Blackstone
-  - diff: 6
+  - diff: 10
     aliases:
-      - $
-      - $_stairs
-      - $_slab
-      - $_wall
-      - polished_$
-      - polished_$_stairs
-      - polished_$_slab
+      - $_leaves
+      - $_log
     placeholders:
+      - oak
+      - birch
+      - spruce
+      - acacia
+      - jungle
+      - dark_oak
+      - mangrove
+      - cherry
+  - diff: 4
+    aliases:
+      - sand
+      - grass_block
+      - dirt
+      - stone
+      - deepslate
+      - clay
+      - gravel
+      - diorite
       - granite
       - andesite
+      - fern
+      - grass
+      - coal_ore
+  - diff: 4
+    aliases:
+      - sand
+      - grass_block
+      - dirt
+      - stone
+      - deepslate
+      - clay
+      - gravel
       - diorite
+      - granite
+      - andesite
+      - fern
+      - grass
+  - diff: 5
+    name: coal_ore
+  - diff: 10
+    aliases:
+      - moss_block
+      - amethyst_block
+      - iron_ore
+      - deepslate_iron_ore
+  - diff: 10
+    aliases:
+      - netherrack
+      - nether_quartz_ore
+      - nether_gold_ore
+      - glowstone
+  - diff: 25
+    aliases:
+      - $_nylium
+      - $_roots
+      - $_fungus
+      - $_stem
+      - nether_wart_block
+      - warped_wart_block
+      - shroomlight
+      - magma_block
       - blackstone
+      - basalt
+      - soul_sand
+      - soul_soil
+    placeholders:
+      - crimson
+      - warped
+  - diff: 20
+    aliases:
+      - glow_lichen
+      - budding_amethyst
+      - amethyst_cluster
+      - gold_ore
+      - deepslate_gold_ore
+      - deepslate_redstone_ore
+  - diff: 50
+    aliases:
+      - deepslate_diamond_ore

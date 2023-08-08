@@ -42,7 +42,7 @@ public class QuestTypeMineBlock implements QuestType {
                 target = DifficultTool.nextDifficult();
                 tryCount = 0;
             }
-        } while (target < item.diff() || target > item.diff() * 64 * 5);
+        } while (target < item.diff() * 8 || target > item.diff() * 64 * 5);
         int count = (int) Math.ceil((target) / (item.diff()));
         return new QuestTypeMineBlock(item, count, target);
     }

@@ -8,6 +8,18 @@ items:
     placeholders:
       - sand
       - dirt
+      - gravel
+      - coarse_dirt
+      - mud
+      - moss_block
+  - diff: 4
+    aliases:
+      - $
+    placeholders:
+      - red_sand
+      - calcite
+      - tiff
+      - dripstone_block
 
   # Clay
 
@@ -90,6 +102,31 @@ items:
       - mangrove
       - cherry
 
+  # Woods Items
+  - diff: 9
+    aliases:
+      - $_planks
+      - $_stairs
+      - $_slab
+      - $_fence
+      - $_fence_gate
+      - $_door
+      - $_trapdoor
+      - $_pressure_plate
+      - $_button
+    placeholders:
+      - oak
+      - birch
+      - spruce
+      - acacia
+      - jungle
+      - dark_oak
+      - mangrove
+      - cherry
+      - crimson
+      - warped
+      - bamboo
+
   # Nether Stems
 
   - diff: 14
@@ -108,7 +145,62 @@ items:
     aliases:
       - basalt
       - polished_basalt
-  - diff: 2
-    name: netherrack
+      - smooth_basalt
+      - soul_sand
+      - soul_soil
+      - magma_block
+      - netherrack
+      - glowstone
+      - shroomlight
+  - diff: 12
+    aliases:
+      - obsidian
+      - crying_obsidian
+      - blaze_rod
 
+  # Ores
+
+  - diff: 6
+    aliases:
+      - coal
+      - charcoal
+  - diff: 4
+    aliases:
+      - raw_copper
+      - copper_ingot
+  - diff: 10
+    aliases:
+      - raw_iron
+      - iron_ingot
+  - diff: 25
+    aliases:
+      - raw_gold
+      - gold_ingot
+  - diff: 10
+    aliases:
+      - quartz
+      - amethyst_shard
+      - emerald
+      - lapis_lazuli
+  - diff: 50
+    name: diamond
+  - diff: 125
+    aliases:
+      - ancient_debris
+      - netherite_scarp
+
+  # Item Drops
+  - diff: 25
+    aliases:
+      - bone
+      - rotten_flesh
+      - gunpowder
+      - wheat
+      - potato
+      - carrot
+      - beetroot
+      - leather
+      - ink_sac
+      - magma_cream
+      - sugar
 
