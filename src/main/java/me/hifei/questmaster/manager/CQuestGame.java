@@ -9,10 +9,14 @@ import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.shop.Upgrade;
+import me.hifei.questmaster.tools.ActionTool;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.UIManager;
 import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
@@ -166,10 +170,10 @@ public class CQuestGame implements QuestGame {
         assert overworld != null;
 
         runEachPlayer(player -> {
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10 * 60 * 20, 0, false, false, false));
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 10 * 60 * 20, 0, false, false, false));
-                    player.teleport(new Location(overworld, 0, 10000, 0));
-                });
+            player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10 * 60 * 20, 0, false, false, false));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 10 * 60 * 20, 0, false, false, false));
+            player.teleport(new Location(overworld, 0, 10000, 0));
+        });
 
         Location c;
         do {
@@ -219,7 +223,19 @@ public class CQuestGame implements QuestGame {
         team.getQuests().add(quest);
         runEachTeam(t -> {
             if (t == team) {
-                t.teamBroadcast(Message.get("game.task.get1", quest.getName()));
+                for (Player player : t.members()) {
+                    BaseComponent actionComponent = new TextComponent(Message.get("game.task.get.action"));
+                    actionComponent.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
+                            "/questmaster:questaction " + ActionTool.addAction(sender -> {
+                                        if (!(sender instanceof Player p)) return;
+                                        if (quest.getState() == State.DROP) return;
+                                        quest.openPanel(p);
+                                    }
+                            )));
+                    player.spigot().sendMessage(
+                            new TextComponent(Message.get("game.task.get1", quest.getName())),
+                            actionComponent);
+                }
             } else {
                 t.teamBroadcast(Message.get("game.task.get2", team.name(), quest.getName()));
             }

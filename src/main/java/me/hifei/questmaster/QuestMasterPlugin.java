@@ -6,6 +6,7 @@ import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
 import me.hifei.questmaster.quest.questmineblock.QuestTableMineBlock;
 import me.hifei.questmaster.quest.questmineblock.QuestTypeMineBlock;
 import me.hifei.questmaster.running.commands.ForceStopCommand;
+import me.hifei.questmaster.running.commands.QuestActionCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.listeners.ChatListener;
 import me.hifei.questmaster.running.runners.MainUpdater;
@@ -42,6 +43,7 @@ public class QuestMasterPlugin extends JavaPlugin {
 
         Objects.requireNonNull(this.getCommand("start")).setExecutor(new StartCommand());
         Objects.requireNonNull(this.getCommand("forcestop")).setExecutor(new ForceStopCommand());
+        Objects.requireNonNull(this.getCommand("questaction")).setExecutor(new QuestActionCommand());
         new MainUpdater().runTaskTimer(QuestMasterPlugin.instance, 0, 1);
 
         Bukkit.getPluginManager().registerEvents(new GUIListener(), this);

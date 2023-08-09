@@ -5,6 +5,7 @@ import me.hifei.questmaster.api.ExceptionLock;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
+import me.hifei.questmaster.tools.ActionTool;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -34,6 +35,7 @@ public class MainUpdater extends BukkitRunnable {
     @Override
     public void run() {
         lock.run(() -> {
+            ActionTool.tick();
             if (CoreManager.isGameStart()) {
                 for (QuestTeamScoreboard scoreboard : CoreManager.game.getScoreboardMapping().values()) {
                     scoreboard.refresh();
