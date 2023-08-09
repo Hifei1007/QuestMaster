@@ -137,6 +137,8 @@ public class CQuestGame implements QuestGame {
                 new ItemStack(Material.STONE_SHOVEL));
         player.setHealth(20);
         player.setFoodLevel(20);
+        player.setExp(0);
+        player.setLevel(0);
         Bukkit.advancementIterator().forEachRemaining(advancement -> {
             AdvancementProgress progress = player.getAdvancementProgress(advancement);
             for (String string : progress.getAwardedCriteria()) {
@@ -186,11 +188,11 @@ public class CQuestGame implements QuestGame {
             Location teamCenter;
             do {
                 teamCenter = new Location(overworld,
-                        center.getBlockX() + random.nextInt(-200, 100), 0, center.getBlockZ() + random.nextInt(-200, 100));
+                        center.getBlockX() + random.nextInt(-200, 200), 0, center.getBlockZ() + random.nextInt(-200, 200));
             } while (overworld.getBlockAt(teamCenter).getType() == Material.WATER);
             for (Player player : team.members()) {
                 Location playerPos = new Location(overworld,
-                        teamCenter.getBlockX() + random.nextInt(-10, 10), 0, teamCenter.getBlockZ() + random.nextInt(-10, 10));
+                        teamCenter.getBlockX() + random.nextInt(-20, 20), 0, teamCenter.getBlockZ() + random.nextInt(-20, 20));
                 for (int i = 300; i >= -64; i--) {
                     playerPos.setY(i);
                     if (overworld.getBlockAt(playerPos).getType() != Material.AIR) {

@@ -6,6 +6,7 @@ import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.shop.Upgrade;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.UIManager;
+import me.hifei.questmaster.ui.dynamic.DPRoot;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -47,7 +48,7 @@ public class DPShopTeamUpgrade extends DynamicPanel {
     };
 
     static {
-        UIManager.ins.registerEvent("shop_teamupgrade_back", (event -> DPShopRoot.openDynamic(event.getPlayer(), PanelPosition.Top)));
+        UIManager.ins.registerEvent("shop_teamupgrade_back", (event -> DPRoot.openDynamic(event.getPlayer(), PanelPosition.Top)));
         UIManager.ins.registerListener(DPShopTeamUpgrade.class, (event -> {
             QuestTeam team = CoreManager.manager.getTeam(event.getPlayer());
             assert team != null;

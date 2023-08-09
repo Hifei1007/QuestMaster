@@ -38,16 +38,24 @@ custom-item:
       - '&4你应该立刻报告这个问题!'
 empty: emptyitem
 item:
-  '11':
+  '2':
     material: GOLD_INGOT
     name: '&4&l错误!未加载动态内容!'
-  '13':
+  '4':
     material: DIAMOND
     name: '&4&l错误!未加载动态内容!'
-  '15':
+  '6':
     material: GOLD_NUGGET
     name: '&4&l错误!未加载动态内容!'
-  '30':
+  '20':
+    material: COMPASS
+    name: '&a定位器'
+    lore:
+      - ''
+      - '&7定位群系和结构!'
+      - ''
+      - '&c&lVERY COMING SOON'
+  '21':
     material: ENDER_PEARL
     name: '&a传送'
     lore:
@@ -58,24 +66,41 @@ item:
       - '&e点击查看!'
     commands:
       - event= root_open_teleport
-  '31':
+  '22':
     material: cpi= dynamicitem
-  '32':
-    material: EMERALD
-    name: '&a商店'
+  '23':
+    material: DIAMOND
+    name: '&a增益商店'
     lore:
       - ''
-      - '&7购买物品和增益!'
+      - '&7购买能够同时增益'
+      - '&7整个队伍的升级!'
       - ''
       - '&e点击查看!'
     commands:
-      - event= root_open_shop
+      - event= root_open_teamupgrade
+  '24':
+    material: GOLD_INGOT
+    name: '&a物品商店'
+    lore:
+      - ''
+      - '&7快速购买物品!'
+      - ''
+      - '&c&lVERY COMING SOON'
   '49':
     material: BARRIER
     name: '&c关闭'
     stack: 1
     commands:
       - cpc
+  '45':
+    material: BEACON
+    name: '&a向所有队伍成员发送位置'
+    lore:
+      - ''
+      - '&e点击发送!'
+    commands:
+      - event= root_send_location
   '53':
     material: BEDROCK
     name: '&4&l错误!未加载动态内容!'

@@ -40,7 +40,7 @@ public class ActionTool {
         String chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/";
         Random random = new Random();
         do {
-            for (int i = 5; i <= random.nextInt(20); i++) {
+            for (int i = 1; i <= 16; i++) {
                 int t = random.nextInt(64);
                 name += chars.substring(t, t+1);
             }
