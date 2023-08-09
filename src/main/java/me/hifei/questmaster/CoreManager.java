@@ -26,6 +26,6 @@ public class CoreManager {
     public static QuestGame game;
 
     public static boolean isGameStart() {
-        return CoreManager.game != null && CoreManager.game.getState() != State.DROP;
+        return CoreManager.game != null && CoreManager.game.getState() == State.STARTUP;
     }
 }

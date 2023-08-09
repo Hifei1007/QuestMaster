@@ -84,7 +84,7 @@ items:
 
   # Woods
 
-  - diff: 12
+  - diff: 10
     aliases:
       - bamboo_block
       - stripped_bamboo_block
@@ -152,7 +152,7 @@ items:
       - netherrack
       - glowstone
       - shroomlight
-  - diff: 12
+  - diff: 50
     aliases:
       - obsidian
       - crying_obsidian
@@ -160,37 +160,37 @@ items:
 
   # Ores
 
-  - diff: 6
+  - diff: 12
     aliases:
       - coal
       - charcoal
-  - diff: 4
+  - diff: 8
     aliases:
       - raw_copper
       - copper_ingot
-  - diff: 10
+  - diff: 20
     aliases:
       - raw_iron
       - iron_ingot
-  - diff: 25
+  - diff: 50
     aliases:
       - raw_gold
       - gold_ingot
-  - diff: 10
+  - diff: 50
     aliases:
       - quartz
       - amethyst_shard
       - emerald
       - lapis_lazuli
-  - diff: 50
+  - diff: 100
     name: diamond
-  - diff: 125
+  - diff: 300
     aliases:
       - ancient_debris
       - netherite_scrap
 
   # Item Drops
-  - diff: 25
+  - diff: 50
     aliases:
       - bone
       - rotten_flesh

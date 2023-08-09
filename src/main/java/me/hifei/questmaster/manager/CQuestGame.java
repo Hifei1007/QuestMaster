@@ -13,9 +13,12 @@ import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.UIManager;
 import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
-import org.bukkit.Bukkit;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -76,7 +79,6 @@ public class CQuestGame implements QuestGame {
     }
 
 
-
     @Override
     public int getGoal() {
         return goal;
@@ -115,22 +117,88 @@ public class CQuestGame implements QuestGame {
         return state;
     }
 
+    public void modifyPlayer(Player player) {
+        for (PotionEffectType type : PotionEffectType.values()) {
+            player.removePotionEffect(type);
+        }
+        player.addPotionEffects(List.of(
+                new PotionEffect(PotionEffectType.SLOW_FALLING, 30 * 20, 0, true, false, true),
+                new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60 * 20, 4, true, false, true),
+                new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 0, true, false, true)
+        ));
+        player.getInventory().clear();
+        player.getInventory().addItem(new ItemStack(Material.BREAD, 8),
+                new ItemStack(Material.STONE_AXE),
+                new ItemStack(Material.STONE_PICKAXE),
+                new ItemStack(Material.STONE_SHOVEL));
+        player.setHealth(20);
+        player.setFoodLevel(20);
+        Bukkit.advancementIterator().forEachRemaining(advancement -> {
+            AdvancementProgress progress = player.getAdvancementProgress(advancement);
+            for (String string : progress.getAwardedCriteria()) {
+                progress.revokeCriteria(string);
+            }
+        });
+        player.setScoreboard(scoreboardMap.get(CoreManager.manager.getTeam(player)).getBukkit());
+        player.playSound(player, Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+        player.sendTitle(
+                Message.get("game.start.title"),
+                Message.get("game.start.subtitle", CoreManager.game.getGoal(), Objects.requireNonNull(CoreManager.manager.getTeam(player)).name()), 10, 70, 20);
+    }
+
     @Override
     public void startup() {
         if (state != State.WAIT) return;
-        state = State.STARTUP;
 
-        Bukkit.broadcastMessage(Message.get("game.start.message", goal));
+        Bukkit.broadcastMessage(Message.get("game.starting.message"));
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (!CoreManager.manager.hasTeam(player)) {
+                Bukkit.broadcastMessage(Message.get("game.missing_team.message"));
+                return;
+            }
+        }
+
+        Bukkit.broadcastMessage(Message.get("game.teleporting.message"));
+
+        Random random = new Random();
+        World overworld = Bukkit.getWorld("world");
+        assert overworld != null;
+
         runEachPlayer(player -> {
-            QuestTeam team = CoreManager.manager.getTeam(player);
-            player.setScoreboard(scoreboardMap.get(team).getBukkit());
-            player.playSound(player, Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
-            player.sendTitle(
-                    Message.get("game.start.title"),
-                    Message.get("game.start.subtitle", CoreManager.game.getGoal(), Objects.requireNonNull(CoreManager.manager.getTeam(player)).name()), 10, 70, 20);
-        });
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10 * 60 * 20, 0, false, false, false));
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 10 * 60 * 20, 0, false, false, false));
+                    player.teleport(new Location(overworld, 0, 10000, 0));
+                });
 
-        runEachTeam((team) -> {
+        Location c;
+        do {
+            c = new Location(overworld,
+                    random.nextInt(-100000, 100000), 60, random.nextInt(-100000, 100000));
+        } while (overworld.getBlockAt(c).getType() == Material.WATER);
+        Location center = c;
+
+        runEachTeam(team -> {
+            Location teamCenter;
+            do {
+                teamCenter = new Location(overworld,
+                        center.getBlockX() + random.nextInt(-200, 100), 0, center.getBlockZ() + random.nextInt(-200, 100));
+            } while (overworld.getBlockAt(teamCenter).getType() == Material.WATER);
+            for (Player player : team.members()) {
+                Location playerPos = new Location(overworld,
+                        teamCenter.getBlockX() + random.nextInt(-10, 10), 0, teamCenter.getBlockZ() + random.nextInt(-10, 10));
+                for (int i = 300; i >= -64; i--) {
+                    playerPos.setY(i);
+                    if (overworld.getBlockAt(playerPos).getType() != Material.AIR) {
+                        playerPos.setY(i + 1);
+                        player.setBedSpawnLocation(playerPos, true);
+                        playerPos.setY(i + 150);
+                        break;
+                    }
+                }
+                player.teleport(playerPos);
+                modifyPlayer(player);
+            }
             team.init();
             for (int i = 1; i <= 3; i++) {
                 addQuest(team);
@@ -139,6 +207,10 @@ public class CQuestGame implements QuestGame {
                 upgrade.startup();
             }
         });
+
+        state = State.STARTUP;
+
+        Bukkit.broadcastMessage(Message.get("game.start.message", goal));
     }
 
     void addQuest(@NotNull QuestTeam team) {
@@ -147,10 +219,10 @@ public class CQuestGame implements QuestGame {
         team.getQuests().add(quest);
         runEachTeam(t -> {
             if (t == team) {
-                    t.teamBroadcast(Message.get("game.task.get1", quest.getName()));
-                } else {
-                    t.teamBroadcast(Message.get("game.task.get2", team.name(), quest.getName()));
-                }
+                t.teamBroadcast(Message.get("game.task.get1", quest.getName()));
+            } else {
+                t.teamBroadcast(Message.get("game.task.get2", team.name(), quest.getName()));
+            }
         });
     }
 

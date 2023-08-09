@@ -1,5 +1,5 @@
 items:
-  - diff: 10
+  - diff: 5
     aliases:
       - $_leaves
       - $_log
@@ -12,7 +12,7 @@ items:
       - dark_oak
       - mangrove
       - cherry
-  - diff: 4
+  - diff: 2
     aliases:
       - sand
       - grass_block
@@ -27,7 +27,7 @@ items:
       - fern
       - grass
       - coal_ore
-  - diff: 4
+  - diff: 2
     aliases:
       - sand
       - grass_block
@@ -43,21 +43,21 @@ items:
       - grass
       - tuff
       - calcite
-  - diff: 5
-    name: coal_ore
   - diff: 10
+    name: coal_ore
+  - diff: 20
     aliases:
       - moss_block
       - amethyst_block
       - iron_ore
       - deepslate_iron_ore
-  - diff: 10
+  - diff: 20
     aliases:
       - netherrack
       - nether_quartz_ore
       - nether_gold_ore
       - glowstone
-  - diff: 25
+  - diff: 35
     aliases:
       - $_nylium
       - $_roots
@@ -74,7 +74,7 @@ items:
     placeholders:
       - crimson
       - warped
-  - diff: 20
+  - diff: 40
     aliases:
       - glow_lichen
       - budding_amethyst
@@ -82,6 +82,6 @@ items:
       - gold_ore
       - deepslate_gold_ore
       - deepslate_redstone_ore
-  - diff: 50
+  - diff: 100
     aliases:
       - deepslate_diamond_ore
