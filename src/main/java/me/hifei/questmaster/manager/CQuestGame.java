@@ -14,9 +14,6 @@ import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.UIManager;
 import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
@@ -226,17 +223,13 @@ public class CQuestGame implements QuestGame {
         runEachTeam(t -> {
             if (t == team) {
                 for (Player player : t.members()) {
-                    BaseComponent actionComponent = new TextComponent(Message.get("game.task.get.action"));
-                    actionComponent.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                            "/questmaster:questaction " + ActionTool.addAction(sender -> {
+                    player.spigot().sendMessage(
+                            Message.getComponent("game.task.get1", quest.getName()),
+                            ActionTool.addAction(Message.getComponent("game.task.get.action"), sender -> {
                                         if (!(sender instanceof Player p)) return;
                                         if (quest.getState() == State.DROP) return;
                                         quest.openPanel(p);
-                                    }
-                            )));
-                    player.spigot().sendMessage(
-                            new TextComponent(Message.get("game.task.get1", quest.getName())),
-                            actionComponent);
+                                    }));
                 }
             } else {
                 t.teamBroadcast(Message.get("game.task.get2", team.name(), quest.getName()));

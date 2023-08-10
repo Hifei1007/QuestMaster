@@ -44,19 +44,15 @@ public class DPRoot extends DynamicPanel {
             QuestTeam team = CoreManager.manager.getTeam(player);
             assert team != null;
             Location location = player.getLocation();
-            BaseComponent component = new TextComponent(Message.get("team.send_location.action"));
-            component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
-                    "/questmaster:questaction " + ActionTool.addAction((sender) -> {
-                                if (!(sender instanceof Player pl)) return;
-                                pl.teleport(location);
-                                pl.sendMessage(Message.get("team.send_location.teleport", LocationTool.formatLocation(location)));
-                            })));
             for (Player p : team.members()) {
                 p.sendMessage(Message.get("team.send_location.message1", player.getDisplayName()));
                 p.spigot().sendMessage(
-                        new TextComponent(Message.get("team.send_location.message2", LocationTool.formatLocation(location))),
-                        component
-                );
+                        Message.getComponent("team.send_location.message2", LocationTool.formatLocation(location)),
+                        ActionTool.addAction(Message.getComponent("team.send_location.action"), (sender) -> {
+                            if (!(sender instanceof Player pl)) return;
+                            pl.teleport(location);
+                            pl.sendMessage(Message.get("team.send_location.teleport", LocationTool.formatLocation(location)));
+                        }));
             }
         }));
     }

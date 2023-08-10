@@ -86,6 +86,8 @@ teleport.player1: "&7[&a!&7] 你传送至 [%s&7]!"
 teleport.player2: "&7[&a!&7] [%s&7] 传送至你!"
 teleport.add_location: "&7[&e!&7] [%s&7] 新建了传送点 [%s&7]!"
 teleport.remove_location: "&7[&e!&7] [%s&7] 删除了传送点 [%s&7]!"
+teleport.death.message: "&7[&c!&7] &c你死亡了! "
+teleport.death.action:  "&e&l点击传送至死亡点"
 
 upgrade.upgrade: '&7[&e!&7] [%s&7] 升级了 [&b%s &e%s -> %s&7]!'
 upgrade.teamchest.name: '&b团队箱子 #%s'

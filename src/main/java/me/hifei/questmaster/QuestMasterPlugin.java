@@ -9,10 +9,13 @@ import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.QuestActionCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.listeners.ChatListener;
+import me.hifei.questmaster.running.listeners.DeathListener;
 import me.hifei.questmaster.running.runners.MainUpdater;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.GUIListener;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
+import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -41,6 +44,10 @@ public class QuestMasterPlugin extends JavaPlugin {
         instance = this;
         logger = getLogger();
 
+        for (World world : Bukkit.getWorlds()) {
+            world.setGameRule(GameRule.KEEP_INVENTORY, true);
+        }
+
         Objects.requireNonNull(this.getCommand("start")).setExecutor(new StartCommand());
         Objects.requireNonNull(this.getCommand("forcestop")).setExecutor(new ForceStopCommand());
         Objects.requireNonNull(this.getCommand("questaction")).setExecutor(new QuestActionCommand());
@@ -48,6 +55,7 @@ public class QuestMasterPlugin extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
+        Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
 
         loadTables();
         registerQuestType();

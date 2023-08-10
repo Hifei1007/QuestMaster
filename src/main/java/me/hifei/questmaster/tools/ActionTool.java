@@ -1,5 +1,7 @@
 package me.hifei.questmaster.tools;
 
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.command.CommandSender;
 
 import java.util.*;
@@ -47,5 +49,11 @@ public class ActionTool {
         } while (actionMap.containsKey(name));
         actionMap.put(name, new Action(300, callback));
         return name;
+    }
+
+    public static BaseComponent addAction(BaseComponent component, Consumer<CommandSender> callback) {
+        String id = addAction(callback);
+        component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/questmaster:questaction " + id));
+        return component;
     }
 }
