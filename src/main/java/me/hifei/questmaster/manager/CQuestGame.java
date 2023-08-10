@@ -122,11 +122,6 @@ public class CQuestGame implements QuestGame {
         for (PotionEffectType type : PotionEffectType.values()) {
             player.removePotionEffect(type);
         }
-        player.addPotionEffects(List.of(
-                new PotionEffect(PotionEffectType.SLOW_FALLING, 30 * 20, 0, true, false, true),
-                new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60 * 20, 4, true, false, true),
-                new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 0, true, false, true)
-        ));
         player.getInventory().clear();
         player.getInventory().addItem(new ItemStack(Material.BREAD, 8),
                 new ItemStack(Material.STONE_AXE),
@@ -147,6 +142,11 @@ public class CQuestGame implements QuestGame {
         player.sendTitle(
                 Message.get("game.start.title"),
                 Message.get("game.start.subtitle", CoreManager.game.getGoal(), Objects.requireNonNull(CoreManager.manager.getTeam(player)).name()), 10, 70, 20);
+        player.addPotionEffects(List.of(
+                new PotionEffect(PotionEffectType.SLOW_FALLING, 40 * 20, 0, true, false, true),
+                new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 90 * 20, 4, true, false, true),
+                new PotionEffect(PotionEffectType.BLINDNESS, 10 * 20, 0, true, false, true)
+        ));
     }
 
     @Override
@@ -182,6 +182,13 @@ public class CQuestGame implements QuestGame {
         Location center = c;
 
         runEachTeam(team -> {
+            team.init();
+            for (int i = 1; i <= 3; i++) {
+                addQuest(team);
+            }
+            for (Upgrade upgrade : team.getUpgrades().values()) {
+                upgrade.startup();
+            }
             Location teamCenter;
             do {
                 teamCenter = new Location(overworld,
@@ -195,19 +202,12 @@ public class CQuestGame implements QuestGame {
                     if (overworld.getBlockAt(playerPos).getType() != Material.AIR) {
                         playerPos.setY(i + 1);
                         player.setBedSpawnLocation(playerPos, true);
-                        playerPos.setY(i + 150);
+                        playerPos.setY(i + 180);
                         break;
                     }
                 }
                 player.teleport(playerPos);
                 modifyPlayer(player);
-            }
-            team.init();
-            for (int i = 1; i <= 3; i++) {
-                addQuest(team);
-            }
-            for (Upgrade upgrade : team.getUpgrades().values()) {
-                upgrade.startup();
             }
         });
 
