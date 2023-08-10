@@ -190,17 +190,19 @@ items:
       - netherite_scrap
 
   # Item Drops
-  - diff: 50
+  - diff: 20
     aliases:
       - bone
       - rotten_flesh
       - gunpowder
+      - magma_cream
+  - diff: 10
+    aliases:
       - wheat
       - potato
       - carrot
       - beetroot
       - leather
       - ink_sac
-      - magma_cream
       - sugar
 
