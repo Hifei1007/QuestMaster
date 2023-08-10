@@ -1,0 +1,140 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 6
+title: '&8任务大师 - 物品商店'
+refresh-delay: 1
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+  dynamicitem:
+    material: BEDROCK
+    name: '&4&l抱歉!似乎出现了一些问题!'
+    stack: 1
+    lore:
+      - '&4这个位置应该是一个动态物品!'
+      - '&4你应该立刻报告这个问题!'
+empty: emptyitem
+item:
+  '18':
+    material: COBBLESTONE
+    name: '&a基础材料'
+    stack: 1
+  '20':
+    material: COBBLESTONE
+    name: '&a圆石 x8 &7(&a20 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '21':
+    material: STICK
+    name: '&a木棍 x8 &7(&a10 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '22':
+    material: STRIPPED_OAK_WOOD
+    name: '&a去皮橡木 x8 &7(&a100 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '23':
+    material: COAL
+    name: '&a煤炭 x8 &7(&a100 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '24':
+    material: BONE_MEAL
+    name: '&a骨粉 x8 &7(&a150 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '27':
+    material: STONE_AXE
+    name: '&a基础工具'
+  '29':
+    material: STONE_SHOVEL
+    name: '&a石锹 &7(&a10 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 1
+  '30':
+    material: STONE_HOE
+    name: '&a石锄 &7(&a15 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 1
+  '31':
+    material: STONE_PICKAXE
+    name: '&a石镐 &7(&a20 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 1
+  '32':
+    material: STONE_AXE
+    name: '&a石斧 &7(&a20 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 1
+  '33':
+    material: SHEARS
+    name: '&a剪刀 &7(&a50 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 1
+  '36':
+    material: APPLE
+    name: '&a食物'
+  '38':
+    material: MELON_SLICE
+    name: '&a西瓜 x8 &7(&a20 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '39':
+    material: BREAD
+    name: '&a面包 x8 &7(&a50 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '40':
+    material: BAKED_POTATO
+    name: '&a烤马铃薯 x8 &7(&a70 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '41':
+    material: COOKED_PORKCHOP
+    name: '&a熟猪排 x8 &7(&a120 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '42':
+    material: GOLDEN_CARROT
+    name: '&a金胡萝卜 x8 &7(&a160 &6金币&7)'
+    lore:
+      - ''
+      - '&4&l错误!未加载动态内容!'
+    stack: 8
+  '49':
+    material: ARROW
+    name: '&a返回'
+    stack: 1
+    commands:
+      - event= shop_itemshop_back

@@ -8,10 +8,7 @@ import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class UIManager {
@@ -50,7 +47,7 @@ public class UIManager {
 
     public void registerEvent(String id, @NotNull Consumer<PanelCommandEvent> c) {
         if (m.containsKey(id)) m.get(id).add(c);
-        else m.put(id, List.of(c));
+        else m.put(id, new ArrayList<>(List.of(c)));
     }
 
     public void registerListener(Consumer<PanelCommandEvent> consumer) {

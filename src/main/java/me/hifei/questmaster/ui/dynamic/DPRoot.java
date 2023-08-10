@@ -10,6 +10,7 @@ import me.hifei.questmaster.tools.ActionTool;
 import me.hifei.questmaster.tools.LocationTool;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.UIManager;
+import me.hifei.questmaster.ui.dynamic.shop.DPShopItem;
 import me.hifei.questmaster.ui.dynamic.shop.DPShopTeamUpgrade;
 import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
@@ -55,6 +56,7 @@ public class DPRoot extends DynamicPanel {
                         }));
             }
         }));
+        UIManager.ins.registerEvent("root_open_itemshop", (event -> DPShopItem.openDynamic(event.getPlayer(), PanelPosition.Top)));
     }
 
     private final static int[][] teamchest_cost = {{}, {200, 300, 400, 500, 600, 700, 0},

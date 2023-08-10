@@ -1,0 +1,3 @@
+item.lore.require: '&c团队的资源不足以购买!'
+item.lore.ok: '&e点击购买!'
+item.buy: '&7[&c!&7] 你购买了 [&e&l%s x%s&7]!'

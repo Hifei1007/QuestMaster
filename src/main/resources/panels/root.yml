@@ -86,7 +86,9 @@ item:
       - ''
       - '&7快速购买物品!'
       - ''
-      - '&c&lVERY COMING SOON'
+      - '&e点击查看!'
+    commands:
+      - event= root_open_itemshop
   '49':
     material: BARRIER
     name: '&c关闭'
