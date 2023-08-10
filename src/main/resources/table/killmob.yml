@@ -1,0 +1,39 @@
+items:
+  - diff: 15
+    aliases:
+      - chicken
+      - pig
+      - cow
+      - sheep
+      - rabbit
+  - diff: 4
+    aliases:
+      - squid
+      - cod
+      - salmon
+  - diff: 8
+    aliases:
+      - husk
+      - drowned
+      - zombie
+      - zombie_villager
+      - witch
+      - bat
+  - diff: 4
+    name: zombified_piglin
+  - diff: 12
+    aliases:
+      - piglin
+      - enderman
+      - magma_cube
+      - hoglin
+      - blaze
+      - wither_skeleton
+  - diff: 50
+    name: iron_golem
+  - diff: 8
+    aliases:
+      - skeleton
+      - stray
+      - spider
+      - cave_spider

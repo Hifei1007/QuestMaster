@@ -3,6 +3,8 @@ package me.hifei.questmaster;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
 import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
+import me.hifei.questmaster.quest.questkillmob.QuestTableKillMob;
+import me.hifei.questmaster.quest.questkillmob.QuestTypeKillMob;
 import me.hifei.questmaster.quest.questmineblock.QuestTableMineBlock;
 import me.hifei.questmaster.quest.questmineblock.QuestTypeMineBlock;
 import me.hifei.questmaster.running.commands.ForceStopCommand;
@@ -32,11 +34,13 @@ public class QuestMasterPlugin extends JavaPlugin {
     public void loadTables() {
         QuestTableCollectItem.ins.loadConfig();
         QuestTableMineBlock.ins.loadConfig();
+        QuestTableKillMob.ins.loadConfig();
     }
 
     public void registerQuestType() {
         CoreManager.manager.registerType(QuestTypeCollectItem.class, 3);
         CoreManager.manager.registerType(QuestTypeMineBlock.class, 2);
+        CoreManager.manager.registerType(QuestTypeKillMob.class, 2);
     }
 
     @Override
