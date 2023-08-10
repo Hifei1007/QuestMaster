@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import java.util.Random;
 
 public class QuestTableMineBlock extends QuestTableTool<Material> {
-    public static QuestTableMineBlock ins = new QuestTableMineBlock();
+    public static final QuestTableMineBlock ins = new QuestTableMineBlock();
 
     @Override
     protected TableItem<Material> buildItem(String string, double diff) {

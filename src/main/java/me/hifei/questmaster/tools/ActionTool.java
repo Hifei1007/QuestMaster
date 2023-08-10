@@ -15,7 +15,7 @@ public class ActionTool {
         }
 
         public int timer;
-        public Consumer<CommandSender> callback;
+        public final Consumer<CommandSender> callback;
     }
 
     private static int timer = 20;

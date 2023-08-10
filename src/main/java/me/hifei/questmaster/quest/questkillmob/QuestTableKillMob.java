@@ -1,6 +1,5 @@
 package me.hifei.questmaster.quest.questkillmob;
 
-import com.google.common.base.CaseFormat;
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.TableItem;
 import me.hifei.questmaster.api.quest.TableItemGroup;

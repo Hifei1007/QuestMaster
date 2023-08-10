@@ -3,7 +3,6 @@ package me.hifei.questmaster.manager;
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.QuestType;
-import me.hifei.questmaster.quest.questkillmob.QuestTypeKillMob;
 import me.hifei.questmaster.running.config.Message;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -11,7 +10,6 @@ import org.bukkit.entity.Player;
 
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 public class QuestListenerTool {
     public static void updateCombo(Map<String, Integer> combo, Map<String, Long> lastCombo, String playerName) {

@@ -1,9 +1,6 @@
 package me.hifei.questmaster.quest.questkillmob;
 
-import me.hifei.questmaster.CoreManager;
-import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.manager.QuestListenerTool;
-import me.hifei.questmaster.quest.questmineblock.QuestTypeMineBlock;
 import me.hifei.questmaster.running.config.Message;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -14,8 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-
-import java.util.Objects;
 
 public class QuestListenerKillMob implements Listener {
     @EventHandler

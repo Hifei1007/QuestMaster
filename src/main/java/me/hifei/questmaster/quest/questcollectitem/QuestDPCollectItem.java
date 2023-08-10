@@ -2,11 +2,9 @@ package me.hifei.questmaster.quest.questcollectitem;
 
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
-import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.QuestDynamicPanel;
 import me.hifei.questmaster.ui.core.UIManager;
-import me.hifei.questmaster.ui.dynamic.DPQuest;
 import me.rockyhawk.commandpanels.api.Panel;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.entity.Player;
