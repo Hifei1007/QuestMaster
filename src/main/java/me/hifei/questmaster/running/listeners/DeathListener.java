@@ -3,7 +3,6 @@ package me.hifei.questmaster.running.listeners;
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.ActionTool;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -19,8 +18,8 @@ public class DeathListener implements Listener {
             Player player = event.getEntity();
             Location location = player.getLocation();
             player.spigot().sendMessage(
-                    new TextComponent(Message.get("teleport.death.message")),
-                    ActionTool.addAction(new TextComponent(Message.get("teleport.death.action")), (sender) -> {
+                    Message.getComponent("teleport.death.message"),
+                    ActionTool.addAction(Message.getComponent("teleport.death.action"), (sender) -> {
                         if (!sender.equals(player)) return;
                         player.teleport(location);
                     })
