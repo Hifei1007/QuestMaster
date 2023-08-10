@@ -2,6 +2,7 @@ package me.hifei.questmaster.quest.questmineblock;
 
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
+import me.hifei.questmaster.manager.QuestListenerTool;
 import me.hifei.questmaster.running.config.Message;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -19,24 +20,10 @@ public class QuestListenerMineBlock implements Listener {
     public void onMineBlock(BlockBreakEvent event) {
         Player player = event.getPlayer();
         if (!CoreManager.manager.hasTeam(player)) return;
-        for (Quest quest : Objects.requireNonNull(CoreManager.manager.getTeam(player)).getQuests()) {
-            if (!(quest.getType() instanceof QuestTypeMineBlock qt)) continue;
-            if (event.getBlock().getType() != qt.item.obj()) continue;
-            if (!qt.lastCombo.containsKey(player.getName())) {
-                qt.lastCombo.put(player.getName(), System.currentTimeMillis());
-                qt.combo.put(player.getName(), 1);
-            } else if (qt.lastCombo.get(player.getName()) + 5000 >= System.currentTimeMillis()) {
-                qt.lastCombo.put(player.getName(), System.currentTimeMillis());
-                qt.combo.put(player.getName(), qt.combo.get(player.getName()) + 1);
-            } else {
-                qt.lastCombo.put(player.getName(), System.currentTimeMillis());
-                qt.combo.put(player.getName(), 1);
-            }
-            boolean autoSubmit = CoreManager.autoSubmitMode.getOrDefault(player.getName(), true);
-            if (!autoSubmit) {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Message.get("quest.mineblock.auto_switch.off")));
-                break;
-            }
+        QuestListenerTool.findQuest(player, QuestTypeMineBlock.class, (quest, qt) -> {
+            if (event.getBlock().getType() != qt.item.obj()) return false;
+            if (QuestListenerTool.checkAutoSubmit(player)) return true;
+            QuestListenerTool.updateCombo(qt.combo, qt.lastCombo, player.getName());
             qt.addCount();
             player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 10.0f, 1.0f);
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(Message.get(
@@ -44,7 +31,7 @@ public class QuestListenerMineBlock implements Listener {
                     quest.getName(), quest.getCurrentCount(), qt.combo.get(player.getName()),
                     quest.getTotalCount(), quest.getProgress() * 100, "%")));
             event.setDropItems(false);
-            break;
-        }
+            return true;
+        });
     }
 }
