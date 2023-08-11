@@ -23,9 +23,9 @@ items:
 
   # Clay
 
-  - diff: 4
+  - diff: 1.5
     name: clay_ball
-  - diff: 16
+  - diff: 6
     name: clay
 
   # Granite, Andesite, Diorite, and Blackstone
@@ -67,7 +67,7 @@ items:
 
   # Stone & Smooth Stone
 
-  - diff: 16
+  - diff: 12
     aliases:
       - stone
       - stone_stairs
@@ -84,7 +84,7 @@ items:
 
   # Woods
 
-  - diff: 10
+  - diff: 5
     aliases:
       - bamboo_block
       - stripped_bamboo_block

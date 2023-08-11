@@ -55,20 +55,19 @@ items:
       - tuff
       - calcite
   - diff: 10
-    name: coal_ore
-  - diff: 20
     aliases:
+      - coal_ore
       - moss_block
       - amethyst_block
       - iron_ore
       - deepslate_iron_ore
-  - diff: 20
+  - diff: 10
     aliases:
       - netherrack
       - nether_quartz_ore
       - nether_gold_ore
       - glowstone
-  - diff: 35
+  - diff: 25
     aliases:
       - $_nylium
       - $_roots
@@ -85,7 +84,7 @@ items:
     placeholders:
       - crimson
       - warped
-  - diff: 40
+  - diff: 25
     aliases:
       - glow_lichen
       - budding_amethyst
@@ -93,6 +92,6 @@ items:
       - gold_ore
       - deepslate_gold_ore
       - deepslate_redstone_ore
-  - diff: 100
+  - diff: 80
     aliases:
       - deepslate_diamond_ore
