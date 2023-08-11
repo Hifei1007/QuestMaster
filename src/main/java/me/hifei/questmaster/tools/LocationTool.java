@@ -15,6 +15,10 @@ public class LocationTool {
             case "world_the_end" -> Message.get("location.the_end");
             default -> "";
         };
-        return Message.get("location.format", world, location.getX(), location.getY(), location.getZ());
+        if (location.getY() <= -255) {
+            return Message.get("location.format_no_y", world, location.getX(), location.getZ());
+        } else {
+            return Message.get("location.format", world, location.getX(), location.getY(), location.getZ());
+        }
     }
 }

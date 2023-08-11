@@ -79,6 +79,7 @@ scoreboard.score: "&e%s&7 [&c%.2f&7 / &9%.2f&7]"
 scoreboard.plugin: "&eQuestMaster"
 
 location.format: "%s &7| &bX&7:&e%.2f &bY&7:&e%.2f &bZ&7:&e%.2f"
+location.format_no_y: "%s &7| &bX&7:&e%.2f &bY&7:&e~ &bZ&7:&e%.2f"
 location.overworld: "&a主世界"
 location.nether: "&c地狱"
 location.the_end: "&e末地"
@@ -97,3 +98,6 @@ upgrade.teamchest.name: '&b团队箱子 #%s'
 error.cant_open: '&4&l无法打开动态面板 [%s]!'
 error.cant_close: '&4&l无法关闭动态面板 [%s]!'
 error.runnable_crash: '&4&l一个BukkitRunnable因为发生异常而被锁定了!'
+
+locate.success: "&7[&c!&7] &7[%s&7] 成功定位 &7[%s&7] 在 [%s&7] (距离 &a%s &7格)!"
+locate.failed: "&7[&c!&7] &c定位失败! 请检查维度是否正确!"

@@ -1,0 +1,98 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 6
+title: '&8任务大师 - 定位器'
+refresh-delay: 1
+custom-item:
+  emptyitem:
+    material: GRAY_STAINED_GLASS_PANE
+    name: '&1'
+    stack: 1
+  dynamicitem:
+    material: BEDROCK
+    name: '&4&l抱歉!似乎出现了一些问题!'
+    stack: 1
+    lore:
+      - '&4这个位置应该是一个动态物品!'
+      - '&4你应该立刻报告这个问题!'
+_dynamic:
+  object:
+    material: BEDROCK
+    name: '&4&l错误!未加载动态内容!'
+    stack: 1
+  front:
+    material: arrow
+    name: '&a上一页'
+    stack: 1
+    commands:
+      - event= shop_locate_front
+  next:
+    material: arrow
+    name: '&a下一页'
+    stack: 1
+    commands:
+      - event= shop_locate_next
+empty: emptyitem
+item:
+  '10':
+    material: AIR
+  '11':
+    material: AIR
+  '12':
+    material: AIR
+  '13':
+    material: AIR
+  '14':
+    material: AIR
+  '15':
+    material: AIR
+  '16':
+    material: AIR
+  '19':
+    material: AIR
+  '20':
+    material: AIR
+  '21':
+    material: AIR
+  '22':
+    material: AIR
+  '23':
+    material: AIR
+  '24':
+    material: AIR
+  '25':
+    material: AIR
+  '28':
+    material: AIR
+  '29':
+    material: AIR
+  '30':
+    material: AIR
+  '31':
+    material: AIR
+  '32':
+    material: AIR
+  '33':
+    material: AIR
+  '34':
+    material: AIR
+  '37':
+    material: AIR
+  '38':
+    material: AIR
+  '39':
+    material: AIR
+  '40':
+    material: AIR
+  '41':
+    material: AIR
+  '42':
+    material: AIR
+  '43':
+    material: AIR
+  '49':
+    material: ARROW
+    name: '&a返回'
+    stack: 1
+    commands:
+      - event= shop_locate_back

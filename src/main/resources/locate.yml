@@ -1,0 +1,8 @@
+structure:
+  - name: "&a村庄"
+    icon: HAY_BLOCK
+    id: "#minecraft:village"
+biomes:
+  - name: "&a平原"
+    icon: GRASS_BLOCK
+    id: "minecraft:plains"

@@ -54,7 +54,9 @@ item:
       - ''
       - '&7定位群系和结构!'
       - ''
-      - '&c&lVERY COMING SOON'
+      - '&e点击查看!'
+    commands:
+      - event= root_open_locate
   '21':
     material: ENDER_PEARL
     name: '&a传送'
