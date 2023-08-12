@@ -1,8 +1,152 @@
 structure:
   - name: "&a村庄"
     icon: HAY_BLOCK
-    id: "#minecraft:village"
+    id: "#village"
+  - name: "&a废弃传送门"
+    icon: CRYING_OBSIDIAN
+    id: "#ruined_portal"
+  - name: "&a远古城市"
+    icon: SCULK_SHRIEKER
+    id: "ancient_city"
+  - name: "&a废弃矿井"
+    icon: OAK_PLANKS
+    id: "#mineshaft"
+  - name: "&a要塞"
+    icon: MOSSY_STONE_BRICKS
+    id: "stronghold"
+  - name: "&a古迹废墟"
+    icon: SUSPICIOUS_SAND
+    id: "trail_ruins"
+  - name: "&a沙漠神殿"
+    icon: SANDSTONE
+    id: "desert_pyramid"
+  - name: "&a雪屋"
+    icon: SNOW_BLOCK
+    id: "igloo"
+  - name: "&a丛林神殿"
+    icon: VINE
+    id: "jungle_pyramid"
+  - name: "&a掠夺者前哨站"
+    icon: DARK_OAK_LOG
+    id: "pillager_outpost"
+  - name: "&a沼泽小屋"
+    icon: CAULDRON
+    id: "swamp_hut"
+  - name: "&a林地府邸"
+    icon: DARK_OAK_PLANKS
+    id: "mansion"
+  - name: "&a海底神殿"
+    icon: SEA_LANTERN
+    id: "monument"
+  - name: "&a沉船"
+    icon: OAK_BOAT
+    id: "#shipwreck"
+  - name: "&a堡垒遗迹"
+    icon: GILDED_BLACKSTONE
+    id: "bastion_remnant"
+  - name: "&a下界要塞"
+    icon: NETHER_BRICKS
+    id: "fortress"
+  - name: "&a末地城"
+    icon: END_STONE_BRICKS
+    id: "end_city"
 biomes:
+  - name: "&a海洋"
+    icon: KELP
+    id: "#is_ocean"
+  - name: "&a冻洋"
+    icon: ICE
+    id: "frozen_ocean"
+  - name: "&a冰冻深海"
+    icon: ICE
+    id: "deep_frozen_ocean"
+  - name: "&a暖水海洋"
+    icon: TUBE_CORAL_BLOCK
+    id: "warm_ocean"
+  - name: "&a蘑菇岛"
+    icon: MYCELIUM
+    id: "mushroom_fields"
+  - name: "&a草甸"
+    icon: DANDELION
+    id: "meadow"
+  - name: "&a雪林"
+    icon: SNOW_BLOCK
+    id: "grove"
+  - name: "&a樱花树林"
+    icon: CHERRY_LOG
+    id: "cherry_grove"
+  - name: "&a热带草原"
+    icon: ACACIA_LOG
+    id: "#is_savanna"
+  - name: "&a森林"
+    icon: OAK_SAPLING
+    id: "forest"
+  - name: "&a繁花森林"
+    icon: DANDELION
+    id: "flower_forest"
+  - name: "&a针叶林"
+    icon: SPRUCE_LOG
+    id: "#is_taiga"
+  - name: "&a黑森林"
+    icon: DARK_OAK_LOG
+    id: "dark_forest"
+  - name: "&a桦木森林"
+    icon: BIRCH_LOG
+    id: "birch_forest"
+  - name: "&a丛林"
+    icon: JUNGLE_LOG
+    id: "jungle"
+  - name: "&a竹林"
+    icon: BAMBOO
+    id: "bamboo_jungle"
+  - name: "&a红树林沼泽"
+    icon: MANGROVE_LOG
+    id: "mangrove_swamp"
+  - name: "&a沼泽"
+    icon: LILY_PAD
+    id: "swamp"
+  - name: "&a冻流"
+    icon: PACKED_ICE
+    id: "frozen_river"
   - name: "&a平原"
     icon: GRASS_BLOCK
-    id: "minecraft:plains"
+    id: "plains"
+  - name: "&a向日葵平原"
+    icon: SUNFLOWER
+    id: "sunflower_plains"
+  - name: "&a雪原"
+    icon: SNOW_BLOCK
+    id: "snowy_plains"
+  - name: "&a冰刺之地"
+    icon: PACKED_ICE
+    id: "ice_spikes"
+  - name: "&a沙漠"
+    icon: SAND
+    id: "desert"
+  - name: "&a恶地"
+    icon: RED_SAND
+    id: "#is_badlands"
+  - name: "&a繁茂洞穴"
+    icon: MOSS_BLOCK
+    id: "lush_caves"
+  - name: "&a溶洞"
+    icon: DRIPSTONE_BLOCK
+    id: "dripstone_caves"
+  - name: "&a深暗之域"
+    icon: SCULK
+    id: "deep_dark"
+  - name: "&a下界荒地"
+    icon: NETHERRACK
+    id: "nether_wastes"
+  - name: "&a灵魂沙峡谷"
+    icon: SOUL_SAND
+    id: "soul_sand_valley"
+  - name: "&a绯红森林"
+    icon: CRIMSON_STEM
+    id: "crimson_forest"
+  - name: "&a诡异森林"
+    icon: WARPED_STEM
+    id: "warped_forest"
+  - name: "&a玄武岩三角洲"
+    icon: BASALT
+    id: "basalt_deltas"
