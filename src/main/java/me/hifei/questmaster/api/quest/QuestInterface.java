@@ -4,14 +4,13 @@ import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.state.Stateful;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class QuestInterface implements Stateful, ConfigurationSerializable {
+public abstract class QuestInterface implements Stateful {
     public Quest quest;
     public BukkitRunnable runnable;
     public @Nullable Listener listener;

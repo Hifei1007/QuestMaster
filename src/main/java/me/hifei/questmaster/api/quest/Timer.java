@@ -1,12 +1,6 @@
 package me.hifei.questmaster.api.quest;
 
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.Map;
-
-public class Timer implements ConfigurationSerializable {
+public class Timer{
     private long startTime;
     private int time;
     private boolean isStarted;
@@ -14,23 +8,6 @@ public class Timer implements ConfigurationSerializable {
     public Timer(int sec) {
         startTime = 0;
         time = sec;
-    }
-
-    public Timer(@NotNull Map<String, Object> serializer) {
-        time = (int) serializer.get("time");
-        isStarted = (boolean) serializer.get("isStarted");
-        if (isStarted) startTime = System.currentTimeMillis() - (int) serializer.get("startedTime");
-        else startTime = 0;
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        serializer.put("startedTime", (System.currentTimeMillis() - startTime));
-        serializer.put("time", time);
-        serializer.put("isStarted", isStarted);
-        return serializer;
     }
 
     public void start() {

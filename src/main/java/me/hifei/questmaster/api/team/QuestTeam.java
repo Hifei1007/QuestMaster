@@ -4,14 +4,13 @@ import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.shop.Upgrade;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Map;
 
-public interface QuestTeam extends ConfigurationSerializable {
+public interface QuestTeam {
     @NotNull List<Quest> getQuests();
     @NotNull Map<String, Upgrade> getUpgrades();
 

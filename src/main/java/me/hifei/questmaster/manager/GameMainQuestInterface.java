@@ -8,29 +8,12 @@ import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;
 import org.bukkit.Sound;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class GameMainQuestInterface extends QuestInterface {
     private final QuestTeam team;
 
     public GameMainQuestInterface(QuestTeam team) {
         this.team = team;
-    }
-
-    public GameMainQuestInterface(Map<String, Object> serializer) {
-        team = CoreManager.manager.getTeam((String) serializer.get("team"));
-        state = State.STARTUP;
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        serializer.put("team", team.name());
-        return serializer;
     }
 
     @Override

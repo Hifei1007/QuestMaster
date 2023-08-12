@@ -63,9 +63,6 @@ public class QuestMasterPlugin extends JavaPlugin {
 
         loadTables();
         registerQuestType();
-
-        // todo: GameSavingCore.registerClass();
-        // todo: GameSavingCore.load();
     }
 
     @Override

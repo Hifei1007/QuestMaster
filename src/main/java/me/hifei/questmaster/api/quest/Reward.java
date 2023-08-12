@@ -1,12 +1,8 @@
 package me.hifei.questmaster.api.quest;
 
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Reward implements ConfigurationSerializable {
+public class Reward {
     private final double score;
     private final double point;
     private final double coin;
@@ -37,23 +33,5 @@ public class Reward implements ConfigurationSerializable {
 
     public double time() {
         return time;
-    }
-
-    public Reward(Map<String, Object> serializer) {
-        this.score = (double) serializer.get("score");
-        this.point = (double) serializer.get("point");
-        this.coin = (double) serializer.get("coin");
-        this.time = (double) serializer.get("time");
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        serializer.put("score", score);
-        serializer.put("point", point);
-        serializer.put("coin", coin);
-        serializer.put("time", time);
-        return serializer;
     }
 }

@@ -1,7 +1,6 @@
 package me.hifei.questmaster.quest.questmineblock;
 
 import me.hifei.questmaster.CoreManager;
-import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.manager.QuestListenerTool;
 import me.hifei.questmaster.running.config.Message;
 import net.md_5.bungee.api.ChatMessageType;
@@ -11,8 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-
-import java.util.Objects;
 
 public class QuestListenerMineBlock implements Listener {
 

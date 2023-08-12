@@ -39,31 +39,6 @@ public class CQuestGame implements QuestGame {
         }
     }
 
-    public CQuestGame(@NotNull Map<String, Object> serialized) {
-        teams = new ArrayList<>();
-        List<?> list = (List<?>) (serialized.get("teams"));
-        for (Object s : list) {
-            String str = (String) s;
-            teams.add(CoreManager.manager.getTeam(str));
-        }
-        goal = (int) serialized.get("goal");
-        for (QuestTeam team : teams) {
-            scoreboardMap.put(team, CoreManager.manager.createScoreboard(this, team));
-        }
-        state = State.STARTUP;
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        List<String> nameList = new ArrayList<>();
-        runEachTeam(t -> nameList.add(t.name()));
-        serializer.put("teams", nameList);
-        serializer.put("goal", goal);
-        return serializer;
-    }
-
     @Override
     public List<QuestTeam> getTeams() {
         return teams;

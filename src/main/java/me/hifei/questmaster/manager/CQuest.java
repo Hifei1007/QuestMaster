@@ -1,6 +1,5 @@
 package me.hifei.questmaster.manager;
 
-import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.quest.*;
 import me.hifei.questmaster.api.state.State;
@@ -11,9 +10,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CQuest implements Quest {
     private final @NotNull QuestType questType;
@@ -35,31 +32,6 @@ public class CQuest implements Quest {
 
     CQuest(@NotNull QuestType qt, QuestTeam team) {
         this(qt, team, new QuestInterface[]{});
-    }
-
-    public CQuest(@NotNull Map<String, Object> serializer) {
-        questType = (QuestType) serializer.get("type");
-        questType.sendQuestObject(this);
-        team = CoreManager.manager.getTeam((String) serializer.get("team"));
-        timer = (Timer) serializer.get("timer");
-        finalReward = (Reward) serializer.get("reward");
-        interfaces = new ArrayList<>();
-        for (Object obj : (List<?>) serializer.get("interfaces")) {
-            interfaces.add((QuestInterface) obj);
-        }
-        startup();
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        serializer.put("type", questType);
-        serializer.put("team", team.name());
-        serializer.put("timer", timer);
-        serializer.put("reward", finalReward);
-        serializer.put("interfaces", interfaces);
-        return serializer;
     }
 
     @Override

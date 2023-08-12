@@ -140,13 +140,4 @@ public class QuestTypeMineBlock implements QuestType {
     public void openPanel(@NotNull Player player) {
         QuestDPMineBlock.openDynamic(player, PanelPosition.Top, quest);
     }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        // This feature is already in todo state.
-        // We won't support this feature for a long time.
-        // And it means we won't write any new code for new feature of this feature.
-        return new HashMap<>();
-    }
 }

@@ -141,10 +141,4 @@ public class QuestTypeKillMob implements QuestType {
     public void openPanel(@NotNull Player player) {
         QuestDPKillMob.openDynamic(player, PanelPosition.Top, quest);
     }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        return new HashMap<>();
-    }
 }

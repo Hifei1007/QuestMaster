@@ -8,13 +8,15 @@ import me.hifei.questmaster.shop.DamageUpgrade;
 import me.hifei.questmaster.shop.DefenseUpgrade;
 import me.hifei.questmaster.shop.Upgrade;
 import me.hifei.questmaster.shop.teamchest.TeamChestUpgrade;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class CQuestTeam implements QuestTeam {
     private double score;
@@ -48,25 +50,6 @@ public class CQuestTeam implements QuestTeam {
         this.color = color;
     }
 
-    public CQuestTeam(@NotNull Map<String, Object> serializer) {
-        quests = new LinkedList<>();
-        members = new LinkedList<>();
-        locations = new LinkedList<>();
-        upgrades = new HashMap<>();
-        coin = (double) serializer.get("coin");
-        point = (double) serializer.get("point");
-        score = (double) serializer.get("score");
-        name = (String) serializer.get("name");
-        color = Objects.requireNonNull(ChatColor.getByChar((String) serializer.get("color")));
-        for (Object obj : (List<?>) serializer.get("quests")) {
-            quests.add((Quest) obj);
-        }
-        for (Object member : (List<?>) serializer.get("members")) {
-            String name = (String) member;
-            members.add(Bukkit.getPlayerExact(name));
-        }
-        CoreManager.manager.getTeams().add(this);
-    }
 
     private void initUpgrade() {
         upgrades.clear();
@@ -83,22 +66,6 @@ public class CQuestTeam implements QuestTeam {
         upgrades.put("damage_projectile", new DamageUpgrade(DamageUpgrade.DamageType.PROJECTILE, this));
         upgrades.put("damage_explosion", new DamageUpgrade(DamageUpgrade.DamageType.EXPLOSION, this));
         upgrades.put("damage_weapon", new DamageUpgrade(DamageUpgrade.DamageType.WEAPON, this));
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        serializer.put("coin", coin);
-        serializer.put("point", point);
-        serializer.put("score", score);
-        serializer.put("name", name);
-        serializer.put("color", String.valueOf(color.getChar()));
-        serializer.put("quests", quests);
-        List<String> nameList = new ArrayList<>();
-        for (Player player : members) nameList.add(player.getName());
-        serializer.put("members", nameList);
-        return serializer;
     }
 
     @Override

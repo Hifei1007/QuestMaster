@@ -11,9 +11,7 @@ import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class QuestTypeCollectItem implements QuestType {
@@ -43,25 +41,6 @@ public class QuestTypeCollectItem implements QuestType {
         item = req;
         this.count = count;
         this.difficultValue = difficultValue;
-    }
-
-    public QuestTypeCollectItem(@NotNull Map<String, Object> serializer) {
-        // This feature is already in todo state.
-        // We won't support this feature for a long time.
-        // item = QuestTableCollectItem.valueOf((String) serializer.get("item"));
-        item = null;
-        count = (int) serializer.get("count");
-        difficultValue = (double) serializer.get("difficultValue");
-    }
-
-    @NotNull
-    @Override
-    public Map<String, Object> serialize() {
-        Map<String, Object> serializer = new HashMap<>();
-        serializer.put("item", item.name());
-        serializer.put("count", count);
-        serializer.put("difficultValue", difficultValue);
-        return serializer;
     }
 
     @Override
