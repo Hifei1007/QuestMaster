@@ -1,6 +1,7 @@
 package me.hifei.questmaster.tools;
 
 import me.hifei.questmaster.api.quest.Difficult;
+import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -17,9 +18,10 @@ public class DifficultTool {
          */
 
         Difficult difficult;
-        if (i < 650) difficult = Difficult.EASY;
-        else if (i < 950) difficult = Difficult.NORMAL;
-        else difficult = Difficult.HARD;
+        if (i < RollingConfig.cfg.easy.selectWhen) difficult = Difficult.EASY;
+        else if (i < RollingConfig.cfg.normal.selectWhen) difficult = Difficult.NORMAL;
+        else if (i < RollingConfig.cfg.hard.selectWhen) difficult = Difficult.HARD;
+        else throw new RuntimeException("The max value of selectWhen doesn't match 1000!");
 
         double value = difficult.start * random.nextDouble(1, 1.5);
         while ((random.nextBoolean() || random.nextBoolean()) && value <= difficult.end) {

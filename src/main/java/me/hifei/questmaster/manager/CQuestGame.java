@@ -8,6 +8,8 @@ import me.hifei.questmaster.api.state.Stateful;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
+import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
+import me.hifei.questmaster.running.gsoncfg.rolling.TeleportConfig;
 import me.hifei.questmaster.shop.Upgrade;
 import me.hifei.questmaster.tools.ActionTool;
 import me.hifei.questmaster.ui.core.DynamicPanel;
@@ -150,9 +152,11 @@ public class CQuestGame implements QuestGame {
         });
 
         Location c;
+        TeleportConfig config = RollingConfig.cfg.teleport;
         do {
             c = new Location(overworld,
-                    random.nextInt(-100000, 100000), 60, random.nextInt(-100000, 100000));
+                    random.nextInt(config.globalX.origin, config.globalX.bound),
+                    60, random.nextInt(config.globalZ.origin, config.globalZ.bound));
         } while (overworld.getBlockAt(c).getType() == Material.WATER);
         Location center = c;
 
@@ -167,11 +171,13 @@ public class CQuestGame implements QuestGame {
             Location teamCenter;
             do {
                 teamCenter = new Location(overworld,
-                        center.getBlockX() + random.nextInt(-200, 200), 0, center.getBlockZ() + random.nextInt(-200, 200));
+                        center.getBlockX() + random.nextInt(config.teamX.origin, config.teamX.bound),
+                        60, center.getBlockZ() + random.nextInt(config.teamZ.origin, config.teamZ.bound));
             } while (overworld.getBlockAt(teamCenter).getType() == Material.WATER);
             for (Player player : team.members()) {
                 Location playerPos = new Location(overworld,
-                        teamCenter.getBlockX() + random.nextInt(-20, 20), 0, teamCenter.getBlockZ() + random.nextInt(-20, 20));
+                        teamCenter.getBlockX() + random.nextInt(config.playerX.origin, config.playerX.bound),
+                        0, teamCenter.getBlockZ() + random.nextInt(config.playerZ.origin, config.playerZ.bound));
                 for (int i = 300; i >= -64; i--) {
                     playerPos.setY(i);
                     if (overworld.getBlockAt(playerPos).getType() != Material.AIR) {

@@ -1,5 +1,6 @@
 package me.hifei.questmaster;
 
+import me.hifei.questmaster.api.quest.QuestType;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
 import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
@@ -10,6 +11,9 @@ import me.hifei.questmaster.quest.questmineblock.QuestTypeMineBlock;
 import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.QuestActionCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
+import me.hifei.questmaster.running.gsoncfg.GsonConfigLoader;
+import me.hifei.questmaster.running.gsoncfg.rolling.QuestTypeConfig;
+import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import me.hifei.questmaster.running.listeners.ChatListener;
 import me.hifei.questmaster.running.listeners.DeathListener;
 import me.hifei.questmaster.running.runners.MainUpdater;
@@ -37,16 +41,27 @@ public class QuestMasterPlugin extends JavaPlugin {
         QuestTableKillMob.ins.loadConfig();
     }
 
+    @SuppressWarnings("unchecked")
     public void registerQuestType() {
-        CoreManager.manager.registerType(QuestTypeCollectItem.class, 3);
-        CoreManager.manager.registerType(QuestTypeMineBlock.class, 2);
-        CoreManager.manager.registerType(QuestTypeKillMob.class, 2);
+        for (QuestTypeConfig questTypeConfig : RollingConfig.cfg.questType) {
+            if (!questTypeConfig.enabled) continue;
+            try {
+                Class<?> clazz = Class.forName(questTypeConfig.classPath);
+                Class<? extends QuestType> c = (Class<? extends QuestType>) clazz;
+                CoreManager.manager.registerType(c, questTypeConfig.weight);
+                logger.info("Success registered quest type %s".formatted(c.getName()));
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
     public void onEnable() {
         instance = this;
         logger = getLogger();
+
+        RollingConfig.cfg = GsonConfigLoader.loadConfig(RollingConfig.class, "rolling.json");
 
         for (World world : Bukkit.getWorlds()) {
             world.setGameRule(GameRule.KEEP_INVENTORY, true);

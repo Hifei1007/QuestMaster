@@ -1,6 +1,8 @@
 package me.hifei.questmaster.manager;
 
 import me.hifei.questmaster.api.quest.*;
+import me.hifei.questmaster.running.gsoncfg.rolling.RewardConfig;
+import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import me.hifei.questmaster.tools.DifficultTool;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,20 +44,20 @@ public abstract class AbstractQuestType<T> implements QuestType {
     @Override
     public @NotNull Reward baseReward() {
         Random random = new Random();
+        RewardConfig config = RollingConfig.cfg.reward;
         return new Reward(
-                random.nextDouble(0.1, 0.3),
-                random.nextDouble(1.5, 2),
-                random.nextDouble(20, 50),
-                random.nextDouble(0.5, 2)
+                random.nextDouble(config.score.origin, config.score.bound),
+                random.nextDouble(config.point.origin, config.point.bound),
+                random.nextDouble(config.coin.origin, config.coin.bound),
+                random.nextDouble(config.time.origin, config.time.bound)
         );
     }
 
     @Override
     public int time() {
         Random random = new Random();
-        return
-                (int) (random.nextInt(90, 120) * Math.log10(difficultValue) +
-                        (int) (difficultValue * random.nextDouble(4, 7)));
+        return (int) (difficultValue * random.nextDouble(RollingConfig.cfg.time.origin,
+                RollingConfig.cfg.time.bound));
     }
 
     @Override

@@ -1,0 +1,86 @@
+{
+  "easy": {
+    "start": 20,
+    "end": 80,
+    "selectWhen": 650
+  },
+  "normal": {
+    "start": 80,
+    "end": 20,
+    "selectWhen": 950
+  },
+  "hard": {
+    "start": 200,
+    "end": 500,
+    "selectWhen": 1000
+  },
+  "reward": {
+    "score": {
+      "origin": 0.1,
+      "bound": 0.3
+    },
+    "point": {
+      "origin": 1.5,
+      "bound": 2.0
+    },
+    "coin": {
+      "origin": 20.0,
+      "bound": 50.0
+    },
+    "time": {
+      "origin": 0.5,
+      "bound": 2.0
+    }
+  },
+  "time": {
+    "origin": 5.0,
+    "bound": 10.0
+  },
+  "teleport": {
+    "globalX": {
+      "origin": -100000,
+      "bound": 100000
+    },
+    "teamX": {
+      "origin": -200,
+      "bound": 200
+    },
+    "playerX": {
+      "origin": -20,
+      "bound": 20
+    },
+    "globalZ": {
+      "origin": -100000,
+      "bound": 100000
+    },
+    "teamZ": {
+      "origin": -200,
+      "bound": 200
+    },
+    "playerZ": {
+      "origin": -20,
+      "bound": 20
+    }
+  },
+  "dynamicPanelRange": {
+    "origin": 0,
+    "bound": 10000
+  },
+  "questType": [
+    {
+      "enabled": true,
+      "weight": 3,
+      "classPath": "me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem"
+    },
+    {
+      "enabled": true,
+      "weight": 2,
+      "classPath": "me.hifei.questmaster.quest.questkillmob.QuestTypeKillMob"
+    },
+    {
+      "enabled": true,
+      "weight": 2,
+      "classPath": "me.hifei.questmaster.quest.questmineblock.QuestTypeMineBlock"
+    }
+  ]
+}

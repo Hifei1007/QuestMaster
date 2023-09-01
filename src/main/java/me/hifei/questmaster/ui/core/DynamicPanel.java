@@ -4,6 +4,7 @@ import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
 import me.hifei.questmaster.running.config.Config;
 import me.hifei.questmaster.running.config.Message;
+import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import me.rockyhawk.commandpanels.api.Panel;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Material;
@@ -91,7 +92,10 @@ public abstract class DynamicPanel extends Panel {
         if (player == null) playerName = "sync";
         else playerName = player.getName();
         do {
-            name = "dynamic_" + playerName + "_" + new Random().nextInt(10000);
+            name = "dynamic_" + playerName + "_" + new Random().nextInt(
+                    RollingConfig.cfg.dynamicPanelRange.origin,
+                    RollingConfig.cfg.dynamicPanelRange.bound
+            );
         } while (names.contains(name));
         names.add(name);
         return name;
