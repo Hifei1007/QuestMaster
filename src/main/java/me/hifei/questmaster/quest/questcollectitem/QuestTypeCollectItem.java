@@ -1,6 +1,7 @@
 package me.hifei.questmaster.quest.questcollectitem;
 
 import me.hifei.questmaster.api.quest.*;
+import me.hifei.questmaster.manager.AbstractQuestType;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.DifficultTool;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
@@ -11,15 +12,10 @@ import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Random;
-
-public class QuestTypeCollectItem implements QuestType {
-    final TableItem<Material> item;
-    private final int count;
-    private int totalItemCount = 0;
-    private Quest quest;
-    private final double difficultValue;
+public class QuestTypeCollectItem extends AbstractQuestType<Material> {
+    protected QuestTypeCollectItem(TableItem<Material> item, int totalCount, double difficultValue) {
+        super(item, totalCount, difficultValue);
+    }
 
     public static @NotNull QuestTypeCollectItem create() {
         TableItem<Material> item;
@@ -37,95 +33,20 @@ public class QuestTypeCollectItem implements QuestType {
         return new QuestTypeCollectItem(item, count, target);
     }
 
-    private QuestTypeCollectItem(TableItem<Material> req, int count, double difficultValue) {
-        item = req;
-        this.count = count;
-        this.difficultValue = difficultValue;
-    }
-
-    @Override
-    public @NotNull Quest quest() {
-        return quest;
-    }
-
-    public void sendQuestObject(Quest q) {
-        quest = q;
-    }
-
     public void addItem(@NotNull Player player, int c) {
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 10.0f, 1.0f);
         quest.getTeam().teamBroadcast(Message.get("quest.collectitem.submit", player.getDisplayName(), quest.getName(), item.name(), c));
-        int req = count - totalItemCount;
-        if (req >= c) {
-            totalItemCount += c;
-            if (count == totalItemCount) quest.complete();
-        } else {
-            totalItemCount = count;
-            quest.complete();
-        }
+        currentCount += c;
+        if (currentCount >= totalCount) quest.complete();
     }
 
     public int maxRequire() {
-        return count - totalItemCount;
-    }
-
-    @Override
-    public boolean isCompleted() {
-        return totalItemCount == count;
-    }
-
-    @Override
-    public double progress() {
-        return totalItemCount / (double) (count);
-    }
-
-    @Override
-    public @NotNull Reward baseReward() {
-        Random random = new Random();
-        return new Reward(
-                random.nextDouble(0.1, 0.3),
-                random.nextDouble(1.5, 2),
-                random.nextDouble(20, 50),
-                random.nextDouble(0.5, 2)
-        );
-    }
-
-    @Override
-    public int time() {
-        Random random = new Random();
-        return
-                (int) (random.nextInt(90, 120) * Math.log10(difficultValue) +
-                        (int) (difficultValue * random.nextDouble(4, 7)));
-    }
-
-    @Override
-    public @NotNull Difficult difficult() {
-        return DifficultTool.getDifficult(difficultValue);
-    }
-
-    @Override
-    public double difficultValue() {
-        return difficultValue;
-    }
-
-    @Override
-    public @NotNull List<QuestInterface> interfaces() {
-        return List.of();
+        return totalCount - currentCount;
     }
 
     @Override
     public @NotNull String name() {
-        return Message.get("quest.collectitem.name", difficult().name, item.name(), count);
-    }
-
-    @Override
-    public int totalCount() {
-        return count;
-    }
-
-    @Override
-    public int currentCount() {
-        return totalItemCount;
+        return Message.get("quest.collectitem.name", difficult().name, item.name(), totalCount);
     }
 
     @Override
