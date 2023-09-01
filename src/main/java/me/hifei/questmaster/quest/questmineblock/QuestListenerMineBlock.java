@@ -18,7 +18,7 @@ public class QuestListenerMineBlock implements Listener {
         Player player = event.getPlayer();
         if (!CoreManager.manager.hasTeam(player)) return;
         QuestListenerTool.findQuest(player, QuestTypeMineBlock.class, (quest, qt) -> {
-            if (event.getBlock().getType() != qt.item.obj()) return false;
+            if (event.getBlock().getType() != qt.getTableItem().obj()) return false;
             if (QuestListenerTool.checkAutoSubmit(player)) return true;
             QuestListenerTool.updateCombo(qt.combo, qt.lastCombo, player.getName());
             qt.addCount();

@@ -19,7 +19,7 @@ public class QuestListenerKillMob implements Listener {
         if (!(e instanceof EntityDamageByEntityEvent eventDamage)) return;
         if (!(eventDamage.getDamager() instanceof Player player)) return;
         QuestListenerTool.findQuest(player, QuestTypeKillMob.class, (quest, qt) -> {
-            if (eventDeath.getEntity().getType() != qt.item.obj()) return false;
+            if (eventDeath.getEntity().getType() != qt.getTableItem().obj()) return false;
             if (QuestListenerTool.checkAutoSubmit(player)) return true;
             QuestListenerTool.updateCombo(qt.combo, qt.lastCombo, player.getName());
             qt.addCount();

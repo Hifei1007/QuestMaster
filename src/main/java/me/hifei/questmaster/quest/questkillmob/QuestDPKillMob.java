@@ -21,7 +21,7 @@ public class QuestDPKillMob extends QuestDynamicPanel {
         }
         loadTemplate("panels/questtype/mineblock.yml");
         super.dynamicModify(player);
-        modifyItemBar(QuestTableKillMob.ins.getIcon(((QuestTypeKillMob) quest.getType()).item));
+        modifyItemBar(QuestTableKillMob.ins.getIcon(((QuestTypeKillMob) quest.getType()).getTableItem()));
     }
 
     public static void openDynamic(Player player, PanelPosition panelPosition, Quest quest) {

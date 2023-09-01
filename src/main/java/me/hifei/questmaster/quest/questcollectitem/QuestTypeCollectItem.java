@@ -28,7 +28,7 @@ public class QuestTypeCollectItem extends AbstractQuestType<Material> {
                 target = DifficultTool.nextDifficult();
                 tryCount = 0;
             }
-        } while (target < item.diff() * 4 || target > item.diff() * 64 * 5);
+        } while (target < item.diff() * 4 || target > item.diff() * 48);
         int count = (int) Math.ceil((target) / (item.diff()));
         return new QuestTypeCollectItem(item, count, target);
     }

@@ -82,4 +82,8 @@ public abstract class AbstractQuestType<T> implements QuestType {
     public int currentCount() {
         return currentCount;
     }
+
+    public TableItem<T> getTableItem() {
+        return item;
+    }
 }

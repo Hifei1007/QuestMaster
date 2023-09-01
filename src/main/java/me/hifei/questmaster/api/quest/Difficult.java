@@ -3,11 +3,9 @@ package me.hifei.questmaster.api.quest;
 import me.hifei.questmaster.running.config.Message;
 
 public enum Difficult {
-    EASY(Message.get("difficult.easy"), 20, 150),
-    NORMAL(Message.get("difficult.normal"), 150, 500),
-    HARD(Message.get("difficult.hard"), 500, 1500),
-    VERY_HARD(Message.get("difficult.very_hard"), 1500, 4000),
-    HELL(Message.get("difficult.hell"), 4000, 10000)
+    EASY(Message.get("difficult.easy"), 20, 80),
+    NORMAL(Message.get("difficult.normal"), 80, 200),
+    HARD(Message.get("difficult.hard"), 200, 500),
     ;
     public final String name;
     public final double start;

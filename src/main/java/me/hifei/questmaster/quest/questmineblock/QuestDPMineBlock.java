@@ -22,7 +22,7 @@ public class QuestDPMineBlock extends QuestDynamicPanel {
         }
         loadTemplate("panels/questtype/mineblock.yml");
         super.dynamicModify(player);
-        modifyItemBar(((QuestTypeMineBlock) quest.getType()).item.obj());
+        modifyItemBar(((QuestTypeMineBlock) quest.getType()).getTableItem().obj());
     }
 
     public static void openDynamic(Player player, PanelPosition panelPosition, Quest quest) {

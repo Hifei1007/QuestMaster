@@ -24,7 +24,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         int items = 0;
         for (ItemStack stack : player.getInventory()) {
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.obj())) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).getTableItem().obj())) {
                 items += stack.getAmount();
             }
         }
@@ -34,7 +34,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         for (ItemStack stack : player.getInventory()) {
             if (current == 0) break;
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.obj())) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).getTableItem().obj())) {
                 if (current < stack.getAmount()) {
                     stack.setAmount(stack.getAmount() - current);
                     current = 0;
@@ -73,7 +73,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         int items = 0;
         for (ItemStack stack : player.getInventory()) {
             if (stack == null) continue;
-            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).item.obj())) {
+            if (stack.getType().equals(((QuestTypeCollectItem) quest.getType()).getTableItem().obj())) {
                 items += stack.getAmount();
             }
         }
@@ -104,7 +104,7 @@ public class QuestDPCollectItem extends QuestDynamicPanel {
         loadTemplate("panels/questtype/collectitem.yml");
         super.dynamicModify(player);
         modifyAddItemBar();
-        modifyItemBar(((QuestTypeCollectItem) quest.getType()).item.obj());
+        modifyItemBar(((QuestTypeCollectItem) quest.getType()).getTableItem().obj());
     }
 
     public static void openDynamic(Player player, PanelPosition panelPosition, Quest quest) {
