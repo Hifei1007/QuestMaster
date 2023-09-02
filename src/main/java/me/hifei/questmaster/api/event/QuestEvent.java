@@ -2,6 +2,7 @@ package me.hifei.questmaster.api.event;
 
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.state.Stateful;
+
 import java.util.List;
 import java.util.Map;
 

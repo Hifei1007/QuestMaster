@@ -29,7 +29,7 @@ public class CQuest implements Quest {
         List<QuestInterface> tmp_if = new ArrayList<>(List.of(interfaces));
         tmp_if.addAll(qt.interfaces());
         this.interfaces = tmp_if;
-        finalReward = qt.baseReward().multi(getDifficultValue() / 5);
+        finalReward = qt.baseReward().multi(qt.difficultValue() / 5);
     }
 
     CQuest(@NotNull QuestType qt, QuestTeam team) {

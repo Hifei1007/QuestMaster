@@ -11,7 +11,7 @@ public class Timer{
     }
 
     public double getProcess() {
-        if (!isStarted()) throw new RuntimeException("Timer was not started.");
+        checkState();
         return Math.min(Math.max(((System.currentTimeMillis() - startTime) / 1000.0) / time, 0), 1);
     }
 
@@ -21,12 +21,12 @@ public class Timer{
         isStarted = true;
     }
 
-    public boolean isStarted() {
-        return isStarted;
+    private void checkState() {
+        if (!isStarted) throw new RuntimeException("Timer was not started.");
     }
 
     public String remaining() throws RuntimeException {
-        if (!isStarted()) throw new RuntimeException("Timer was not started.");
+        checkState();
         long remainSec = time - (System.currentTimeMillis() - startTime) / 1000;
         long remainMin = remainSec / 60;
         remainSec %= 60;
@@ -36,25 +36,25 @@ public class Timer{
     }
 
     public long second() throws RuntimeException {
-        if (!isStarted()) throw new RuntimeException("Timer was not started.");
+        checkState();
         return (time - (System.currentTimeMillis() - startTime) / 1000) % 60;
     }
 
     public long minute() throws RuntimeException {
-        if (!isStarted()) throw new RuntimeException("Timer was not started.");
+        checkState();
         long remainSec = time - (System.currentTimeMillis() - startTime) / 1000;
         return (remainSec / 60) % 60;
     }
 
     public long hour() throws RuntimeException {
-        if (!isStarted()) throw new RuntimeException("Timer was not started.");
+        checkState();
         long remainSec = time - (System.currentTimeMillis() - startTime) / 1000;
         long remainMin = remainSec / 60;
         return remainMin / 60;
     }
 
     public boolean isTimeUp() throws RuntimeException {
-        if (!isStarted()) throw new RuntimeException("Timer was not started.");
+        checkState();
         return time < (System.currentTimeMillis() - startTime) / 1000;
     }
 

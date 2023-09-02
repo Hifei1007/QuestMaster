@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class DifficultTool {
+    private DifficultTool() {
+    }
 
     public static double nextDifficult() {
         Random random = new Random();

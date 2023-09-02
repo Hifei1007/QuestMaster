@@ -8,8 +8,6 @@ import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.running.gsoncfg.event.EventConfig;
 import org.bukkit.Bukkit;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -58,7 +56,7 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
         bossBar.setProgress(1);
 
         runnable = new BukkitRunnable() {
-            final ExceptionLock lock = new ExceptionLock();
+            private final ExceptionLock lock = new ExceptionLock();
 
             @Override
             public void run() {

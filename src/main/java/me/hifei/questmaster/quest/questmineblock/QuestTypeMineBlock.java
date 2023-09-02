@@ -1,7 +1,7 @@
 package me.hifei.questmaster.quest.questmineblock;
 
 import me.hifei.questmaster.QuestMasterPlugin;
-import me.hifei.questmaster.api.quest.*;
+import me.hifei.questmaster.api.quest.TableItem;
 import me.hifei.questmaster.manager.AbstractQuestType;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.DifficultTool;
@@ -14,9 +14,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class QuestTypeMineBlock extends AbstractQuestType<Material> {
     public final Map<String, Integer> combo = new HashMap<>();
