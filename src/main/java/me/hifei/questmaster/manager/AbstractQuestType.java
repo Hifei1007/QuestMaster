@@ -43,21 +43,15 @@ public abstract class AbstractQuestType<T> implements QuestType {
 
     @Override
     public @NotNull Reward baseReward() {
-        Random random = new Random();
         RewardConfig config = RollingConfig.cfg.reward;
         return new Reward(
-                random.nextDouble(config.score.origin, config.score.bound),
-                random.nextDouble(config.point.origin, config.point.bound),
-                random.nextDouble(config.coin.origin, config.coin.bound),
-                random.nextDouble(config.time.origin, config.time.bound)
+                config.score.next(), config.point.next(), config.coin.next(), config.time.next()
         );
     }
 
     @Override
     public int time() {
-        Random random = new Random();
-        return (int) (difficultValue * random.nextDouble(RollingConfig.cfg.time.origin,
-                RollingConfig.cfg.time.bound));
+        return (int) (difficultValue * RollingConfig.cfg.time.next());
     }
 
     @Override

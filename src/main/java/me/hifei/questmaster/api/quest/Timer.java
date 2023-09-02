@@ -10,6 +10,11 @@ public class Timer{
         time = sec;
     }
 
+    public double getProcess() {
+        if (!isStarted()) throw new RuntimeException("Timer was not started.");
+        return Math.min(Math.max(((System.currentTimeMillis() - startTime) / 1000.0) / time, 0), 1);
+    }
+
     public void start() {
         if (isStarted) return;
         startTime = System.currentTimeMillis();

@@ -1,10 +1,12 @@
 package me.hifei.questmaster.api;
 
+import me.hifei.questmaster.api.event.QuestEvent;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.QuestType;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
+import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -34,6 +36,10 @@ public interface QuestManager {
     @NotNull QuestGame createGame(@NotNull List<QuestTeam> teams, int goal);
 
     @NotNull QuestType createType();
+
+    @NotNull QuestEvent createEvent();
+
+    void registerEvent(SingleEventConfig config);
 
     void registerType(Class<? extends QuestType> questTypeClass, int weight);
 

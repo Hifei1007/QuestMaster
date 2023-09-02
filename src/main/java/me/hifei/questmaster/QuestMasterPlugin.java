@@ -12,6 +12,8 @@ import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.QuestActionCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.gsoncfg.GsonConfigLoader;
+import me.hifei.questmaster.running.gsoncfg.event.EventConfig;
+import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import me.hifei.questmaster.running.gsoncfg.rolling.QuestTypeConfig;
 import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import me.hifei.questmaster.running.listeners.ChatListener;
@@ -56,12 +58,21 @@ public class QuestMasterPlugin extends JavaPlugin {
         }
     }
 
+    public void registerEvents() {
+        for (SingleEventConfig config : EventConfig.cfg.events) {
+            if (!config.enabled) continue;
+            logger.info("Success registered event %s".formatted(config.classPath));
+            CoreManager.manager.registerEvent(config);
+        }
+    }
+
     @Override
     public void onEnable() {
         instance = this;
         logger = getLogger();
 
         RollingConfig.cfg = GsonConfigLoader.loadConfig(RollingConfig.class, "rolling.json");
+        EventConfig.cfg = GsonConfigLoader.loadConfig(EventConfig.class, "event.json");
 
         for (World world : Bukkit.getWorlds()) {
             world.setGameRule(GameRule.KEEP_INVENTORY, true);
@@ -78,6 +89,7 @@ public class QuestMasterPlugin extends JavaPlugin {
 
         loadTables();
         registerQuestType();
+        registerEvents();
     }
 
     @Override

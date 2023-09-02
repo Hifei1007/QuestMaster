@@ -101,3 +101,10 @@ error.runnable_crash: '&4&l一个BukkitRunnable因为发生异常而被锁定了
 
 locate.success: "&7[&c!&7] &7[%s&7] 成功定位 &7[%s&7] 在 [%s&7] (距离 &a%s &7格)!"
 locate.failed: "&7[&c!&7] &c定位失败! 请检查维度是否正确!"
+
+event.prefix.instant: "&e&l即时事件 &r"
+event.prefix.normal_start: "&e&l事件开始 &r"
+event.prefix.normal_stop: "&e&l事件停止 &r"
+event.prefix.coming_normal: "&e&l事件即将开始 &r"
+event.prefix.coming_instant: "&e&l即时事件即将开始 &r"
+event.bossbar.suffix: "&7 - &e%d&7:&e%d&7:&e%d"

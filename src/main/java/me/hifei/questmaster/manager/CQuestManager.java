@@ -2,11 +2,13 @@ package me.hifei.questmaster.manager;
 
 import me.hifei.questmaster.api.QuestGame;
 import me.hifei.questmaster.api.QuestManager;
+import me.hifei.questmaster.api.event.QuestEvent;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.QuestType;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
+import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -25,10 +27,12 @@ public class CQuestManager implements QuestManager {
 
     private final @NotNull List<QuestTeam> teams;
     private final @NotNull List<WeightedQuestType> questTypeList;
+    private final @NotNull List<SingleEventConfig> eventConfigs;
 
     public CQuestManager () {
         teams = new LinkedList<>();
         questTypeList = new ArrayList<>();
+        eventConfigs = new ArrayList<>();
     }
 
     @Override
@@ -115,6 +119,25 @@ public class CQuestManager implements QuestManager {
             r -= qt.weight;
         }
         throw new RuntimeException("Can't create QuestType object");
+    }
+
+    @Override
+    public @NotNull QuestEvent createEvent() {
+        int totalWeight = 0;
+        for (SingleEventConfig cfg : eventConfigs) {
+            totalWeight += cfg.weight;
+        }
+        int r = new Random().nextInt(totalWeight);
+        for (SingleEventConfig cfg : eventConfigs) {
+            if (r < cfg.weight) return cfg.build();
+            r -= cfg.weight;
+        }
+        throw new RuntimeException("Can't create QuestType object");
+    }
+
+    @Override
+    public void registerEvent(SingleEventConfig config) {
+        eventConfigs.add(config);
     }
 
     @Override

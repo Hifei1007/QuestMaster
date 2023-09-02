@@ -2,6 +2,10 @@ package me.hifei.questmaster.manager;
 
 import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.api.QuestGame;
+import me.hifei.questmaster.api.event.EventComingQuestEvent;
+import me.hifei.questmaster.api.event.EventScheduler;
+import me.hifei.questmaster.api.event.NormalQuestEvent;
+import me.hifei.questmaster.api.event.QuestEvent;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.state.Stateful;
@@ -32,6 +36,7 @@ public class CQuestGame implements QuestGame {
     private final int goal;
     private @NotNull State state = State.WAIT;
     private final Map<QuestTeam, QuestTeamScoreboard> scoreboardMap = new HashMap<>();
+    private final List<NormalQuestEvent> events = new ArrayList<>();
 
     CQuestGame(List<QuestTeam> teams, int goal) {
         this.teams = teams;
@@ -39,6 +44,18 @@ public class CQuestGame implements QuestGame {
         for (QuestTeam team : teams) {
             scoreboardMap.put(team, CoreManager.manager.createScoreboard(this, team));
         }
+    }
+
+    @Override
+    public List<NormalQuestEvent> getEvents() {
+        return events;
+    }
+
+    @Override
+    public void appendEvent(QuestEvent event) {
+        EventComingQuestEvent e = new EventComingQuestEvent(event);
+        e.startup();
+        events.add(e);
     }
 
     @Override
@@ -141,7 +158,6 @@ public class CQuestGame implements QuestGame {
 
         Bukkit.broadcastMessage(Message.get("game.teleporting.message"));
 
-        Random random = new Random();
         World overworld = Bukkit.getWorld("world");
         assert overworld != null;
 
@@ -154,9 +170,7 @@ public class CQuestGame implements QuestGame {
         Location c;
         TeleportConfig config = RollingConfig.cfg.teleport;
         do {
-            c = new Location(overworld,
-                    random.nextInt(config.globalX.origin, config.globalX.bound),
-                    60, random.nextInt(config.globalZ.origin, config.globalZ.bound));
+            c = new Location(overworld, config.globalX.next(), 60, config.globalZ.next());
         } while (overworld.getBlockAt(c).getType() == Material.WATER);
         Location center = c;
 
@@ -171,13 +185,11 @@ public class CQuestGame implements QuestGame {
             Location teamCenter;
             do {
                 teamCenter = new Location(overworld,
-                        center.getBlockX() + random.nextInt(config.teamX.origin, config.teamX.bound),
-                        60, center.getBlockZ() + random.nextInt(config.teamZ.origin, config.teamZ.bound));
+                        center.getBlockX() + config.teamX.next(), 60, center.getBlockZ() + config.teamZ.next());
             } while (overworld.getBlockAt(teamCenter).getType() == Material.WATER);
             for (Player player : team.members()) {
                 Location playerPos = new Location(overworld,
-                        teamCenter.getBlockX() + random.nextInt(config.playerX.origin, config.playerX.bound),
-                        0, teamCenter.getBlockZ() + random.nextInt(config.playerZ.origin, config.playerZ.bound));
+                        teamCenter.getBlockX() + config.playerX.next(),0, teamCenter.getBlockZ() + config.playerZ.next());
                 for (int i = 300; i >= -64; i--) {
                     playerPos.setY(i);
                     if (overworld.getBlockAt(playerPos).getType() != Material.AIR) {
@@ -193,6 +205,8 @@ public class CQuestGame implements QuestGame {
         });
 
         state = State.STARTUP;
+
+        events.add(new EventScheduler());
 
         Bukkit.broadcastMessage(Message.get("game.start.message", goal));
     }
@@ -227,6 +241,7 @@ public class CQuestGame implements QuestGame {
             for (Upgrade upgrade : t.getUpgrades().values()) upgrade.drop();
             t.init();
         });
+        for (NormalQuestEvent event : new ArrayList<>(events)) event.drop();
         Bukkit.broadcastMessage(Message.get("game.stop.message"));
         runEachPlayer(p -> {
             p.setScoreboard(CoreManager.emptyScoreboard);

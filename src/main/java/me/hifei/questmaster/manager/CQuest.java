@@ -1,6 +1,8 @@
 package me.hifei.questmaster.manager;
 
+import me.hifei.questmaster.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
+import me.hifei.questmaster.api.event.NormalQuestEvent;
 import me.hifei.questmaster.api.quest.*;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
@@ -76,19 +78,23 @@ public class CQuest implements Quest {
 
     @Override
     public @NotNull List<QuestInterface> interfaces() {
-        return interfaces;
+        List<QuestInterface> tmp = new ArrayList<>(interfaces);
+        for (NormalQuestEvent event : CoreManager.game.getEvents()) {
+            tmp.addAll(event.buildInterface(this));
+        }
+        return tmp;
     }
 
     @Override
     public void complete() {
-        for (QuestInterface questInterface : interfaces) {
+        for (QuestInterface questInterface : interfaces()) {
             questInterface.complete();
         }
     }
 
     @Override
     public void timeUp() {
-        for (QuestInterface questInterface : interfaces) {
+        for (QuestInterface questInterface : interfaces()) {
             questInterface.timeUp();
         }
     }
@@ -156,7 +162,7 @@ public class CQuest implements Quest {
         state = State.STARTUP;
         timer.start();
         questType.sendQuestObject(this);
-        for (QuestInterface questInterface : interfaces) {
+        for (QuestInterface questInterface : interfaces()) {
             questInterface.startup(this);
         }
     }
@@ -166,7 +172,7 @@ public class CQuest implements Quest {
         if (state != State.STARTUP) return;
         QuestMasterPlugin.logger.info("Drop quest %s".formatted(getName()));
         state = State.DROP;
-        for (QuestInterface questInterface : interfaces) {
+        for (QuestInterface questInterface : interfaces()) {
             questInterface.drop();
         }
     }

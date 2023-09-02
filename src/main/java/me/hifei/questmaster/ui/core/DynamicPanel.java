@@ -92,10 +92,7 @@ public abstract class DynamicPanel extends Panel {
         if (player == null) playerName = "sync";
         else playerName = player.getName();
         do {
-            name = "dynamic_" + playerName + "_" + new Random().nextInt(
-                    RollingConfig.cfg.dynamicPanelRange.origin,
-                    RollingConfig.cfg.dynamicPanelRange.bound
-            );
+            name = "dynamic_" + playerName + "_" + RollingConfig.cfg.dynamicPanelRange.next();
         } while (names.contains(name));
         names.add(name);
         return name;

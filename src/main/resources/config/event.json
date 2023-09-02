@@ -1,0 +1,39 @@
+{
+  "eventDelay": {
+    "origin": 10,
+    "bound": 30
+  },
+  "comingDelay": 10,
+  "comingColor": "BLUE",
+  "comingStyle": "SOLID",
+  "events": [
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.TestNormalQuestEvent",
+      "name": "&e测试",
+      "descriptions": [
+        "&e测试1",
+        "&e测试2"
+      ],
+      "time": {
+        "origin": 30,
+        "bound": 120
+      },
+      "barColor": "WHITE",
+      "barStyle": "SEGMENTED_20",
+      "weight": 1,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.TestInstantQuestEvent",
+      "name": "&e测试即时",
+      "descriptions": [
+        "&e测试1 即时",
+        "&a&l测试2"
+      ],
+      "weight": 1,
+      "settings": {}
+    }
+  ]
+}
