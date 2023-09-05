@@ -1,6 +1,6 @@
 package me.hifei.questmaster.manager;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;

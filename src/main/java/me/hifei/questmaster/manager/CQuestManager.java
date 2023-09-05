@@ -41,11 +41,6 @@ public class CQuestManager implements QuestManager {
     }
 
     @Override
-    public @NotNull Quest createQuest(@NotNull QuestType qt, @NotNull QuestTeam team) {
-        return new CQuest(qt, team);
-    }
-
-    @Override
     public @NotNull QuestTeam createTeam(@NotNull String name, @NotNull ChatColor color) {
         QuestTeam team = new CQuestTeam(name, color);
         teams.add(team);

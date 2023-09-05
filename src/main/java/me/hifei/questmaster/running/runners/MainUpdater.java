@@ -1,6 +1,6 @@
 package me.hifei.questmaster.running.runners;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.ExceptionLock;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;

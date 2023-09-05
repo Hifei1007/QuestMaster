@@ -1,6 +1,6 @@
 package me.hifei.questmaster.manager;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.QuestGame;
 import me.hifei.questmaster.api.event.EventComingQuestEvent;
 import me.hifei.questmaster.api.event.EventScheduler;
@@ -211,7 +211,7 @@ public class CQuestGame implements QuestGame {
         Bukkit.broadcastMessage(Message.get("game.start.message", goal));
     }
 
-    void addQuest(@NotNull QuestTeam team) {
+    public void addQuest(@NotNull QuestTeam team) {
         Quest quest = CoreManager.manager.createQuest(CoreManager.manager.createType(), team, new GameMainQuestInterface(team));
         quest.startup();
         team.getQuests().add(quest);

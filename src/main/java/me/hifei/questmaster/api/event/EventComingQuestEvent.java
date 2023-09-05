@@ -1,16 +1,17 @@
 package me.hifei.questmaster.api.event;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
 import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.running.gsoncfg.event.EventConfig;
+import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.HashMap;
 
 public final class EventComingQuestEvent extends NormalQuestEvent {
     private final QuestEvent event;
@@ -20,9 +21,18 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
         else return Message.get("event.prefix.coming_normal") + event.getName();
     }
 
+    private static SingleEventConfig makeConfig(QuestEvent event) {
+        SingleEventConfig config = new SingleEventConfig();
+        config.name = makeName(event);
+        config.descriptions = event.getDescriptions();
+        config.time = EventConfig.cfg.comingDelay;
+        config.barColor = EventConfig.cfg.comingColor;
+        config.barStyle = EventConfig.cfg.comingStyle;
+        return config;
+    }
+
     public EventComingQuestEvent(QuestEvent event) {
-        super(makeName(event), event.getDescriptions(), new HashMap<>(), EventConfig.cfg.comingDelay.next(),
-                EventConfig.cfg.comingColor, EventConfig.cfg.comingStyle);
+        super(makeConfig(event));
         this.event = event;
     }
 
@@ -40,7 +50,9 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
         CoreManager.game.getEvents().add(this);
         CoreManager.game.runEachPlayer((player) -> {
             player.sendMessage(getName());
-            player.sendMessage(getDescriptions().toArray(new String[]{}));
+            getDescriptions().forEach(player::sendMessage);
+            player.sendTitle("", getName(), 10, 120, 20);
+            player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, SoundCategory.MASTER, 1, 0);
         });
         onStartup();
         timer = new Timer(time());

@@ -15,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public interface QuestManager {
-    @NotNull Quest createQuest(@NotNull QuestType qt, @NotNull QuestTeam team);
 
     @NotNull Quest createQuest(@NotNull QuestType qt, @NotNull QuestTeam team, @NotNull QuestInterface... interfaces);
 

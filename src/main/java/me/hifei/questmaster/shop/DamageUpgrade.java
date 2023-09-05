@@ -1,6 +1,6 @@
 package me.hifei.questmaster.shop;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.team.QuestTeam;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

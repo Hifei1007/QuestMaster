@@ -1,39 +1,394 @@
 {
   "eventDelay": {
-    "origin": 10,
-    "bound": 30
+    "origin": 60,
+    "bound": 300
   },
   "comingDelay": 10,
-  "comingColor": "BLUE",
+  "comingColor": "PURPLE",
   "comingStyle": "SOLID",
   "events": [
     {
       "enabled": true,
-      "classPath": "me.hifei.questmaster.event.TestNormalQuestEvent",
-      "name": "&e测试",
+      "classPath": "me.hifei.questmaster.event.normal.NoJumpQuestEvent",
+      "name": "&e无法跳跃",
       "descriptions": [
-        "&e测试1",
-        "&e测试2"
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 3,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.DeathWhenDamageQuestEvent",
+      "name": "&e受伤时立刻死亡",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 60,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 3,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.HungerClearNormalQuestEvent",
+      "name": "&e饥饿值持续清空",
+      "descriptions": [
       ],
       "time": {
         "origin": 30,
-        "bound": 120
+        "bound": 90
       },
-      "barColor": "WHITE",
-      "barStyle": "SEGMENTED_20",
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 2,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.EffectQuestEvent",
+      "name": "&e%s 效果",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 5,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.BlockChanceQuestEvent",
+      "name": "&e方块 %.2f%s 概率不掉落",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 3,
+      "settings": {
+        "origin": 0.0,
+        "bound": 1.0
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.ScheduleDelayChangeQuestEvent",
+      "name": "&e事件间隔修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 5,
+      "settings": {
+        "origin": 0.25,
+        "bound": 1.5
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.EntityDamageModifyQuestEvent",
+      "name": "&e玩家伤害修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "target": "DAMAGER",
+        "entity": "PLAYER",
+        "bound": {
+          "origin": 0.5,
+          "bound": 2.0
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.EntityDamageModifyQuestEvent",
+      "name": "&e生物伤害修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "target": "DAMAGER",
+        "entity": "NON_PLAYER",
+        "bound": {
+          "origin": 0.5,
+          "bound": 4.0
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.EntityDamageModifyQuestEvent",
+      "name": "&e玩家受到伤害修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "target": "ENTITY",
+        "entity": "PLAYER",
+        "bound": {
+          "origin": 0.5,
+          "bound": 4.0
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.EntityDamageModifyQuestEvent",
+      "name": "&e生物受到伤害修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "target": "ENTITY",
+        "entity": "NON_PLAYER",
+        "bound": {
+          "origin": 0.5,
+          "bound": 2.0
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.ModifyRewardQuestEvent",
+      "name": "&e金币获得修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "target": "COIN",
+        "bound": {
+          "origin": 0.25,
+          "bound": 4.0
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.ModifyRewardQuestEvent",
+      "name": "&e点数获得修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "target": "POINT",
+        "bound": {
+          "origin": 0.5,
+          "bound": 2.0
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.ModifyRewardQuestEvent",
+      "name": "&e分数获得修正 %.2f%s",
+      "descriptions": [
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "target": "SCORE",
+        "bound": {
+          "origin": 0.5,
+          "bound": 2.0
+        }
+      }
+    },
+
+
+
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.InventoryBreakQuestEvent",
+      "name": "&e背包破损",
+      "descriptions": [
+        "&e你的物品背包将会有 50% 消失!"
+      ],
+      "weight": 1,
+      "settings": {
+        "origin": 0,
+        "bound": 2
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.AppendEventQuestEvent",
+      "name": "&e额外增加 %d 事件",
+      "descriptions": [
+      ],
+      "weight": 3,
+      "settings": {
+        "origin": 2,
+        "bound": 5
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.InstantDeathQuestEvent",
+      "name": "&e瞬间死亡",
+      "descriptions": [
+      ],
       "weight": 1,
       "settings": {}
     },
     {
       "enabled": true,
-      "classPath": "me.hifei.questmaster.event.TestInstantQuestEvent",
-      "name": "&e测试即时",
+      "classPath": "me.hifei.questmaster.event.instant.RollQuestEvent",
+      "name": "&e刷新全部任务",
       "descriptions": [
-        "&e测试1 即时",
-        "&a&l测试2"
       ],
       "weight": 1,
       "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.HungerClearQuestEvent",
+      "name": "&e饥饿值清空",
+      "descriptions": [
+      ],
+      "weight": 2,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.HalfHealthQuestEvent",
+      "name": "&e血量减至半颗心",
+      "descriptions": [
+      ],
+      "weight": 2,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.RandomTeleportQuestEvent",
+      "name": "&e随机传送至一个实体",
+      "descriptions": [
+      ],
+      "weight": 3,
+      "settings": {}
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.SwapQuestEvent",
+      "name": "&e玩家位置随机交换",
+      "descriptions": [
+      ],
+      "weight": 2,
+      "settings": {
+        "type": "LOCATION"
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.SwapQuestEvent",
+      "name": "&e玩家背包随机交换",
+      "descriptions": [
+      ],
+      "weight": 2,
+      "settings": {
+        "type": "INVENTORY"
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.SwapQuestEvent",
+      "name": "&e玩家血量随机交换",
+      "descriptions": [
+      ],
+      "weight": 2,
+      "settings": {
+        "type": "HEALTH"
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.ModifyTeamStatQuestEvent",
+      "name": "&e当前金币数量修正 %.2f%s",
+      "descriptions": [
+      ],
+      "weight": 2,
+      "settings": {
+        "target": "COIN",
+        "bound": {
+          "origin": 0.25,
+          "bound": 3.0
+        }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.instant.ModifyTeamStatQuestEvent",
+      "name": "&e当前点数数量修正 %.2f%s",
+      "descriptions": [
+      ],
+      "weight": 2,
+      "settings": {
+        "target": "POINT",
+        "bound": {
+          "origin": 0.5,
+          "bound": 2.0
+        }
+      }
     }
   ]
 }

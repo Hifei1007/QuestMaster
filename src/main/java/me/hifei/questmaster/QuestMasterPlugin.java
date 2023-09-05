@@ -1,13 +1,11 @@
 package me.hifei.questmaster;
 
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.quest.QuestType;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
-import me.hifei.questmaster.quest.questcollectitem.QuestTypeCollectItem;
 import me.hifei.questmaster.quest.questkillmob.QuestTableKillMob;
-import me.hifei.questmaster.quest.questkillmob.QuestTypeKillMob;
 import me.hifei.questmaster.quest.questmineblock.QuestTableMineBlock;
-import me.hifei.questmaster.quest.questmineblock.QuestTypeMineBlock;
 import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.QuestActionCommand;
 import me.hifei.questmaster.running.commands.StartCommand;

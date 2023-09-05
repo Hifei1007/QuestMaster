@@ -1,19 +1,19 @@
 package me.hifei.questmaster.api.event;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.config.Message;
+import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-import java.util.Map;
 
 public abstract class InstantQuestEvent extends QuestEvent {
     protected State state = State.WAIT;
 
-    public InstantQuestEvent(String name, List<String> descriptions, Map<String, Object> settings) {
-        super(name, descriptions, settings);
+    public InstantQuestEvent(SingleEventConfig config) {
+        super(config);
     }
 
     public abstract void doChange();
@@ -24,11 +24,13 @@ public abstract class InstantQuestEvent extends QuestEvent {
         if (!CoreManager.isGameStart()) throw new RuntimeException("Can't startup a event when the game not started yet.");
         state = State.STARTUP;
         QuestMasterPlugin.logger.info("<STARTUP> " + this.getName());
+        doChange();
         CoreManager.game.runEachPlayer((player) -> {
             player.sendMessage(Message.get("event.prefix.instant") + getName());
-            player.sendMessage(getDescriptions().toArray(new String[]{}));
+            getDescriptions().forEach(player::sendMessage);
+            player.sendTitle("", Message.get("event.prefix.instant") + getName(), 10, 120, 20);
+            player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, SoundCategory.MASTER, 1, 0);
         });
-        doChange();
         drop();
     }
 

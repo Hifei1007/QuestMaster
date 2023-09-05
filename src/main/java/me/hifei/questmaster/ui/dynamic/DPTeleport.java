@@ -1,6 +1,6 @@
 package me.hifei.questmaster.ui.dynamic;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.LocationTool;

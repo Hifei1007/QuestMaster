@@ -1,6 +1,6 @@
 package me.hifei.questmaster.ui.core;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.ui.dynamic.DPRoot;
 import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
 import me.rockyhawk.commandpanels.api.PanelClosedEvent;

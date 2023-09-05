@@ -1,6 +1,6 @@
 package me.hifei.questmaster.api.event;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
 import me.hifei.questmaster.api.quest.Quest;
@@ -8,7 +8,10 @@ import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.config.Message;
+import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -19,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
 
 public abstract class NormalQuestEvent extends QuestEvent {
     protected State state = State.WAIT;
@@ -31,11 +33,11 @@ public abstract class NormalQuestEvent extends QuestEvent {
     protected BarColor barColor;
     protected BarStyle barStyle;
 
-    public NormalQuestEvent(String name, List<String> descriptions, Map<String, Object> settings, int time, BarColor color, BarStyle style) {
-        super(name, descriptions, settings);
-        barColor = color;
-        barStyle = style;
-        this.time = time;
+    public NormalQuestEvent(SingleEventConfig config) {
+        super(config);
+        barColor = config.barColor;
+        barStyle = config.barStyle;
+        this.time = config.time.next();
     }
 
     protected @Nullable Listener getListener() {
@@ -48,6 +50,7 @@ public abstract class NormalQuestEvent extends QuestEvent {
             drop();
             return;
         }
+        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(timer.getProcess());
         bossBar.setTitle(getName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()));
     }
@@ -92,7 +95,9 @@ public abstract class NormalQuestEvent extends QuestEvent {
         CoreManager.game.getEvents().add(this);
         CoreManager.game.runEachPlayer((player) -> {
             player.sendMessage(Message.get("event.prefix.normal_start") + getName());
-            player.sendMessage(getDescriptions().toArray(new String[]{}));
+            getDescriptions().forEach(player::sendMessage);
+            player.sendTitle("", Message.get("event.prefix.normal_start") + getName(), 10, 120, 20);
+            player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, SoundCategory.MASTER, 1, 0);
         });
         onStartup();
         listener = getListener();
@@ -131,7 +136,11 @@ public abstract class NormalQuestEvent extends QuestEvent {
         state = State.DROP;
         QuestMasterPlugin.logger.info("<DROP> " + this.getName());
         CoreManager.game.getEvents().remove(this);
-        CoreManager.game.runEachPlayer((player) -> player.sendMessage(Message.get("event.prefix.normal_stop") + getName()));
+        CoreManager.game.runEachPlayer((player) -> {
+            player.sendMessage(Message.get("event.prefix.normal_stop") + getName());
+            player.sendTitle("", Message.get("event.prefix.normal_stop") + getName(), 10, 120, 20);
+            player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, SoundCategory.MASTER, 1, 0);
+        });
         onDrop();
         bossBar.removeAll();
         bossBar.setVisible(false);

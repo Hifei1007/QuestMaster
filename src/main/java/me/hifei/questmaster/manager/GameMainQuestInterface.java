@@ -1,12 +1,14 @@
 package me.hifei.questmaster.manager;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
+import me.hifei.questmaster.api.bukkitevent.TeamRewardedByQuestEvent;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.Reward;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 
 public class GameMainQuestInterface extends QuestInterface {
@@ -36,7 +38,9 @@ public class GameMainQuestInterface extends QuestInterface {
                 p.playSound(p, Sound.ENTITY_ARROW_HIT_PLAYER, 10.0f, 1.0f);
             }
         });
-        Reward reward = quest.getReward();
+        TeamRewardedByQuestEvent event = new TeamRewardedByQuestEvent(quest, quest.getReward());
+        Bukkit.getPluginManager().callEvent(event);
+        Reward reward = event.getReward();
         team.setScore(team.score() + reward.score());
         team.setCoin(team.coin() + reward.coin());
         team.setPoint(team.point() + reward.point());

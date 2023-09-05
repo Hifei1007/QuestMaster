@@ -1,5 +1,6 @@
 package me.hifei.questmaster.running.gsoncfg.event;
 
+import com.google.gson.JsonObject;
 import me.hifei.questmaster.api.event.InstantQuestEvent;
 import me.hifei.questmaster.api.event.NormalQuestEvent;
 import me.hifei.questmaster.api.event.QuestEvent;
@@ -11,7 +12,6 @@ import org.bukkit.boss.BarStyle;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Map;
 
 public class SingleEventConfig {
     public boolean enabled;
@@ -20,7 +20,7 @@ public class SingleEventConfig {
     public List<String> descriptions;
     public IntegerBoundConfig time;
     public int weight;
-    public Map<String, Object> settings;
+    public JsonObject settings;
     public BarColor barColor;
     public BarStyle barStyle;
 
@@ -28,17 +28,13 @@ public class SingleEventConfig {
         try {
             Class<?> clazz = Class.forName(classPath);
             if (NormalQuestEvent.class.isAssignableFrom(clazz)) {
-                Constructor<?> constructor = clazz.getDeclaredConstructor(String.class, List.class, Map.class, int.class, BarColor.class, BarStyle.class);
+                Constructor<?> constructor = clazz.getDeclaredConstructor(SingleEventConfig.class);
                 constructor.setAccessible(true);
-                return (QuestEvent) constructor.newInstance(name.replace('&', ChatColor.COLOR_CHAR),
-                        descriptions.stream().map((str) -> str.replace('&', ChatColor.COLOR_CHAR)).toList(),
-                        settings, time.next(), barColor, barStyle);
+                return (QuestEvent) constructor.newInstance(this);
             } else if (InstantQuestEvent.class.isAssignableFrom(clazz)) {
-                Constructor<?> constructor = clazz.getDeclaredConstructor(String.class, List.class, Map.class);
+                Constructor<?> constructor = clazz.getDeclaredConstructor(SingleEventConfig.class);
                 constructor.setAccessible(true);
-                return (QuestEvent) constructor.newInstance(name.replace('&', ChatColor.COLOR_CHAR),
-                        descriptions.stream().map((str) -> str.replace('&', ChatColor.COLOR_CHAR)).toList(),
-                        settings);
+                return (QuestEvent) constructor.newInstance(this);
             } else throw new RuntimeException("The class must be a subclass of InstantQuestEvent or NormalQuestEvent");
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException |
                  IllegalAccessException e) {

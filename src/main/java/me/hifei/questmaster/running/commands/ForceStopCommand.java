@@ -1,6 +1,6 @@
 package me.hifei.questmaster.running.commands;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.running.config.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

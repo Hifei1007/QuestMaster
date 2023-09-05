@@ -1,6 +1,6 @@
 package me.hifei.questmaster.manager;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.quest.TableItem;
 import me.hifei.questmaster.api.quest.TableItemGroup;

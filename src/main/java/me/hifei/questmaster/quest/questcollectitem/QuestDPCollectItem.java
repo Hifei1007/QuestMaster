@@ -1,6 +1,6 @@
 package me.hifei.questmaster.quest.questcollectitem;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.QuestDynamicPanel;

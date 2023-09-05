@@ -1,7 +1,5 @@
-package me.hifei.questmaster;
+package me.hifei.questmaster.api;
 
-import me.hifei.questmaster.api.QuestGame;
-import me.hifei.questmaster.api.QuestManager;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.manager.CQuestManager;

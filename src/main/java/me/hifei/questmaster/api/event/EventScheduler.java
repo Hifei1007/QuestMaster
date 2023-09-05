@@ -1,22 +1,33 @@
 package me.hifei.questmaster.api.event;
 
-import me.hifei.questmaster.CoreManager;
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
+import me.hifei.questmaster.api.bukkitevent.ScheduleEvent;
 import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.gsoncfg.event.EventConfig;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
+import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashMap;
 import java.util.List;
 
 public final class EventScheduler extends NormalQuestEvent {
 
+    private static SingleEventConfig makeConfig() {
+        SingleEventConfig cfg = new SingleEventConfig();
+        cfg.time = EventConfig.cfg.eventDelay;
+        cfg.name = "Scheduler";
+        cfg.descriptions = List.of();
+        return cfg;
+    }
+
     public EventScheduler() {
-        super("scheduler", List.of(), new HashMap<>(), EventConfig.cfg.eventDelay.next(), BarColor.WHITE, BarStyle.SOLID);
+        super(makeConfig());
+        ScheduleEvent event = new ScheduleEvent(time, this);
+        Bukkit.getPluginManager().callEvent(event);
+        time = event.getScheduleTime();
         this.startup();
     }
 
