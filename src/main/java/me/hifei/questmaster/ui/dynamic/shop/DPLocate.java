@@ -27,7 +27,7 @@ public class DPLocate extends DynamicPanel {
 
     public record LocateElement(LocateType type, Material icon, String id, String name) {}
 
-    public static List<LocateElement> elements = new ArrayList<>();
+    public final static List<LocateElement> elements = new ArrayList<>();
     public int page;
 
     static {
