@@ -17,6 +17,7 @@ public class MainUpdater extends BukkitRunnable {
     private void updateTab(@NotNull Player player) {
         if (!CoreManager.isGameStart()) {
             player.setPlayerListHeader(Message.get("tablist.not_started.header"));
+            //noinspection DataFlowIssue
             player.setPlayerListFooter(Message.get("tablist.not_started.footer",
                     (CoreManager.manager.hasTeam(player) ? CoreManager.manager.getTeam(player).name() : Message.get("team.null"))
             ));
@@ -24,6 +25,7 @@ public class MainUpdater extends BukkitRunnable {
             player.setPlayerListHeader(Message.get("tablist.started.header", CoreManager.game.getGoal(),
                     CoreManager.red.score(), CoreManager.blue.score()));
             QuestTeam team = CoreManager.manager.getTeam(player);
+            //noinspection DataFlowIssue
             player.setPlayerListFooter(Message.get("tablist.started.footer",
                             CoreManager.manager.hasTeam(player) ?
                             Message.get("tablist.started.footer_bar", team.name(), team.score(), team.point(), team.coin()) :
