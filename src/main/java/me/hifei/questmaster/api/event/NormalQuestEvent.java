@@ -30,7 +30,9 @@ public abstract class NormalQuestEvent extends QuestEvent {
     protected @Nullable Listener listener;
     protected BossBar bossBar;
     protected int time;
+    @SuppressWarnings("CanBeFinal")
     protected BarColor barColor;
+    @SuppressWarnings("CanBeFinal")
     protected BarStyle barStyle;
 
     public NormalQuestEvent(SingleEventConfig config) {
