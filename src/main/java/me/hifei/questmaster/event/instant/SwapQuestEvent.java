@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import java.util.Collections;
@@ -61,22 +62,16 @@ public class SwapQuestEvent extends InstantQuestEvent {
     }
 
     private void swapInventory() {
-        List<PlayerInventory> inventories = CoreManager.game.getPlayers()
+        List<ItemStack[]> inventories = CoreManager.game.getPlayers()
                 .stream()
-                .map(Player::getInventory)
+                .map((player) -> player.getInventory().getContents())
                 .collect(Collectors.toList());
         Collections.shuffle(inventories);
         Iterator<Player> playerIterator = CoreManager.game.getPlayers().iterator();
-        Iterator<PlayerInventory> inventoryIterator = inventories.iterator();
+        Iterator<ItemStack[]> inventoryIterator = inventories.iterator();
         while (playerIterator.hasNext() && inventoryIterator.hasNext()) {
             PlayerInventory origin = playerIterator.next().getInventory();
-            PlayerInventory target = inventoryIterator.next();
-            origin.setArmorContents(target.getArmorContents());
-            origin.setExtraContents(target.getExtraContents());
-            origin.setContents(target.getContents());
-            origin.setStorageContents(target.getStorageContents());
-            origin.setItemInOffHand(target.getItemInOffHand());
-            origin.setHeldItemSlot(target.getHeldItemSlot());
+            origin.setContents(inventoryIterator.next());
         }
     }
 
