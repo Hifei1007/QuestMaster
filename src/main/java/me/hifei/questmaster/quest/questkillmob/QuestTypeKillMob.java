@@ -28,6 +28,7 @@ public class QuestTypeKillMob extends AbstractQuestType<EntityType> {
         super(item, totalCount, difficultValue);
     }
 
+    @SuppressWarnings("unused")
     public static QuestTypeKillMob create() {
         TableItem<EntityType> item;
         double target = DifficultTool.nextDifficult();

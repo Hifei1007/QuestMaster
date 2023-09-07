@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class RandomTeleportQuestEvent extends InstantQuestEvent {
     public RandomTeleportQuestEvent(SingleEventConfig config) {
         super(config);

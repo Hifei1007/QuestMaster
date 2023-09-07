@@ -5,7 +5,6 @@ import me.hifei.questmaster.api.event.InstantQuestEvent;
 import me.hifei.questmaster.api.event.NormalQuestEvent;
 import me.hifei.questmaster.api.event.QuestEvent;
 import me.hifei.questmaster.running.gsoncfg.rolling.IntegerBoundConfig;
-import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 
@@ -13,6 +12,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class SingleEventConfig {
     public boolean enabled;
     public String classPath;

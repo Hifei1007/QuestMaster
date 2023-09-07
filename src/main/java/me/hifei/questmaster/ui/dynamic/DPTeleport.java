@@ -123,10 +123,6 @@ public class DPTeleport extends DynamicPanel {
         DynamicPanel.openDynamic(panelPosition, new DPTeleport(player));
     }
 
-    public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition, MenuType type) {
-        DynamicPanel.openDynamic(panelPosition, new DPTeleport(player, type));
-    }
-
     @Override
     protected void dynamicModify(Player player) {
         loadTemplate("panels/teleport.yml");

@@ -33,7 +33,7 @@ public class DamageUpgrade extends Upgrade {
         private final List<EntityDamageEvent.DamageCause> causes;
         public final int maxLevel;
         public final String name;
-        DamageType(String name, int maxLevel, EntityDamageEvent.DamageCause... causes) {
+        DamageType(String name, @SuppressWarnings("SameParameterValue") int maxLevel, EntityDamageEvent.DamageCause... causes) {
             this.name = name;
             this.causes = List.of(causes);
             this.maxLevel = maxLevel;

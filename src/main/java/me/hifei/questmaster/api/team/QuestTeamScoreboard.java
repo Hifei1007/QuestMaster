@@ -5,7 +5,9 @@ import org.bukkit.scoreboard.Scoreboard;
 
 public interface QuestTeamScoreboard {
     void refresh();
+    @SuppressWarnings("unused")
     QuestTeam getTeam();
+    @SuppressWarnings("unused")
     QuestGame getGame();
 
     Scoreboard getBukkit();

@@ -6,6 +6,7 @@ import me.hifei.questmaster.api.state.Stateful;
 import me.hifei.questmaster.manager.CQuestGame;
 import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 
+@SuppressWarnings("unused")
 public class RollQuestEvent extends InstantQuestEvent {
     public RollQuestEvent(SingleEventConfig config) {
         super(config);

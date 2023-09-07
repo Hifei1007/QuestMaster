@@ -67,11 +67,13 @@ class CQuestTeamScoreboard implements QuestTeamScoreboard {
         setScore(12, Message.get("scoreboard.plugin"));
     }
 
+    @SuppressWarnings("unused")
     @Override
     public QuestTeam getTeam() {
         return team;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public QuestGame getGame() {
         return game;

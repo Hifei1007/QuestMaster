@@ -5,6 +5,7 @@ import me.hifei.questmaster.api.event.InstantQuestEvent;
 import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import me.hifei.questmaster.running.gsoncfg.rolling.DoubleBoundConfig;
 
+@SuppressWarnings("unused")
 public class ModifyTeamStatQuestEvent extends InstantQuestEvent {
     public double mul;
 

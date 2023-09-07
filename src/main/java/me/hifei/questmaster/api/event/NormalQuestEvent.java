@@ -23,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public abstract class NormalQuestEvent extends QuestEvent {
     protected State state = State.WAIT;
     protected Timer timer;

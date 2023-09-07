@@ -41,6 +41,7 @@ public class Config {
         }
     }
 
+    @SuppressWarnings("unused")
     public @NotNull String getName() {
         return name;
     }

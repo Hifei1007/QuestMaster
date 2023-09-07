@@ -4,6 +4,7 @@ import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.event.InstantQuestEvent;
 import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 
+@SuppressWarnings("unused")
 public class HalfHealthQuestEvent extends InstantQuestEvent {
     public HalfHealthQuestEvent(SingleEventConfig config) {
         super(config);

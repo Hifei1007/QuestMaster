@@ -8,6 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class EffectQuestEvent extends NormalQuestEvent {
     public PotionEffectType type;
 

@@ -14,6 +14,7 @@ public class ScheduleEvent extends QuestMasterEvent {
         this.scheduler = scheduler;
     }
 
+    @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
         return HANDLERS;
     }
@@ -32,6 +33,7 @@ public class ScheduleEvent extends QuestMasterEvent {
         this.scheduleTime = scheduleTime;
     }
 
+    @SuppressWarnings("unused")
     public EventScheduler getScheduler() {
         return scheduler;
     }

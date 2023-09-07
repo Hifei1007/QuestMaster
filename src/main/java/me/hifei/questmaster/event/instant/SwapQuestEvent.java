@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public class SwapQuestEvent extends InstantQuestEvent {
     public enum SwapType {
         LOCATION,

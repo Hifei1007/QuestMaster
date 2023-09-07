@@ -93,6 +93,7 @@ public class CQuestTeam implements QuestTeam {
         return locations;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public @NotNull ChatColor color() {
         return color;

@@ -28,8 +28,6 @@ public interface QuestManager {
 
     @Nullable QuestTeam getTeam(@NotNull Player player);
 
-    @Nullable QuestTeam getTeam(@NotNull String string);
-
     @NotNull List<QuestTeam> getTeams();
 
     @NotNull QuestGame createGame(@NotNull List<QuestTeam> teams, int goal);

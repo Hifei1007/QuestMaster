@@ -2,6 +2,7 @@ package me.hifei.questmaster.running.gsoncfg.rolling;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class RollingConfig {
     public static RollingConfig cfg;
     public DifficultConfig easy;

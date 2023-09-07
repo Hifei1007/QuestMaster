@@ -13,6 +13,7 @@ import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.scheduler.BukkitRunnable;
 
+@SuppressWarnings("unused")
 public final class EventComingQuestEvent extends NormalQuestEvent {
     private final QuestEvent event;
 

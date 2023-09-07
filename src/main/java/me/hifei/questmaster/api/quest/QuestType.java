@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public interface QuestType{
+    @SuppressWarnings("unused")
     @NotNull Quest quest();
 
     void sendQuestObject(Quest q);

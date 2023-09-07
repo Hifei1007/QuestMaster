@@ -12,11 +12,15 @@ public interface Quest extends Stateful{
     @NotNull Timer getTimer();
     @NotNull QuestType getType();
     @NotNull QuestTeam getTeam();
+    @SuppressWarnings("unused")
     @NotNull Difficult getDifficult();
+    @SuppressWarnings("unused")
     double getDifficultValue();
     @NotNull Reward getReward();
     double getProgress();
+    @SuppressWarnings("unused")
     boolean isCompleted();
+    @SuppressWarnings("unused")
     @NotNull List<QuestInterface> interfaces();
     void complete();
     void timeUp();

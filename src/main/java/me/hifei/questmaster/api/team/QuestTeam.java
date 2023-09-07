@@ -20,6 +20,7 @@ public interface QuestTeam {
 
     @NotNull List<Location> locations();
 
+    @SuppressWarnings("unused")
     @NotNull ChatColor color();
 
     void addPlayer(@NotNull Player player);

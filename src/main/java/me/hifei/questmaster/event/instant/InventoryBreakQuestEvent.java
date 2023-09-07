@@ -6,6 +6,7 @@ import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import me.hifei.questmaster.running.gsoncfg.rolling.IntegerBoundConfig;
 import org.bukkit.inventory.Inventory;
 
+@SuppressWarnings("unused")
 public class InventoryBreakQuestEvent extends InstantQuestEvent {
 
     public InventoryBreakQuestEvent(SingleEventConfig config) {

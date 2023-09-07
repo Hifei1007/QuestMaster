@@ -7,7 +7,6 @@ import me.hifei.questmaster.tools.DifficultTool;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Random;
 
 public abstract class AbstractQuestType<T> implements QuestType {
     protected final TableItem<T> item;
@@ -22,6 +21,7 @@ public abstract class AbstractQuestType<T> implements QuestType {
         this.difficultValue = difficultValue;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public @NotNull Quest quest() {
         return quest;

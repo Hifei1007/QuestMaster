@@ -10,6 +10,7 @@ public class TeamRewardedByQuestEvent extends QuestMasterEvent {
     private final Quest quest;
     private Reward reward;
 
+    @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
         return HANDLERS;
     }
@@ -25,6 +26,7 @@ public class TeamRewardedByQuestEvent extends QuestMasterEvent {
         this.reward = reward;
     }
 
+    @SuppressWarnings("unused")
     public Quest getQuest() {
         return quest;
     }

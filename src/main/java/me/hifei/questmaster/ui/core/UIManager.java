@@ -17,10 +17,6 @@ public class UIManager {
     private final Map<String, List<Consumer<PanelCommandEvent>>> m = new HashMap<>();
     private final List<Consumer<PanelCommandEvent>> listeners = new LinkedList<>();
 
-    public void changeClear(@NotNull DynamicPanel panel) {
-        changeClear(panel, () -> {});
-    }
-
     public void changeClear(@NotNull DynamicPanel panel, @NotNull Runnable runnable) {
         new BukkitRunnable(){
             @Override
@@ -61,14 +57,17 @@ public class UIManager {
         registerListener(newConsumer);
     }
 
+    @SuppressWarnings("unused")
     public void unregisterEventAll(String id) {
         m.remove(id);
     }
 
+    @SuppressWarnings("unused")
     public void unregisterEventAll(Consumer<PanelCommandEvent> c) {
         m.forEach((key, value) -> value.remove(c));
     }
 
+    @SuppressWarnings("unused")
     public void unregisterEventAll(String id, Consumer<PanelCommandEvent> c) {
         if (m.containsKey(id)) m.get(id).remove(c);
     }

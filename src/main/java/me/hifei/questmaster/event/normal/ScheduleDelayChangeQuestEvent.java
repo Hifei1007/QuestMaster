@@ -7,6 +7,7 @@ import me.hifei.questmaster.running.gsoncfg.rolling.DoubleBoundConfig;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+@SuppressWarnings("unused")
 public class ScheduleDelayChangeQuestEvent extends NormalQuestEvent {
     public double mul;
 

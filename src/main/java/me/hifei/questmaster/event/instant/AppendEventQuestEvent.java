@@ -5,6 +5,7 @@ import me.hifei.questmaster.api.event.InstantQuestEvent;
 import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import me.hifei.questmaster.running.gsoncfg.rolling.IntegerBoundConfig;
 
+@SuppressWarnings("unused")
 public class AppendEventQuestEvent extends InstantQuestEvent {
     public int questCount;
 

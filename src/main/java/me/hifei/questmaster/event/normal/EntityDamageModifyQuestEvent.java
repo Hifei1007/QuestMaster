@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+@SuppressWarnings("unused")
 public class EntityDamageModifyQuestEvent extends NormalQuestEvent {
     public enum ModifyTarget {
         DAMAGER,
@@ -42,6 +43,7 @@ public class EntityDamageModifyQuestEvent extends NormalQuestEvent {
         return super.getName().formatted(modifyValue * 100, "%");
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean isModifyTarget(Entity entity) {
         Settings config = loadSettings(Settings.class);
         if (entity.getType() == EntityType.PLAYER) return config.entity == ModifyEntity.PLAYER;

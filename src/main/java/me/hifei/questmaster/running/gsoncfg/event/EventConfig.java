@@ -6,6 +6,7 @@ import org.bukkit.boss.BarStyle;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class EventConfig {
     public static EventConfig cfg;
 

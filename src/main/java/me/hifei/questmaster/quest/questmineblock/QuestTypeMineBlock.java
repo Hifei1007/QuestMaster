@@ -28,6 +28,7 @@ public class QuestTypeMineBlock extends AbstractQuestType<Material> {
         super(item, totalCount, difficultValue);
     }
 
+    @SuppressWarnings("unused")
     public static @NotNull QuestTypeMineBlock create() {
         TableItem<Material> item;
         double target = DifficultTool.nextDifficult();

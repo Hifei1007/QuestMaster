@@ -3,12 +3,12 @@ package me.hifei.questmaster.event.normal;
 import me.hifei.questmaster.api.event.NormalQuestEvent;
 import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+@SuppressWarnings("unused")
 public class DeathWhenDamageQuestEvent extends NormalQuestEvent {
     public DeathWhenDamageQuestEvent(SingleEventConfig config) {
         super(config);

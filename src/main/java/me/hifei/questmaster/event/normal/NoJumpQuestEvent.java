@@ -6,6 +6,7 @@ import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+@SuppressWarnings("unused")
 public class NoJumpQuestEvent extends NormalQuestEvent {
     public NoJumpQuestEvent(SingleEventConfig config) {
         super(config);

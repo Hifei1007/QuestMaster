@@ -76,14 +76,6 @@ public class CQuestManager implements QuestManager {
     }
 
     @Override
-    public @Nullable QuestTeam getTeam(@NotNull String string) {
-        for (QuestTeam team : teams) {
-            if (team.name().equals(string)) return team;
-        }
-        return null;
-    }
-
-    @Override
     public @NotNull List<QuestTeam> getTeams() {
         return teams;
     }

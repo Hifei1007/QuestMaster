@@ -9,6 +9,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class BlockChanceQuestEvent extends NormalQuestEvent {
     public double chance;
 

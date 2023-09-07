@@ -32,10 +32,6 @@ public class CQuest implements Quest {
         finalReward = qt.baseReward().multi(qt.difficultValue() / 5);
     }
 
-    CQuest(@NotNull QuestType qt, QuestTeam team) {
-        this(qt, team, new QuestInterface[]{});
-    }
-
     @Override
     public @NotNull Timer getTimer() {
         return timer;
@@ -51,6 +47,7 @@ public class CQuest implements Quest {
         return team;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public @NotNull Difficult getDifficult() {
         return questType.difficult();
@@ -71,6 +68,7 @@ public class CQuest implements Quest {
         return questType.progress();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public boolean isCompleted() {
         return questType.isCompleted();

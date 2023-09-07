@@ -17,6 +17,7 @@ public class QuestTypeCollectItem extends AbstractQuestType<Material> {
         super(item, totalCount, difficultValue);
     }
 
+    @SuppressWarnings("unused")
     public static @NotNull QuestTypeCollectItem create() {
         TableItem<Material> item;
         double target = DifficultTool.nextDifficult();
@@ -49,6 +50,7 @@ public class QuestTypeCollectItem extends AbstractQuestType<Material> {
         return Message.get("quest.collectitem.name", difficult().name, item.name(), totalCount);
     }
 
+    @SuppressWarnings("unused")
     @Override
     public @NotNull ConfigurationSection item() {
         ConfigurationSection item = new MemoryConfiguration();
@@ -58,6 +60,7 @@ public class QuestTypeCollectItem extends AbstractQuestType<Material> {
         return item;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void openPanel(@NotNull Player player) {
         QuestDPCollectItem.openDynamic(player, PanelPosition.Top, quest);
