@@ -20,6 +20,7 @@ public abstract class QuestInterface implements Stateful {
     public void tick () {
     }
 
+    @SuppressWarnings("SameReturnValue")
     public @Nullable Listener listener () {
         return null;
     }
