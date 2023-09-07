@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class DPLocate extends DynamicPanel {
     public enum LocateType {
         STRUCTURE,
@@ -54,21 +55,16 @@ public class DPLocate extends DynamicPanel {
             team.setPoint(team.point() - 250);
 
         }));
-        new Runnable() {
-        @Override
-        @SuppressWarnings("unchecked")
-        public void run() {
-            Config config = new Config("locate.yml", false);
-            for (Map<?, ?> m : config.getConfiguration().getMapList("structure")) {
-                Map<String, ?> map = (Map<String, ?>) m;
-                elements.add(new LocateElement(LocateType.STRUCTURE, Material.valueOf((String) map.get("icon")), (String) map.get("id"), (String) map.get("name")));
-            }
-            for (Map<?, ?> m : config.getConfiguration().getMapList("biomes")) {
-                Map<String, ?> map = (Map<String, ?>) m;
-                elements.add(new LocateElement(LocateType.BIOMES, Material.valueOf((String) map.get("icon")), (String) map.get("id"), (String) map.get("name")));
-            }
+        Config config = new Config("locate.yml", false);
+        for (Map<?, ?> m : config.getConfiguration().getMapList("structure")) {
+            Map<String, ?> map = (Map<String, ?>) m;
+            elements.add(new LocateElement(LocateType.STRUCTURE, Material.valueOf((String) map.get("icon")), (String) map.get("id"), (String) map.get("name")));
         }
-    }.run();}
+        for (Map<?, ?> m : config.getConfiguration().getMapList("biomes")) {
+            Map<String, ?> map = (Map<String, ?>) m;
+            elements.add(new LocateElement(LocateType.BIOMES, Material.valueOf((String) map.get("icon")), (String) map.get("id"), (String) map.get("name")));
+        }
+    }
 
     public DPLocate(Player player) {
         super(player);
