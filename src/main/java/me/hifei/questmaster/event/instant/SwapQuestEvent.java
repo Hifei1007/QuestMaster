@@ -51,7 +51,12 @@ public class SwapQuestEvent extends InstantQuestEvent {
         Iterator<Player> playerIterator = CoreManager.game.getPlayers().iterator();
         Iterator<Double> healthIterator = healths.iterator();
         while (playerIterator.hasNext() && healthIterator.hasNext()) {
-            playerIterator.next().setHealth(healthIterator.next());
+            Player player = playerIterator.next();
+            double health = healthIterator.next();
+            if (player.getHealth() <= 0) {
+                continue;
+            }
+            player.setHealth(health);
         }
     }
 
