@@ -48,6 +48,7 @@ public abstract class Upgrade implements Stateful {
         };
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void tick() {
 
     }

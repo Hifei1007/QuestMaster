@@ -24,12 +24,14 @@ public abstract class QuestInterface implements Stateful {
         return null;
     }
 
+    @SuppressWarnings("EmptyMethod")
     public void onStartup() {
     }
 
     public void onComplete() {
     }
 
+    @SuppressWarnings("EmptyMethod")
     public void onDrop() {
     }
 

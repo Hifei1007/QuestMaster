@@ -63,13 +63,16 @@ public abstract class NormalQuestEvent extends QuestEvent {
         return time;
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void onStartup() {
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void onTimeUp() {
 
     }
 
+    @SuppressWarnings("EmptyMethod")
     protected void onDrop() {
 
     }
