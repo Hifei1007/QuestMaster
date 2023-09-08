@@ -136,7 +136,7 @@ public abstract class DynamicPanel extends Panel {
     }
 
     public void modifyItem(int i, Material material, List<String> lore, String name, Integer stack) {
-        if (material != null) getItem(i).set("material", material);
+        if (material != null) getItem(i).set("material", material.toString());
         if (lore != null) getItem(i).set("lore", lore);
         if (name != null) getItem(i).set("name", name);
         if (stack != null) getItem(i).set("stack", stack);
