@@ -1,2 +1,2 @@
 # QuestMaster
-Current Verision: 1.1 
+Current Version: 1.1
