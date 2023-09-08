@@ -69,7 +69,7 @@ public class DPLocate extends DynamicPanel {
     public DPLocate(Player player) {
         super(player);
         page = 0;
-        startAutoUpdate(5);
+        startAutoUpdate(1);
     }
 
     @Override
@@ -81,6 +81,10 @@ public class DPLocate extends DynamicPanel {
                 28, 29, 30, 31, 32, 33, 34,
                 37, 38, 39, 40, 41, 42, 43
         };
+        if (page < 0 || page > (elements.size() - 1) / 28) {
+            page = 0;
+            return;
+        }
         if (page > 0) {
             setItem(46, getDynamic("front"));
         }
