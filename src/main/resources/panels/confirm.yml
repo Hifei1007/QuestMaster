@@ -1,0 +1,17 @@
+# ! DYNAMIC PANEL !
+perm: default
+rows: 3
+title: '&8确认'
+item:
+  '11':
+    material: LIME_CONCRETE
+    name: '&a确认'
+    stack: 1
+    commands:
+      - event= confirm_confirm
+  '15':
+    material: RED_CONCRETE
+    name: '&c取消'
+    stack: 1
+    commands:
+      - event= confirm_cancel
