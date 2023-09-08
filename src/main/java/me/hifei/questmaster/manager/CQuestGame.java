@@ -246,7 +246,7 @@ public class CQuestGame implements QuestGame {
         runEachPlayer(p -> {
             p.setScoreboard(CoreManager.emptyScoreboard);
             if (UIManager.API.isPanelOpen(p) && UIManager.API.getOpenPanel(p, PanelPosition.Top) instanceof DynamicPanel dp) {
-                dp.close();
+                UIManager.ins.changeClear(dp, () -> {});
                 DPRootNotStarted.openDynamic(p, PanelPosition.Top);
             }
         });
