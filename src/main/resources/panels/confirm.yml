@@ -6,7 +6,7 @@ refresh-delay: 1
 _dynamic:
   confirm_locked:
     material: LIME_STAINED_GLASS
-    name: '&a确认 (%.1fs)'
+    name: '&a确认 (%.2fs)'
     stack: 1
   confirm_unlocked:
     material: LIME_CONCRETE
