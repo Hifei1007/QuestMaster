@@ -2,6 +2,7 @@
 perm: default
 rows: 6
 title: '&8任务大师 - 主菜单'
+refresh-delay: 1
 _dynamic:
   blue_not_join:
     material: BLUE_WOOL
@@ -61,10 +62,36 @@ empty: emptyitem
 item:
   '21':
     material: cpi= author_1
+  '22':
+    material: REDSTONE_TORCH
+    name: '&a开始游戏'
+    stack: 1
+    lore:
+      - ''
+      - '&e点击开始!'
+    commands:
+      - event= root_not_started_start
   '23':
     material: cpi= author_2
   '29':
     material: cpi= dynamicitem
+  '31':
+    material: GOLD_INGOT
+    name: '&7设置: &e目标&7: &a%d'
+    stack: 1
+    lore:
+      - ''
+      - '&e鼠标左键点击 增加 1!'
+      - '&eShift + 鼠标左键点击 增加 10!'
+      - '&e鼠标右键点击 减少 1!'
+      - '&eShift + 鼠标右键点击 减少 10!'
+      - '&e鼠标中键点击 清空!'
+    commands:
+      - right= event= root_not_started_goal_add_1
+      - rightshift= event= root_not_started_goal_add_10
+      - left= event= root_not_started_goal_remove_1
+      - leftshift= event= root_not_started_goal_remove_10
+      - middle= event= root_not_started_goal_clear
   '33':
     material: cpi= dynamicitem
   '40':
