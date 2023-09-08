@@ -163,9 +163,9 @@ public class DPTeleport extends DynamicPanel {
                 setItem(pos, getDynamic("location"));
                 String world = Objects.requireNonNull(loc.getWorld()).getName();
                 switch (world) {
-                    case "world" -> getItem(pos).set("material", "GRASS_BLOCK");
-                    case "world_nether" -> getItem(pos).set("material", "NETHERRACK");
-                    case "world_the_end" -> getItem(pos).set("material", "END_STONE");
+                    case "world" -> modifyItem(pos, Material.GRASS_BLOCK, null, null, null);
+                    case "world_nether" -> modifyItem(pos, Material.NETHERRACK, null, null, null);
+                    case "world_the_end" -> modifyItem(pos, Material.END_STONE, null, null, null);
                 }
                 if (mode != MenuMode.TELEPORT && loc.equals(select)) {
                     getItem(pos).set("enchanted", true);
