@@ -2,13 +2,21 @@
 perm: default
 rows: 3
 title: '&8确认'
-item:
-  '11':
+refresh-delay: 1
+_dynamic:
+  confirm_locked:
+    material: LIME_STAINED_GLASS
+    name: '&a确认 (%.1fs)'
+    stack: 1
+  confirm_unlocked:
     material: LIME_CONCRETE
     name: '&a确认'
     stack: 1
     commands:
       - event= confirm_confirm
+item:
+  '11':
+    material: BEDROCK
   '15':
     material: RED_CONCRETE
     name: '&c取消'

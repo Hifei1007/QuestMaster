@@ -1,7 +1,10 @@
 package me.hifei.questmaster.ui.core;
 
+import me.hifei.questmaster.api.quest.Timer;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.entity.Player;
+
+import java.util.Objects;
 
 public class DPConfirm extends DynamicPanel {
     static {
@@ -15,18 +18,30 @@ public class DPConfirm extends DynamicPanel {
         });
     }
 
+    private final Timer timer;
     private final Runnable confirmCallback;
     private final Runnable cancelCallback;
 
     public DPConfirm(Player player, Runnable confirmCallback, Runnable cancelCallback) {
-        super(player);
+        super(player, false);
         this.confirmCallback = confirmCallback;
         this.cancelCallback = cancelCallback;
+        this.timer = new Timer(5);
+        this.timer.start();
+        dynamicModify(player);
+        startAutoUpdate(1);
     }
 
     @Override
     protected void dynamicModify(Player player) {
         loadTemplate("panels/confirm.yml");
+
+        if (timer.isTimeUp()) setItem(11, getDynamic("confirm_unlocked"));
+        else {
+            setItem(11, getDynamic("confirm_locked"));
+            getItem(11).set("name",
+                    Objects.requireNonNull(getItem(11).getString("name")).formatted(timer.totalRemainingSecond()));
+        }
     }
 
     public static <T extends Player> void openDynamic(T player, PanelPosition panelPosition, Runnable confirmCallback, Runnable cancelCallback) {
