@@ -1,17 +1,17 @@
 {
   "easy": {
-    "start": 20,
-    "end": 80,
+    "start": 50,
+    "end": 150,
     "selectWhen": 650
   },
   "normal": {
-    "start": 80,
-    "end": 20,
+    "start": 150,
+    "end": 300,
     "selectWhen": 950
   },
   "hard": {
-    "start": 200,
-    "end": 500,
+    "start": 300,
+    "end": 800,
     "selectWhen": 1000
   },
   "reward": {
@@ -33,8 +33,8 @@
     }
   },
   "time": {
-    "origin": 5.0,
-    "bound": 10.0
+    "origin": 2.0,
+    "bound": 5.0
   },
   "teleport": {
     "globalX": {
