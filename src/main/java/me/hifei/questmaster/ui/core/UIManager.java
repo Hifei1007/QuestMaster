@@ -5,6 +5,13 @@ import me.hifei.questmaster.running.config.Message;
 import me.rockyhawk.commandpanels.CommandPanels;
 import me.rockyhawk.commandpanels.api.CommandPanelsAPI;
 import me.rockyhawk.commandpanels.api.PanelCommandEvent;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,6 +23,42 @@ public class UIManager {
     public static final CommandPanelsAPI API = CommandPanels.getAPI();
     private final Map<String, List<Consumer<PanelCommandEvent>>> m = new HashMap<>();
     private final List<Consumer<PanelCommandEvent>> listeners = new LinkedList<>();
+
+    static {
+        ins.registerEvent("questmaster_license", (event) -> {
+            Player player = event.getPlayer();
+
+            String[] licenses = {
+                    "Copyright (C) 2023 Hifei1007",
+                    "",
+                    "This program is free software: you can redistribute it and/or modify",
+                    "it under the terms of the GNU Affero General Public License as published",
+                    "by the Free Software Foundation, either version 3 of the License, or",
+                    "(at your option) any later version.",
+                    "",
+                    "This program is distributed in the hope that it will be useful,",
+                    "but WITHOUT ANY WARRANTY; without even the implied warranty of",
+                    "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the",
+                    "GNU Affero General Public License for more details.",
+                    "",
+                    "You should have received a copy of the GNU Affero General Public License",
+                    "along with this program.  If not, see <https://www.gnu.org/licenses/>.",
+                    ""
+            };
+            for (String line : licenses) {
+                player.sendMessage(ChatColor.RED.toString() + ChatColor.BOLD + line);
+            }
+            BaseComponent component = new TextComponent("https://github.com/Hifei1007/QuestMaster");
+            component.setColor(ChatColor.RED.asBungee());
+            component.setBold(true);
+            component.setUnderlined(true);
+            component.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/Hifei1007/QuestMaster"));
+            component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.RED.toString() + ChatColor.BOLD + "CLICK!")));
+            player.spigot().sendMessage(
+                    component
+            );
+        });
+    }
 
     public void changeClear(@NotNull DynamicPanel panel, @NotNull Runnable runnable) {
         new BukkitRunnable(){

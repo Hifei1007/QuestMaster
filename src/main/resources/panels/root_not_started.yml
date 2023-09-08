@@ -82,3 +82,17 @@ item:
     stack: 1
     commands:
       - cpc
+  '0':
+    material: PAPER
+    name: '&c&l开源协议'
+    lore:
+      - ''
+      - '&c&lCopyright (C) 2023 Hifei1007'
+      - ''
+      - '&c&l许可证使用: GNU AGPLv3'
+      - ''
+      - '&e&l点击查看Github项目链接!'
+    stack: 1
+    commands:
+      - event= questmaster_license
+      - cpc
