@@ -87,10 +87,10 @@ item:
       - '&eShift + 鼠标右键点击 减少 10!'
       - '&e鼠标中键点击 清空!'
     commands:
-      - right= event= root_not_started_goal_add_1
-      - rightshift= event= root_not_started_goal_add_10
-      - left= event= root_not_started_goal_remove_1
-      - leftshift= event= root_not_started_goal_remove_10
+      - left= event= root_not_started_goal_add_1
+      - leftshift= event= root_not_started_goal_add_10
+      - right= event= root_not_started_goal_remove_1
+      - rightshift= event= root_not_started_goal_remove_10
       - middle= event= root_not_started_goal_clear
   '33':
     material: cpi= dynamicitem
