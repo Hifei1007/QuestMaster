@@ -136,3 +136,12 @@ item:
     commands:
       - event= questmaster_license
       - cpc
+  '9':
+    material: NETHERITE_SWORD
+    name: '&a强制结束游戏'
+    lore:
+      - ''
+      - '&e点击强制结束游戏!'
+    stack: 1
+    commands:
+      - event= root_forcestop
