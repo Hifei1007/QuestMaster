@@ -7,7 +7,6 @@ import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
 import me.hifei.questmaster.quest.questkillmob.QuestTableKillMob;
 import me.hifei.questmaster.quest.questmineblock.QuestTableMineBlock;
 import me.hifei.questmaster.running.commands.QuestActionCommand;
-import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.gsoncfg.GsonConfigLoader;
 import me.hifei.questmaster.running.gsoncfg.event.EventConfig;
 import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
@@ -75,7 +74,6 @@ public class QuestMasterPlugin extends JavaPlugin {
             world.setGameRule(GameRule.KEEP_INVENTORY, true);
         }
 
-        Objects.requireNonNull(this.getCommand("start")).setExecutor(new StartCommand());
         Objects.requireNonNull(this.getCommand("questaction")).setExecutor(new QuestActionCommand());
         new MainUpdater().runTaskTimer(QuestMasterPlugin.instance, 0, 1);
 
