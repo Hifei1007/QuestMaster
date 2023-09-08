@@ -100,7 +100,7 @@ public class DPShopTeamUpgrade extends DynamicPanel {
         if (upgrade.getLevel() == upgrade.getMaxLevel()) lore.set(5, getMessage("upgrade.max"));
         else if (team.point() >= require) lore.set(5, getMessage("upgrade.ok"));
         else lore.set(5, getMessage("upgrade.require"));
-        getItem(slot).set("lore", lore);
+        modifyItem(slot, null, lore, null, null);
     }
 
     @Override

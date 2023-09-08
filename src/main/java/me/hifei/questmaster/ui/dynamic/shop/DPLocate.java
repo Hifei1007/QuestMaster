@@ -97,15 +97,14 @@ public class DPLocate extends DynamicPanel {
              int pos = positions[i - startPos];
              LocateElement element = elements.get(i);
              setItem(pos, getDynamic("object"));
-             getItem(pos).set("name", element.name);
-             getItem(pos).set("material", element.icon.name().toUpperCase());
+             modifyItem(pos, element.icon, null, element.name, null);
              QuestTeam team = CoreManager.manager.getTeam(player);
              assert team != null;
              if (team.point() >= 250) {
                  getItem(pos).set("commands", List.of("event= shop_locate_do_" + i));
-                 getItem(pos).set("lore", List.of("", getMessage("object.lore.ok")));
+                 modifyItem(pos, null, List.of("", getMessage("object.lore.ok")), null, null);
              } else {
-                 getItem(pos).set("lore", List.of("", getMessage("object.lore.require")));
+                 modifyItem(pos, null, List.of("", getMessage("object.lore.require")), null, null);
              }
         }
     }

@@ -54,7 +54,7 @@ public class DPRootNotStarted extends DynamicPanel {
     protected void dynamicModify(@NotNull Player player) {
         loadTemplate("panels/root_not_started.yml");
         QuestTeam t = CoreManager.manager.getTeam(player);
-        getItem(31).set("name", Objects.requireNonNull(getItem(31).getString("name")).formatted(goalSetting));
+        modifyItem(31, null, null, Objects.requireNonNull(getItem(31).getString("name")).formatted(goalSetting), null);
         setItem(29, getDynamic("red_not_join"));
         setItem(33, getDynamic("blue_not_join"));
         if (t == CoreManager.blue) setItem(33, getDynamic("blue_join"));

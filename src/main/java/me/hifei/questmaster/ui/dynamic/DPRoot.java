@@ -17,6 +17,7 @@ import me.hifei.questmaster.ui.dynamic.shop.DPShopTeamUpgrade;
 import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -98,7 +99,7 @@ public class DPRoot extends DynamicPanel {
 
     private void modifyTeamChest(int pos, int id) {
         setItem(pos, getDynamic("teamchest"));
-        getItem(pos).set("name", getMessage("teamchest.name", id));
+        modifyItem(pos, null, null, getMessage("teamchest.name", id), null);
         QuestTeam team = CoreManager.manager.getTeam(player);
         assert team != null;
         Upgrade upgrade = team.getUpgrades().get("teamchest_" + id);
@@ -115,7 +116,7 @@ public class DPRoot extends DynamicPanel {
             if (cost <= team.coin()) lore.add(getMessage("teamchest.upgrade", cost));
             else lore.add(getMessage("teamchest.require", cost));
         }
-        getItem(pos).set("lore", lore);
+        modifyItem(pos, null, lore, null, null);
         List<String> commands = getItem(pos).getStringList("commands");
         if (upgrade.getLevel() != 0) commands.add("left= event= root_open_teamchest_" + id);
         if (upgrade.getLevel() != upgrade.getMaxLevel()) commands.add("right= event= root_upgrade_teamchest_" + id);
@@ -134,17 +135,15 @@ public class DPRoot extends DynamicPanel {
         for (int i = 1; i <= quests.size(); i++) {
             list.set(i, quests.get(i - 1).getName());
         }
-        item.set("lore", list);
-        getItem(2).set("name", getMessage("score.name", team.score()));
-        getItem(4).set("name", getMessage("point.name", team.point()));
-        getItem(6).set("name", getMessage("coin.name", team.coin()));
+        modifyItem(22, null, list, null, null);
+        modifyItem(2, null, null, getMessage("score.name", team.score()), null);
+        modifyItem(4, null, null, getMessage("point.name", team.point()), null);
+        modifyItem(6, null, null, getMessage("coin.name", team.coin()), null);
         boolean autoSubmit = CoreManager.autoSubmitMode.getOrDefault(player.getName(), true);
         if (autoSubmit) {
-            getItem(53).set("material", "LIME_DYE");
-            getItem(53).set("name", "&e自动提交&7: &a开启");
+            modifyItem(53, Material.LIME_DYE, null,"&e自动提交&7: &a开启", null);
         } else {
-            getItem(53).set("material", "GRAY_DYE");
-            getItem(53).set("name", "&e自动提交&7: &c关闭");
+            modifyItem(53, Material.GRAY_DYE, null, "&e自动提交&7: &c关闭", null);
         }
         modifyTeamChest(30, 1);
         modifyTeamChest(31, 2);

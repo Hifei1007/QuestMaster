@@ -10,6 +10,7 @@ import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -130,9 +131,9 @@ public class DPTeleport extends DynamicPanel {
         setItem(48, getDynamic("select_player"));
         QuestTeam team = CoreManager.manager.getTeam(player);
         if (team == CoreManager.red) {
-            getItem(48).set("material", "RED_WOOL");
+            modifyItem(48, Material.RED_WOOL, null, null, null);
         } else if (team == CoreManager.blue) {
-            getItem(48).set("material", "BLUE_WOOL");
+            modifyItem(48, Material.BLUE_WOOL, null, null, null);
         }
         setItem(50, getDynamic("select_location"));
 
@@ -170,7 +171,7 @@ public class DPTeleport extends DynamicPanel {
                     getItem(pos).set("enchanted", true);
                     lore = getItem(pos).getStringList("lore");
                     lore.set(2, getMessage("location.select"));
-                    getItem(pos).set("lore", lore);
+                    modifyItem(pos, null, lore, null, null);
                 }
 
                 lore = getItem(pos).getStringList("lore");
@@ -183,9 +184,7 @@ public class DPTeleport extends DynamicPanel {
                 } else {
                     lore.set(2, "&e点击选择!");
                 }
-                getItem(pos).set("lore", lore);
-
-                getItem(pos).set("name", LocationTool.formatLocation(loc));
+                modifyItem(pos, null, lore, LocationTool.formatLocation(loc), null);
                 getItem(pos).set("commands", List.of("event= teleport_location_" + i));
                 i++;
             }
@@ -193,7 +192,7 @@ public class DPTeleport extends DynamicPanel {
             if (team.locations().size() >= 21) {
                 lore = getItem(45).getStringList("lore");
                 lore.set(1, getMessage("location.full"));
-                getItem(45).set("lore", lore);
+                modifyItem(45, null, lore, null, null);
             }
 
             if (mode == MenuMode.SELECT) setItem(53, getDynamic("mode_select"));
@@ -214,8 +213,8 @@ public class DPTeleport extends DynamicPanel {
                 if (!iterator.hasNext()) break;
                 Player p = iterator.next();
                 setItem(pos, getDynamic("player"));
+                modifyItem(pos, null, null, p.getDisplayName(), null);
                 getItem(pos).set("material", "cps= " + p.getName());
-                getItem(pos).set("name", p.getDisplayName());
 
                 lore = getItem(pos).getStringList("lore");
                 lore.set(1, LocationTool.formatLocation(player.getLocation()));

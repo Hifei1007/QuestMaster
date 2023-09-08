@@ -84,6 +84,7 @@ public class DPShopItem extends DynamicPanel {
         } else {
             lore.set(1, getMessage("item.lore.require"));
         }
+        modifyItem(pos, null, lore, null, null);
         getItem(pos).set("lore", lore);
     }
 
