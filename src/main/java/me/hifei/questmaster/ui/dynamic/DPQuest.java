@@ -47,7 +47,7 @@ public class DPQuest extends DynamicPanel {
             setItem(33, quests.get(2).getItem(true));
             getItem(33).set("commands", List.of("event= open_quest_3"));
         } catch (IndexOutOfBoundsException e) {
-            close();
+            UIManager.ins.changeClear(this, () -> {});
         }
     }
 
