@@ -6,7 +6,6 @@ import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.quest.questcollectitem.QuestTableCollectItem;
 import me.hifei.questmaster.quest.questkillmob.QuestTableKillMob;
 import me.hifei.questmaster.quest.questmineblock.QuestTableMineBlock;
-import me.hifei.questmaster.running.commands.ForceStopCommand;
 import me.hifei.questmaster.running.commands.QuestActionCommand;
 import me.hifei.questmaster.running.commands.StartCommand;
 import me.hifei.questmaster.running.gsoncfg.GsonConfigLoader;
@@ -77,7 +76,6 @@ public class QuestMasterPlugin extends JavaPlugin {
         }
 
         Objects.requireNonNull(this.getCommand("start")).setExecutor(new StartCommand());
-        Objects.requireNonNull(this.getCommand("forcestop")).setExecutor(new ForceStopCommand());
         Objects.requireNonNull(this.getCommand("questaction")).setExecutor(new QuestActionCommand());
         new MainUpdater().runTaskTimer(QuestMasterPlugin.instance, 0, 1);
 
