@@ -35,6 +35,12 @@ public class Timer{
         return String.format("%d:%d:%d", remainHor, remainMin, remainSec);
     }
 
+    public double totalRemainingSecond() {
+        checkState();
+        if (isTimeUp()) return 0;
+        return time - (System.currentTimeMillis() - startTime) / 1000.0;
+    }
+
     public long second() throws RuntimeException {
         checkState();
         return (time - (System.currentTimeMillis() - startTime) / 1000) % 60;
@@ -55,7 +61,7 @@ public class Timer{
 
     public boolean isTimeUp() throws RuntimeException {
         checkState();
-        return time < (System.currentTimeMillis() - startTime) / 1000;
+        return time <= (System.currentTimeMillis() - startTime) / 1000;
     }
 
     public void addSec(int sec) {
