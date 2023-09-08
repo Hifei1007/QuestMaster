@@ -1,10 +1,3 @@
-command.forcestop.fail.game_not_started: "&c游戏尚未开始, 不可强制结束!"
-command.forcestop.success: "&a你强制结束了游戏!"
-command.forcestop.success_broadcast: "%s&c&l强制结束了游戏!"
-command.start.usage: "&c用法: /start <goal>"
-command.start.fail.wrong_number: "&cgoal设置错误!应该是一个大于0的整数!"
-command.start.fail.game_started: "&c游戏已经开始!"
-command.start.success: "&a你开始了游戏!"
 command.action.unknown: "&c未知的动作! 令牌已过期或不存在!"
 
 difficult.easy: "&a简单&r"
