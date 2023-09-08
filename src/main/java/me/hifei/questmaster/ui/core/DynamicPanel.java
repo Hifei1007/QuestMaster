@@ -69,7 +69,7 @@ public abstract class DynamicPanel extends Panel {
         return getItem(String.valueOf(i));
     }
 
-    protected @NotNull ConfigurationSection getItem(@NotNull String i) {
+    private @NotNull ConfigurationSection getItem(@NotNull String i) {
         ConfigurationSection section = getConfig().getConfigurationSection("item");
         if (section == null) throw new NullPointerException();
         ConfigurationSection s = section.getConfigurationSection(i);
@@ -81,7 +81,7 @@ public abstract class DynamicPanel extends Panel {
         setItem(String.valueOf(i), section);
     }
 
-    protected void setItem(@NotNull String i, ConfigurationSection section) {
+    private void setItem(@NotNull String i, ConfigurationSection section) {
         Objects.requireNonNull(getConfig().getConfigurationSection("item")).set(i, section);
     }
 
