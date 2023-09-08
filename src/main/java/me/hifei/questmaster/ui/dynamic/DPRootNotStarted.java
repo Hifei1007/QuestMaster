@@ -33,9 +33,9 @@ public class DPRootNotStarted extends DynamicPanel {
         UIManager.ins.registerEvent("root_not_started_goal_add_1", (e) -> goalSetting += 1);
         UIManager.ins.registerEvent("root_not_started_goal_add_10", (e) -> goalSetting += 10);
         UIManager.ins.registerEvent("root_not_started_goal_remove_1", (e) ->
-                goalSetting = Math.max(goalSetting + 1, 1));
+                goalSetting = Math.max(goalSetting - 1, 1));
         UIManager.ins.registerEvent("root_not_started_goal_remove_10", (e) ->
-                goalSetting = Math.max(goalSetting + 10, 1));
+                goalSetting = Math.max(goalSetting - 10, 1));
         UIManager.ins.registerEvent("root_not_started_goal_clear", (e) -> goalSetting = 1);
         UIManager.ins.registerEvent("root_not_started_start", (e) -> DPConfirm.openDynamic(e.getPlayer(), PanelPosition.Top, () -> {
             CoreManager.game = CoreManager.manager.createGame(List.of(
