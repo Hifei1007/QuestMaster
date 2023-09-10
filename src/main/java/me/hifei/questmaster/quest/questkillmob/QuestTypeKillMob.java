@@ -40,8 +40,8 @@ public class QuestTypeKillMob extends AbstractQuestType<EntityType> {
                 target = DifficultTool.nextDifficult();
                 tryCount = 0;
             }
-        } while (target < item.diff() * 3 || target > item.diff() * 16);
-        int count = (int) Math.ceil((target) / (item.diff()));
+        } while ((target - item.basediff()) < item.diff() * 3 || (target - item.basediff()) > item.diff() * 16);
+        int count = (int) Math.ceil((target - item.basediff()) / (item.diff()));
         return new QuestTypeKillMob(item, count, target);
     }
 

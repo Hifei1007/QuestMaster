@@ -15,20 +15,14 @@ public class QuestTableKillMob extends QuestTableTool<EntityType> {
     public final static QuestTableKillMob ins = new QuestTableKillMob();
 
     @Override
-    protected TableItem<EntityType> buildItem(String string, double diff) {
+    protected TableItem<EntityType> buildItem(String string, double diff, double basediff) {
         Map<String, String> trans = CoreManager.translateMaterialTool.translate_file;
         EntityType type = EntityType.valueOf(string.toUpperCase());
-        return new TableItem<>(type, trans.get(type.getTranslationKey()), diff);
+        return new TableItem<>(type, trans.get(type.getTranslationKey()), diff, basediff);
     }
 
     public Material getIcon(TableItem<EntityType> tableItem) {
         return Material.valueOf(tableItem.obj().name() + "_SPAWN_EGG");
-    }
-
-    public TableItem<EntityType> nextItem() {
-        Random random = new Random();
-        TableItemGroup<EntityType> group = itemGroups.get(random.nextInt(itemGroups.size()));
-        return group.items().get(random.nextInt(group.items().size()));
     }
 
     public void loadConfig() {
