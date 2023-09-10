@@ -3,6 +3,7 @@
     "origin": 60,
     "bound": 300
   },
+  "showSchedulerBossbar": false,
   "comingDelay": 10,
   "comingColor": "PURPLE",
   "comingStyle": "SOLID",
@@ -252,6 +253,35 @@
           "origin": 0.5,
           "bound": 2.0
         }
+      }
+    },
+    {
+      "enabled": true,
+      "classPath": "me.hifei.questmaster.event.normal.RedGreenLightQuestEvent",
+      "name": "&e红绿灯",
+      "descriptions": [
+        "&7注意显示在物品栏上方的红绿灯, 不要在&c红灯&7时行走!"
+      ],
+      "time": {
+        "origin": 120,
+        "bound": 240
+      },
+      "barColor": "RED",
+      "barStyle": "SOLID",
+      "weight": 1,
+      "settings": {
+        "redTime": {
+          "origin": 3,
+          "bound": 8
+        },
+        "yellowTime": 2,
+        "greenTime": {
+          "origin": 5,
+          "bound": 10
+        },
+        "redMessage": "&c&l红灯",
+        "yellowMessage": "&e&l黄灯",
+        "greenMessage": "&a&l绿灯"
       }
     },
 
