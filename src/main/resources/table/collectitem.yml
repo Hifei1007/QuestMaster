@@ -2,48 +2,67 @@ items:
 
   # Overworld Blocks
 
-  - diff: 2
-    aliases:
-      - $
-    placeholders:
-      - sand
-      - dirt
-      - gravel
-      - coarse_dirt
-      - mud
-      - moss_block
-  - diff: 4
-    aliases:
-      - $
-    placeholders:
-      - red_sand
-      - calcite
-      - tuff
-      - dripstone_block
+  - multi:
+      - diff: 2
+        aliases:
+          - sand
+          - dirt
+          - gravel
+          - coarse_dirt
+      - diff: 3
+        name: mud
+      - diff: 3
+        name: moss_block
+        basediff: 80
+      - diff: 3
+        name: red_sand
+        basediff: 300
+      - diff: 4
+        aliases:
+          - calcite
+          - tuff
+          - dripstone_block
+        basediff: 40
 
   # Clay
-
-  - diff: 1.5
-    name: clay_ball
-  - diff: 6
-    name: clay
+  - multi:
+      - diff: 1.5
+        name: clay_ball
+        basediff: 30
+      - diff: 6
+        name: clay
+        basediff: 30
 
   # Granite, Andesite, Diorite, and Blackstone
 
-  - diff: 4
-    aliases:
-      - $
-      - $_stairs
-      - $_slab
-      - $_wall
-      - polished_$
-      - polished_$_stairs
-      - polished_$_slab
-    placeholders:
-      - granite
-      - andesite
-      - diorite
-      - blackstone
+  - multi:
+      - diff: 4
+        aliases:
+          - $
+          - $_stairs
+          - $_slab
+          - $_wall
+          - polished_$
+          - polished_$_stairs
+          - polished_$_slab
+        placeholders:
+          - granite
+          - andesite
+          - diorite
+          - blackstone
+        basediff: 40
+      - diff: 6
+        aliases:
+          - $
+          - $_stairs
+          - $_slab
+          - $_wall
+          - polished_$
+          - polished_$_stairs
+          - polished_$_slab
+        placeholders:
+          - blackstone
+        basediff: 80
 
   # Deepslate
 
@@ -84,48 +103,75 @@ items:
 
   # Woods
 
-  - diff: 5
-    aliases:
-      - bamboo_block
-      - stripped_bamboo_block
-      - $_log
-      - stripped_$_log
-      - $_wood
-      - stripped_$_wood
-    placeholders:
-      - oak
-      - birch
-      - spruce
-      - acacia
-      - jungle
-      - dark_oak
-      - mangrove
-      - cherry
+  - mulit:
+    - diff: 5
+      aliases:
+        - bamboo_block
+        - stripped_bamboo_block
+        - $_log
+        - stripped_$_log
+        - $_wood
+        - stripped_$_wood
+      placeholders:
+        - oak
+        - birch
+      basediff: 40
+    - diff: 5
+      aliases:
+        - bamboo_block
+        - stripped_bamboo_block
+        - $_log
+        - stripped_$_log
+        - $_wood
+        - stripped_$_wood
+      placeholders:
+        - spruce
+        - acacia
+        - jungle
+        - dark_oak
+        - mangrove
+        - cherry
+      basediff: 200
 
   # Woods Items
-  - diff: 9
-    aliases:
-      - $_planks
-      - $_stairs
-      - $_slab
-      - $_fence
-      - $_fence_gate
-      - $_door
-      - $_trapdoor
-      - $_pressure_plate
-      - $_button
-    placeholders:
-      - oak
-      - birch
-      - spruce
-      - acacia
-      - jungle
-      - dark_oak
-      - mangrove
-      - cherry
-      - crimson
-      - warped
-      - bamboo
+  - multi:
+      - diff: 9
+        aliases:
+          - $_planks
+          - $_stairs
+          - $_slab
+          - $_fence
+          - $_fence_gate
+          - $_door
+          - $_trapdoor
+          - $_pressure_plate
+          - $_button
+        placeholders:
+          - oak
+          - birch
+        basediff: 40
+      - diff: 9
+        aliases:
+          - $_planks
+          - $_stairs
+          - $_slab
+          - $_fence
+          - $_fence_gate
+          - $_door
+          - $_trapdoor
+          - $_pressure_plate
+          - $_button
+        placeholders:
+          - spruce
+          - acacia
+          - jungle
+          - dark_oak
+          - mangrove
+          - cherry
+          - crimson
+          - warped
+          - bamboo
+        basediff: 200
 
   # Nether Stems
 
@@ -138,6 +184,7 @@ items:
     placeholders:
       - crimson
       - warped
+    basediff: 100
 
   # Nether Blocks
 
@@ -152,42 +199,47 @@ items:
       - netherrack
       - glowstone
       - shroomlight
+    basediff: 100
   - diff: 50
     aliases:
       - obsidian
       - crying_obsidian
       - blaze_rod
+    basediff: 150
 
   # Ores
 
-  - diff: 12
-    aliases:
-      - coal
-      - charcoal
-  - diff: 8
-    aliases:
-      - raw_copper
-      - copper_ingot
-  - diff: 20
-    aliases:
-      - raw_iron
-      - iron_ingot
-  - diff: 50
-    aliases:
-      - raw_gold
-      - gold_ingot
-  - diff: 50
-    aliases:
-      - quartz
-      - amethyst_shard
-      - emerald
-      - lapis_lazuli
-  - diff: 100
-    name: diamond
-  - diff: 300
-    aliases:
-      - ancient_debris
-      - netherite_scrap
+  - multi:
+    - diff: 12
+      aliases:
+        - coal
+        - charcoal
+    - diff: 8
+      aliases:
+        - raw_copper
+        - copper_ingot
+    - diff: 20
+      aliases:
+        - raw_iron
+        - iron_ingot
+    - diff: 50
+      aliases:
+        - raw_gold
+        - gold_ingot
+    - diff: 50
+      aliases:
+        - quartz
+        - amethyst_shard
+        - emerald
+        - lapis_lazuli
+      basediff: 100
+    - diff: 100
+      name: diamond
+    - diff: 300
+      aliases:
+        - ancient_debris
+        - netherite_scrap
+      basediff: 100
 
   # Item Drops
   - diff: 20
@@ -196,6 +248,7 @@ items:
       - rotten_flesh
       - gunpowder
       - magma_cream
+    basediff: 50
   - diff: 10
     aliases:
       - wheat
@@ -205,4 +258,5 @@ items:
       - leather
       - ink_sac
       - sugar
+    basediff: 80
 
