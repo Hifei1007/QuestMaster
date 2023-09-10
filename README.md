@@ -8,7 +8,7 @@
 
 __简体中文__ | [English (COMING SOON)](https://github.com/Hifei1007/QuestMaster/blob/master/README.md.en)
 
-#### THIS SOFTWARE IS LICENSED UNDER THE [APGL-3.0](https://github.com/Hifei1007/QuestMaster/blob/master/LICENSE)!
+#### THIS SOFTWARE IS LICENSED UNDER THE [AGPL-3.0](https://github.com/Hifei1007/QuestMaster/blob/master/LICENSE)!
 
 ## 关于 任务大师 (QuestMaster)
 
