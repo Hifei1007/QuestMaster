@@ -10,6 +10,8 @@ import java.util.List;
 public class EventConfig {
     public static EventConfig cfg;
 
+
+    public boolean showSchedulerBossbar;
     public IntegerBoundConfig eventDelay;
     public IntegerBoundConfig comingDelay;
     public List<SingleEventConfig> events;

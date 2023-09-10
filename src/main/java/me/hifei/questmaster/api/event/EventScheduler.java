@@ -6,9 +6,12 @@ import me.hifei.questmaster.api.ExceptionLock;
 import me.hifei.questmaster.api.bukkitevent.ScheduleEvent;
 import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
+import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.running.gsoncfg.event.EventConfig;
 import me.hifei.questmaster.running.gsoncfg.event.SingleEventConfig;
 import org.bukkit.Bukkit;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
@@ -20,6 +23,8 @@ public final class EventScheduler extends NormalQuestEvent {
         cfg.time = EventConfig.cfg.eventDelay;
         cfg.name = "Scheduler";
         cfg.descriptions = List.of();
+        cfg.barStyle = BarStyle.SOLID;
+        cfg.barColor = BarColor.GREEN;
         return cfg;
     }
 
@@ -36,6 +41,10 @@ public final class EventScheduler extends NormalQuestEvent {
             onTimeUp();
             drop();
         }
+        if (!EventConfig.cfg.showSchedulerBossbar) return;
+        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
+        bossBar.setProgress(timer.getProcess());
+        bossBar.setTitle(getName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()));
     }
 
     @Override
@@ -56,6 +65,15 @@ public final class EventScheduler extends NormalQuestEvent {
             }
         };
         runnable.runTaskTimer(QuestMasterPlugin.instance, 0, 1);
+        if (!EventConfig.cfg.showSchedulerBossbar) return;
+        bossBar = Bukkit.createBossBar(
+                getName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()),
+                getBarColor(),
+                getBarStyle()
+        );
+        bossBar.setVisible(true);
+        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
+        bossBar.setProgress(1);
     }
 
     @Override
@@ -71,5 +89,8 @@ public final class EventScheduler extends NormalQuestEvent {
         CoreManager.game.getEvents().remove(this);
         QuestMasterPlugin.logger.info("<DROP> " + this.getName());
         runnable.cancel();
+        if (!EventConfig.cfg.showSchedulerBossbar) return;
+        bossBar.removeAll();
+        bossBar.setVisible(false);
     }
 }
