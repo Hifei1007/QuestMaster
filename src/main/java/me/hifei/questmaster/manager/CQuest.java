@@ -127,8 +127,8 @@ public class CQuest implements Quest {
         lore.add(Message.get("quest.timer", getTimer().remaining()));
         lore.add(Message.get("quest.empty"));
         lore.add(Message.get("quest.score", getReward().score()));
-        lore.add(Message.get("quest.point", getReward().point(), getReward().point() / 10));
-        lore.add(Message.get("quest.coin", getReward().coin(), getReward().coin() / 10));
+        lore.add(Message.get("quest.point", getReward().point(), getPointPunish()));
+        lore.add(Message.get("quest.coin", getReward().coin(), getCoinPunish()));
         lore.add(Message.get("quest.time", getReward().time()));
         if (addClickText) {
             lore.add(Message.get("quest.empty"));
@@ -173,5 +173,15 @@ public class CQuest implements Quest {
         for (QuestInterface questInterface : interfaces()) {
             questInterface.drop();
         }
+    }
+
+    @Override
+    public double getCoinPunish() {
+        return Math.max(0, (getReward().coin() / 5) * (1-(getProgress()*2)));
+    }
+
+    @Override
+    public double getPointPunish() {
+        return Math.max(0, (getReward().point() / 5) * (1-(getProgress()*2)));
     }
 }

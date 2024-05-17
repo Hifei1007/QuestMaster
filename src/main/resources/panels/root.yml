@@ -91,6 +91,18 @@ item:
       - '&e点击查看!'
     commands:
       - event= root_open_itemshop
+  '29':
+    material: cps= Minikloon
+    name: '&c&lMinikloon 的抽奖商店'
+    lore:
+      - ''
+      - '&7找不到需要的物品?'
+      - '&7Minikloon 的抽奖商店'
+      - '&7能让你抽到一切物品!'
+      - ''
+      - '&e点击查看!'
+    commands:
+      - event= root_open_rollshop
   '49':
     material: BARRIER
     name: '&c关闭'

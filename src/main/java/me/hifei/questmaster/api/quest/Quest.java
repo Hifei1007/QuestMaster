@@ -31,4 +31,6 @@ public interface Quest extends Stateful{
     @NotNull ConfigurationSection getItem();
     void openPanel(@NotNull Player player);
     String getProcessBar();
+    double getCoinPunish();
+    double getPointPunish();
 }

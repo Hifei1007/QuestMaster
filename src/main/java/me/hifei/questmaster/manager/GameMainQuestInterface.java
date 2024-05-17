@@ -61,9 +61,9 @@ public class GameMainQuestInterface extends QuestInterface {
                 t.teamBroadcast(Message.get("game.task.timeup2", team.name(), quest.getName()));
             }
         });
-        team.setCoin(Math.max(0, team.coin() - quest.getReward().coin() / 10));
-        team.setPoint(Math.max(0, team.point() - quest.getReward().point() / 10));
-        team.teamBroadcast(Message.get("game.task.timeup.change", quest.getReward().point() / 10, quest.getReward().coin() / 10));
+        team.setCoin(Math.max(0, team.coin() - quest.getCoinPunish()));
+        team.setPoint(Math.max(0, team.point() - quest.getPointPunish()));
+        team.teamBroadcast(Message.get("game.task.timeup.change", quest.getPointPunish(), quest.getCoinPunish()));
         ((CQuestGame) (CoreManager.game)).addQuest(team);
     }
 

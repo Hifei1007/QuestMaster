@@ -104,8 +104,8 @@ public class QuestDynamicPanel extends DynamicPanel {
         }
         getConfig().set("title", quest.getName());
         getItem(1).set("name", Message.get("quest.score", quest.getReward().score()));
-        getItem(3).set("name", Message.get("quest.point", quest.getReward().point(), quest.getReward().point() / 10));
-        getItem(5).set("name", Message.get("quest.coin", quest.getReward().coin(), quest.getReward().coin() / 10));
+        getItem(3).set("name", Message.get("quest.point", quest.getReward().point(), quest.getPointPunish()));
+        getItem(5).set("name", Message.get("quest.coin", quest.getReward().coin(), quest.getCoinPunish()));
         getItem(7).set("name", Message.get("quest.time", quest.getReward().time()));
         setItem(13, quest.getItem());
         modifyTimerBar();
