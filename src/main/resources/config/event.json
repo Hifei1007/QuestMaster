@@ -7,6 +7,7 @@
   "comingDelay": 10,
   "comingColor": "PURPLE",
   "comingStyle": "SOLID",
+  "hiddenChance": 0.2,
   "events": [
     {
       "enabled": true,
@@ -281,7 +282,8 @@
         },
         "redMessage": "&c&l红灯",
         "yellowMessage": "&e&l黄灯",
-        "greenMessage": "&a&l绿灯"
+        "greenMessage": "&a&l绿灯",
+        "hiddenChance": 0.0
       }
     },
 

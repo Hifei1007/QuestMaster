@@ -55,7 +55,7 @@ public abstract class NormalQuestEvent extends QuestEvent {
         }
         CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(timer.getProcess());
-        bossBar.setTitle(getName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()));
+        bossBar.setTitle(getDisplayName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()));
     }
 
     public @NotNull List<QuestInterface> buildInterface(Quest quest) {
@@ -100,9 +100,9 @@ public abstract class NormalQuestEvent extends QuestEvent {
         QuestMasterPlugin.logger.info("<STARTUP> " + this.getName());
         CoreManager.game.getEvents().add(this);
         CoreManager.game.runEachPlayer((player) -> {
-            player.sendMessage(Message.get("event.prefix.normal_start") + getName());
+            player.sendMessage(Message.get("event.prefix.normal_start") + getDisplayName());
             getDescriptions().forEach(player::sendMessage);
-            player.sendTitle("", Message.get("event.prefix.normal_start") + getName(), 10, 120, 20);
+            player.sendTitle("", Message.get("event.prefix.normal_start") + getDisplayName(), 10, 120, 20);
             player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, SoundCategory.MASTER, 1, 0);
         });
         onStartup();
@@ -111,7 +111,7 @@ public abstract class NormalQuestEvent extends QuestEvent {
         timer.start();
 
         bossBar = Bukkit.createBossBar(
-                getName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()),
+                getDisplayName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()),
                 getBarColor(),
                 getBarStyle()
         );

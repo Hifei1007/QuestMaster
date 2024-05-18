@@ -1,5 +1,8 @@
 package me.hifei.questmaster.api.event;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
@@ -29,12 +32,21 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
         config.time = EventConfig.cfg.comingDelay;
         config.barColor = EventConfig.cfg.comingColor;
         config.barStyle = EventConfig.cfg.comingStyle;
+        JsonObject settings = new JsonObject();
+        settings.add("hiddenChance", new JsonPrimitive(0.0));
+        config.settings = settings;
         return config;
     }
 
     public EventComingQuestEvent(QuestEvent event) {
         super(makeConfig(event));
         this.event = event;
+    }
+
+    @Override
+    public String getDisplayName() {
+        if (event instanceof InstantQuestEvent) return Message.get("event.prefix.coming_instant") + event.getDisplayName();
+        else return Message.get("event.prefix.coming_normal") + event.getDisplayName();
     }
 
     @Override
@@ -50,9 +62,9 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
         QuestMasterPlugin.logger.info("<STARTUP> " + this.getName());
         CoreManager.game.getEvents().add(this);
         CoreManager.game.runEachPlayer((player) -> {
-            player.sendMessage(getName());
+            player.sendMessage(getDisplayName());
             getDescriptions().forEach(player::sendMessage);
-            player.sendTitle("", getName(), 10, 120, 20);
+            player.sendTitle("", getDisplayName(), 10, 120, 20);
             player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, SoundCategory.MASTER, 1, 0);
         });
         onStartup();
@@ -60,7 +72,7 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
         timer.start();
 
         bossBar = Bukkit.createBossBar(
-                getName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()),
+                getDisplayName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()),
                 getBarColor(),
                 getBarStyle()
         );

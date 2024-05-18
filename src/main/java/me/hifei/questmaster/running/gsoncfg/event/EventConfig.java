@@ -17,4 +17,5 @@ public class EventConfig {
     public List<SingleEventConfig> events;
     public BarStyle comingStyle;
     public BarColor comingColor;
+    public double hiddenChance;
 }
