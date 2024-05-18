@@ -36,8 +36,10 @@
       },
       "barColor": "RED",
       "barStyle": "SOLID",
-      "weight": 3,
-      "settings": {}
+      "weight": 1,
+      "settings": {
+        "corrupted": true
+      }
     },
     {
       "enabled": true,
@@ -299,7 +301,8 @@
       "weight": 1,
       "settings": {
         "origin": 0,
-        "bound": 2
+        "bound": 2,
+        "hiddenChance": 0.0
       }
     },
     {
@@ -376,9 +379,10 @@
       "name": "&e玩家背包随机交换",
       "descriptions": [
       ],
-      "weight": 2,
+      "weight": 1,
       "settings": {
-        "type": "INVENTORY"
+        "type": "INVENTORY",
+        "corrupted": true
       }
     },
     {

@@ -50,6 +50,7 @@ public abstract class QuestEvent implements Stateful {
     protected void preprocess() {}
 
     public String getName() {
+        if (isCorrupted) return Message.get("event.prefix.corrupted") + name;
         if (isHidden) return Message.get("event.prefix.hidden") + name;
         return name;
     }
