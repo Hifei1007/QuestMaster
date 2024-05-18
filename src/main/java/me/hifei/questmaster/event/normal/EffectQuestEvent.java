@@ -32,8 +32,9 @@ public class EffectQuestEvent extends NormalQuestEvent {
 
     protected void tick() {
         super.tick();
+        if (timer.totalRemainingSecond() > 10)
         CoreManager.game.runEachPlayer((player) -> player.addPotionEffect(
-                new PotionEffect(type, 20, 0)
+                new PotionEffect(type, 200, 0)
         ));
     }
 }
