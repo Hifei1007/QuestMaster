@@ -5,6 +5,7 @@ build/
 !**/src/test/**/build/
 out/
 todo.txt
+README.md
 
 ### IntelliJ IDEA ###
 .idea/
