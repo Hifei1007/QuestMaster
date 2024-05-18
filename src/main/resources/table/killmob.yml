@@ -1,69 +1,78 @@
 items:
   - multi:
-    - diff: 12
-      aliases:
-        - chicken
-        - pig
-        - cow
-        - sheep
-        - rabbit
-    - diff: 10
-      aliases:
-        - squid
-        - cod
-        - salmon
-    - diff: 50
-      name: allay
-      basediff: 200
-    - diff: 25
-      name: mushroom_cow
-      basediff: 500
-    - diff: 25
-      aliases:
-        - frog
-        - tadpole
-        - pufferfish
-      basediff: 300
-    - diff: 150
-      name: mule
-    - diff: 50
-      aliases:
-        - bat
-        - horse
-        - donkey
-        - turtle
-        - cat
+      - diff: 12
+        aliases:
+          - chicken
+          - pig
+          - cow
+          - sheep
+          - rabbit
+      - diff: 10
+        name: salmon
+      - diff: 20
+        name: squid
+      - diff: 20
+        name: cod
+        basediff: 100
+      - diff: 35
+        name: pufferfish
+        basediff: 1000
+      - diff: 500
+        name: allay
+        basediff: 1000
+      - diff: 30
+        name: mushroom_cow
+        basediff: 3000
+      - diff: 50
+        aliases:
+          - frog
+          - tadpole
+        basediff: 1000
+      - diff: 500
+        name: mule
+      - diff: 20
+        name: bat
+      - diff: 150
+        aliases:
+          - horse
+          - donkey
+          - turtle
+          - cat
   - multi:
-    - diff: 10
-      aliases:
-        - husk
-        - drowned
-        - zombie
-        - zombified_piglin
-        - skeleton
-        - spider
-    - diff: 10
-      aliases:
-        - stray
-        - cave_spider
-      basediff: 200
-    - diff: 25
-      name: slime
-      basediff: 300
-    - diff: 20
-      aliases:
-        - zombie_villager
-        - witch
-    - diff: 15
-      aliases:
-        - piglin
-        - enderman
-        - magma_cube
-        - hoglin
-    - diff: 15
-      aliases:
-        - blaze
-        - wither_skeleton
-      basediff: 200
-    - diff: 100
-      name: iron_golem
+      - diff: 10
+        aliases:
+          - drowned
+          - zombie
+          - zombified_piglin
+          - skeleton
+          - spider
+      - diff: 10
+        name: zombified_piglin
+        basediff: 100
+      - diff: 10
+        aliases:
+          - stray
+          - husk
+          - cave_spider
+        basediff: 500
+      - diff: 25
+        name: slime
+        basediff: 1000
+      - diff: 100
+        aliases:
+          - zombie_villager
+          - witch
+      - diff: 35
+        aliases:
+          - piglin
+          - enderman
+          - magma_cube
+          - hoglin
+        basediff: 100
+      - diff: 25
+        aliases:
+          - blaze
+          - wither_skeleton
+        basediff: 500
+      - diff: 300
+        name: iron_golem
