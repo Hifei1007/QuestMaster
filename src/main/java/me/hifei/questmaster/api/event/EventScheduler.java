@@ -33,6 +33,7 @@ public final class EventScheduler extends NormalQuestEvent {
         ScheduleEvent event = new ScheduleEvent(time, this);
         Bukkit.getPluginManager().callEvent(event);
         time = event.getScheduleTime();
+        if (time <= 1) time = 1;
         this.startup();
     }
 
