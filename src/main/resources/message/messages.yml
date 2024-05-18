@@ -65,7 +65,7 @@ quest.button_text: "&e点击查看"
 quest.process_bar: "&c%s &e%s/%s &a&l(%.2f%s)"
 
 scoreboard.name: "&e&l任务大师"
-scoreboard.date: "&7%s &8QuestMaster v1.2"
+scoreboard.date: "&7%s &8QuestMaster v1.3.0-pre1"
 scoreboard.empty: ""
 scoreboard.team: "%s &e%.2f &b%.2f &6%.2f"
 scoreboard.score: "&e%s&7 [&c%.2f&7 / &9%.2f&7]"

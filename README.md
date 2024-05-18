@@ -1,5 +1,5 @@
 # 任务大师 (QuestMaster)
-![](https://img.shields.io/badge/version-1.2-violet)
+![](https://img.shields.io/badge/version-1.3.0pre1-violet)
 ![](https://img.shields.io/github/commit-activity/m/Hifei1007/QuestMaster)
 ![](https://img.shields.io/github/last-commit/Hifei1007/QuestMaster)
 [![](https://img.shields.io/github/license/Hifei1007/QuestMaster)](https://github.com/Hifei1007/QuestMaster/blob/master/LICENSE)
