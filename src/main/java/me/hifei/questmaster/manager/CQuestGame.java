@@ -158,6 +158,8 @@ public class CQuestGame implements QuestGame {
 
         Bukkit.broadcastMessage(Message.get("game.teleporting.message"));
 
+        ActionTool.actionMap.clear();
+
         World overworld = Bukkit.getWorld("world");
         assert overworld != null;
 
