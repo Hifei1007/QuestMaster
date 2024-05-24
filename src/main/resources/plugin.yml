@@ -4,6 +4,7 @@ name: QuestMaster
 api-version: 1.20
 depend:
   - CommandPanels
+  - CrazyAdvancementAPI
 commands:
   questaction:
     description: a command
