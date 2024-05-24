@@ -21,7 +21,6 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:24.0.1'
     compileOnly 'com.mojang:brigadier:1.0.18'
     compileOnly 'com.mojang:authlib:3.2.38'
-    compileOnly 'com.github.ZockerAxel:CrazyAdvancementsAPI:v2.1.15'
     compileOnly fileTree(dir: 'libraries', includes: ['*jar'])
 }
 
