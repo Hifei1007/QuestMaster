@@ -27,6 +27,8 @@ public interface QuestTeam {
 
     void removePlayer(@NotNull Player player);
 
+    void makeNewQuest();
+
     void clear();
 
     void init();

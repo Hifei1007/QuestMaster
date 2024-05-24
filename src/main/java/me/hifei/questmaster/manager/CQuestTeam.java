@@ -118,6 +118,11 @@ public class CQuestTeam implements QuestTeam {
     }
 
     @Override
+    public void makeNewQuest() {
+        ((CQuestGame) CoreManager.game).addQuest(this);
+    }
+
+    @Override
     public void clear() {
         List<Player> m = List.of(members.toArray(new Player[0]));
         for (Player player : m) removePlayer(player);
