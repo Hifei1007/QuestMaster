@@ -21,7 +21,6 @@ public interface Quest extends Stateful{
     @SuppressWarnings("unused")
     boolean isCompleted();
     @SuppressWarnings("unused")
-    @NotNull List<QuestInterface> interfaces();
     void complete();
     void timeUp();
     @NotNull String getName();

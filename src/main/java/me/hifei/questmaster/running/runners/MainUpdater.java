@@ -2,6 +2,8 @@ package me.hifei.questmaster.running.runners;
 
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.ExceptionLock;
+import me.hifei.questmaster.api.quest.Quest;
+import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
@@ -44,6 +46,11 @@ public class MainUpdater extends BukkitRunnable {
                 }
             }
             for (Player player : Bukkit.getOnlinePlayers()) updateTab(player);
+            for (QuestTeam team : CoreManager.manager.getTeams()) {
+                for (Quest quest : team.getQuests()) {
+                    if (quest.getTimer().isTimeUp() && quest.getState() == State.STARTUP) quest.timeUp();
+                }
+            }
         });
     }
 }

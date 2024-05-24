@@ -4,7 +4,6 @@ import me.hifei.questmaster.api.QuestGame;
 import me.hifei.questmaster.api.QuestManager;
 import me.hifei.questmaster.api.event.QuestEvent;
 import me.hifei.questmaster.api.quest.Quest;
-import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.QuestType;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
@@ -36,8 +35,8 @@ public class CQuestManager implements QuestManager {
     }
 
     @Override
-    public @NotNull Quest createQuest(@NotNull QuestType qt, @NotNull QuestTeam team, QuestInterface... interfaces) {
-        return new CQuest(qt, team, interfaces);
+    public @NotNull Quest createQuest(@NotNull QuestType qt, @NotNull QuestTeam team) {
+        return new CQuest(qt, team);
     }
 
     @Override

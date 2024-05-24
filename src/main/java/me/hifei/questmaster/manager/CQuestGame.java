@@ -214,7 +214,7 @@ public class CQuestGame implements QuestGame {
     }
 
     public void addQuest(@NotNull QuestTeam team) {
-        Quest quest = CoreManager.manager.createQuest(CoreManager.manager.createType(), team, new GameMainQuestInterface(team));
+        Quest quest = CoreManager.manager.createQuest(CoreManager.manager.createType(), team);
         quest.startup();
         team.getQuests().add(quest);
         runEachTeam(t -> {

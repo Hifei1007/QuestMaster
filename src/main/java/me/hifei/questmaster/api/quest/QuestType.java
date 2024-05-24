@@ -24,8 +24,6 @@ public interface QuestType{
 
     double difficultValue();
 
-    @NotNull List<QuestInterface> interfaces();
-
     @NotNull String name();
 
     int totalCount();

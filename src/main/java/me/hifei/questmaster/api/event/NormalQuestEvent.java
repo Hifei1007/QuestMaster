@@ -3,8 +3,6 @@ package me.hifei.questmaster.api.event;
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.ExceptionLock;
-import me.hifei.questmaster.api.quest.Quest;
-import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.config.Message;
@@ -20,8 +18,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 @SuppressWarnings("unused")
 public abstract class NormalQuestEvent extends QuestEvent {
@@ -56,10 +52,6 @@ public abstract class NormalQuestEvent extends QuestEvent {
         CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(timer.getProcess());
         bossBar.setTitle(getDisplayName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()));
-    }
-
-    public @NotNull List<QuestInterface> buildInterface(Quest quest) {
-        return List.of();
     }
 
     protected int time() {

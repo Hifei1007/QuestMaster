@@ -14,6 +14,8 @@ import me.hifei.questmaster.running.gsoncfg.rolling.QuestTypeConfig;
 import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import me.hifei.questmaster.running.listeners.ChatListener;
 import me.hifei.questmaster.running.listeners.DeathListener;
+import me.hifei.questmaster.running.listeners.QuestBroadcastListener;
+import me.hifei.questmaster.running.listeners.QuestRewardListener;
 import me.hifei.questmaster.running.runners.MainUpdater;
 import me.hifei.questmaster.ui.core.DynamicPanel;
 import me.hifei.questmaster.ui.core.GUIListener;
@@ -80,6 +82,8 @@ public class QuestMasterPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
         Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new QuestRewardListener(), this);
+        Bukkit.getPluginManager().registerEvents(new QuestBroadcastListener(), this);
 
         loadTables();
         registerQuestType();

@@ -65,11 +65,6 @@ public abstract class AbstractQuestType<T> implements QuestType {
     }
 
     @Override
-    public @NotNull List<QuestInterface> interfaces() {
-        return List.of();
-    }
-
-    @Override
     public int totalCount() {
         return totalCount;
     }

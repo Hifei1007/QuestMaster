@@ -2,11 +2,14 @@ package me.hifei.questmaster.manager;
 
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
+import me.hifei.questmaster.api.bukkitevent.QuestCompleteEvent;
+import me.hifei.questmaster.api.bukkitevent.QuestTimeUpEvent;
 import me.hifei.questmaster.api.event.NormalQuestEvent;
 import me.hifei.questmaster.api.quest.*;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.running.config.Message;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -20,15 +23,11 @@ public class CQuest implements Quest {
     private final @NotNull Timer timer;
     private final @NotNull Reward finalReward;
     private @NotNull State state = State.WAIT;
-    private final @NotNull List<QuestInterface> interfaces;
 
-    CQuest(@NotNull QuestType qt, QuestTeam team, QuestInterface... interfaces) {
+    CQuest(@NotNull QuestType qt, QuestTeam team) {
         questType = qt;
         this.team = team;
         timer = new Timer(questType.time());
-        List<QuestInterface> tmp_if = new ArrayList<>(List.of(interfaces));
-        tmp_if.addAll(qt.interfaces());
-        this.interfaces = tmp_if;
         finalReward = qt.baseReward().multi(qt.difficultValue() / 5);
     }
 
@@ -75,26 +74,22 @@ public class CQuest implements Quest {
     }
 
     @Override
-    public @NotNull List<QuestInterface> interfaces() {
-        List<QuestInterface> tmp = new ArrayList<>(interfaces);
-        for (NormalQuestEvent event : CoreManager.game.getEvents()) {
-            tmp.addAll(event.buildInterface(this));
-        }
-        return tmp;
-    }
-
-    @Override
     public void complete() {
-        for (QuestInterface questInterface : interfaces()) {
-            questInterface.complete();
-        }
+        QuestCompleteEvent event = new QuestCompleteEvent(this);
+        Bukkit.getPluginManager().callEvent(event);
+        drop();
+        team.getQuests().remove(this);
+        CoreManager.game.checkScore(team);
+        team.makeNewQuest();
     }
 
     @Override
     public void timeUp() {
-        for (QuestInterface questInterface : interfaces()) {
-            questInterface.timeUp();
-        }
+        QuestTimeUpEvent event = new QuestTimeUpEvent(this);
+        Bukkit.getPluginManager().callEvent(event);
+        drop();
+        team.getQuests().remove(this);
+        team.makeNewQuest();
     }
 
     @Override
@@ -160,9 +155,6 @@ public class CQuest implements Quest {
         state = State.STARTUP;
         timer.start();
         questType.sendQuestObject(this);
-        for (QuestInterface questInterface : interfaces()) {
-            questInterface.startup(this);
-        }
     }
 
     @Override
@@ -170,9 +162,6 @@ public class CQuest implements Quest {
         if (state != State.STARTUP) return;
         QuestMasterPlugin.logger.info("Drop quest %s".formatted(getName()));
         state = State.DROP;
-        for (QuestInterface questInterface : interfaces()) {
-            questInterface.drop();
-        }
     }
 
     @Override

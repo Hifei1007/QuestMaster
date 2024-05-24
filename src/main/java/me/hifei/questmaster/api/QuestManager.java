@@ -2,7 +2,6 @@ package me.hifei.questmaster.api;
 
 import me.hifei.questmaster.api.event.QuestEvent;
 import me.hifei.questmaster.api.quest.Quest;
-import me.hifei.questmaster.api.quest.QuestInterface;
 import me.hifei.questmaster.api.quest.QuestType;
 import me.hifei.questmaster.api.team.QuestTeam;
 import me.hifei.questmaster.api.team.QuestTeamScoreboard;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public interface QuestManager {
 
-    @NotNull Quest createQuest(@NotNull QuestType qt, @NotNull QuestTeam team, @NotNull QuestInterface... interfaces);
+    @NotNull Quest createQuest(@NotNull QuestType qt, @NotNull QuestTeam team);
 
     @NotNull QuestTeam createTeam(@NotNull String name, @NotNull ChatColor color);
 
