@@ -4,8 +4,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
 public interface QuestType{
     @SuppressWarnings("unused")
     @NotNull Quest quest();

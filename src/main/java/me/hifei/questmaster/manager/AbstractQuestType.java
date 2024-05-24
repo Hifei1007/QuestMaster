@@ -6,8 +6,6 @@ import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import me.hifei.questmaster.tools.DifficultTool;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
 public abstract class AbstractQuestType<T> implements QuestType {
     protected final TableItem<T> item;
     protected int currentCount = 0;

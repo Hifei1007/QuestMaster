@@ -4,7 +4,6 @@ import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.QuestMasterPlugin;
 import me.hifei.questmaster.api.bukkitevent.QuestCompleteEvent;
 import me.hifei.questmaster.api.bukkitevent.QuestTimeUpEvent;
-import me.hifei.questmaster.api.event.NormalQuestEvent;
 import me.hifei.questmaster.api.quest.*;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
@@ -14,7 +13,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CQuest implements Quest {

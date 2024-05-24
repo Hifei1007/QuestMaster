@@ -6,8 +6,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
 public interface Quest extends Stateful{
     @NotNull Timer getTimer();
     @NotNull QuestType getType();
