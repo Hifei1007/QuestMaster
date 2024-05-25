@@ -6,11 +6,9 @@ import me.hifei.questmaster.api.event.EventComingQuestEvent;
 import me.hifei.questmaster.api.event.EventScheduler;
 import me.hifei.questmaster.api.event.NormalQuestEvent;
 import me.hifei.questmaster.api.event.QuestEvent;
-import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.state.Stateful;
 import me.hifei.questmaster.api.team.QuestTeam;
-import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.running.gsoncfg.rolling.RollingConfig;
 import me.hifei.questmaster.running.gsoncfg.rolling.TeleportConfig;
@@ -28,8 +26,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class CQuestGame implements QuestGame {
     private final int goal;

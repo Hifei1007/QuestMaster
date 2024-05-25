@@ -5,7 +5,6 @@ import me.hifei.questmaster.api.ExceptionLock;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
-import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.ActionTool;
 import org.bukkit.Bukkit;

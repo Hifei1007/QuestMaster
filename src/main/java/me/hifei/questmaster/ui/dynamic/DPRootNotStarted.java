@@ -9,7 +9,6 @@ import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Objects;
 
 public class DPRootNotStarted extends DynamicPanel {
