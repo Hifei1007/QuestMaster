@@ -16,7 +16,7 @@ public class InventoryBreakQuestEvent extends InstantQuestEvent {
     @Override
     public void doChange() {
         IntegerBoundConfig boundConfig = loadSettings(IntegerBoundConfig.class);
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             Inventory inventory = player.getInventory();
             for (int i = 0; i < inventory.getSize(); i++) {
                 if (boundConfig.next() == 0) inventory.setItem(i, null);

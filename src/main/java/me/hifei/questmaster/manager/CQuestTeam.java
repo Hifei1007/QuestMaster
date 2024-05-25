@@ -1,16 +1,23 @@
 package me.hifei.questmaster.manager;
 
+import eu.endercentral.crazy_advancements.advancement.AdvancementDisplay;
+import eu.endercentral.crazy_advancements.advancement.ToastNotification;
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
+import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.api.team.QuestTeam;
+import me.hifei.questmaster.api.team.QuestTeamScoreboard;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.shop.DamageUpgrade;
 import me.hifei.questmaster.shop.DefenseUpgrade;
 import me.hifei.questmaster.shop.Upgrade;
 import me.hifei.questmaster.shop.teamchest.TeamChestUpgrade;
+import me.hifei.questmaster.tools.ActionTool;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -28,6 +35,7 @@ public class CQuestTeam implements QuestTeam {
     private final @NotNull List<Player> members;
     private final @NotNull ChatColor color;
     private final @NotNull List<Location> locations;
+    private QuestTeamScoreboard scoreboard;
 
     public int hashCode() {
         return name.hashCode();
@@ -105,7 +113,7 @@ public class CQuestTeam implements QuestTeam {
         player.setDisplayName(color + player.getName() + ChatColor.RESET);
         player.setPlayerListName(color + player.getName() + ChatColor.RESET);
         teamBroadcast(Message.get("team.join", player.getDisplayName()));
-        if (CoreManager.isGameStart()) player.setScoreboard(CoreManager.game.getScoreboardMapping().get(this).getBukkit());
+        if (CoreManager.isGameStart()) player.setScoreboard(getScoreboard().getBukkit());
     }
 
     @Override
@@ -119,7 +127,24 @@ public class CQuestTeam implements QuestTeam {
 
     @Override
     public void makeNewQuest() {
-        ((CQuestGame) CoreManager.game).addQuest(this);
+        Quest quest = CoreManager.manager.createQuest(CoreManager.manager.createType(), this);
+        quest.startup();
+        getQuests().add(quest);
+        CoreManager.manager.runEachTeam(t -> {
+            if (t == this) {
+                for (Player player : t.members()) {
+                    player.spigot().sendMessage(
+                            Message.getComponent("game.task.get1", quest.getName()),
+                            ActionTool.addAction(Message.getComponent("game.task.get.action"), sender -> {
+                                        if (!(sender instanceof Player p)) return;
+                                        if (quest.getState() == State.DROP) return;
+                                        quest.openPanel(p);
+                                    }));
+                }
+            } else {
+                t.teamBroadcast(Message.get("game.task.get2", name(), quest.getName()));
+            }
+        });
     }
 
     @Override
@@ -141,6 +166,17 @@ public class CQuestTeam implements QuestTeam {
     @Override
     public void teamBroadcast(@NotNull String message) {
         for (Player player : members()) player.sendMessage(message);
+    }
+
+    @Override
+    public void teamToast(@NotNull ItemStack icon, @NotNull String description, AdvancementDisplay.@NotNull AdvancementFrame frame) {
+        ToastNotification notification = new ToastNotification(icon, description, frame);
+        for (Player player : members()) notification.send(player);
+    }
+
+    @Override
+    public void teamToast(@NotNull Material icon, @NotNull String description, AdvancementDisplay.@NotNull AdvancementFrame frame) {
+        teamToast(new ItemStack(icon), description, frame);
     }
 
     @Override
@@ -171,5 +207,15 @@ public class CQuestTeam implements QuestTeam {
     @Override
     public void setCoin(double coin) {
         this.coin = coin;
+    }
+
+    @Override
+    public QuestTeamScoreboard getScoreboard() {
+        return scoreboard;
+    }
+
+    @Override
+    public void setScoreboard(QuestTeamScoreboard scoreboard) {
+        this.scoreboard = scoreboard;
     }
 }

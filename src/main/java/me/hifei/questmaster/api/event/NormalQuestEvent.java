@@ -49,7 +49,7 @@ public abstract class NormalQuestEvent extends QuestEvent {
             drop();
             return;
         }
-        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
+        CoreManager.manager.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(timer.getProcess());
         bossBar.setTitle(getDisplayName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()));
     }
@@ -91,7 +91,7 @@ public abstract class NormalQuestEvent extends QuestEvent {
         state = State.STARTUP;
         QuestMasterPlugin.logger.info("<STARTUP> " + this.getName());
         CoreManager.game.getEvents().add(this);
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             player.sendMessage(Message.get("event.prefix.normal_start") + getDisplayName());
             getDescriptions().forEach(player::sendMessage);
             player.sendTitle("", Message.get("event.prefix.normal_start") + getDisplayName(), 10, 120, 20);
@@ -108,7 +108,7 @@ public abstract class NormalQuestEvent extends QuestEvent {
                 getBarStyle()
         );
         bossBar.setVisible(true);
-        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
+        CoreManager.manager.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(1);
 
         runnable = new BukkitRunnable() {
@@ -134,7 +134,7 @@ public abstract class NormalQuestEvent extends QuestEvent {
         state = State.DROP;
         QuestMasterPlugin.logger.info("<DROP> " + this.getName());
         CoreManager.game.getEvents().remove(this);
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             player.sendMessage(Message.get("event.prefix.normal_stop") + getName());
             player.sendTitle("", Message.get("event.prefix.normal_stop") + getName(), 10, 120, 20);
             player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, SoundCategory.MASTER, 1, 0);

@@ -12,6 +12,6 @@ public class HungerClearQuestEvent extends InstantQuestEvent {
 
     @Override
     public void doChange() {
-        CoreManager.game.runEachPlayer((player) -> player.setFoodLevel(0));
+        CoreManager.manager.runEachPlayer((player) -> player.setFoodLevel(0));
     }
 }

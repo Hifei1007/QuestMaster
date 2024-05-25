@@ -15,12 +15,7 @@ import java.util.function.Consumer;
 public interface QuestGame extends Stateful  {
     List<NormalQuestEvent> getEvents();
     void appendEvent(QuestEvent event);
-    @SuppressWarnings("unused")
-    List<QuestTeam> getTeams();
-    void runEachTeam(Consumer<QuestTeam> consumer);
-    @NotNull Map<QuestTeam, QuestTeamScoreboard> getScoreboardMapping();
     int getGoal();
     List<Player> getPlayers();
-    void runEachPlayer(Consumer<Player> consumer);
     void checkScore(QuestTeam team);
 }

@@ -12,7 +12,7 @@ public class HalfHealthQuestEvent extends InstantQuestEvent {
 
     @Override
     public void doChange() {
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             if (player.getHealth() > 0.2) player.setHealth(0.1);
         });
     }

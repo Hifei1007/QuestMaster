@@ -36,9 +36,9 @@ public class ModifyTeamStatQuestEvent extends InstantQuestEvent {
     public void doChange() {
         Target target = loadSettings(Settings.class).target;
         if (target == Target.COIN) {
-            CoreManager.game.runEachTeam((team) -> team.setCoin(team.coin() * mul));
-        } else {
-            CoreManager.game.runEachTeam((team) -> team.setPoint(team.point() * mul));
+            CoreManager.manager.runEachTeam((team) -> team.setCoin(team.coin() * mul));
+        } else if (target == Target.POINT) {
+            CoreManager.manager.runEachTeam((team) -> team.setPoint(team.point() * mul));
         }
     }
 }

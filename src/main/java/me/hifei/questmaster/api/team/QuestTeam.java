@@ -1,10 +1,13 @@
 package me.hifei.questmaster.api.team;
 
+import eu.endercentral.crazy_advancements.advancement.AdvancementDisplay;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.shop.Upgrade;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -35,6 +38,10 @@ public interface QuestTeam {
 
     void teamBroadcast(@NotNull String message);
 
+    void teamToast(@NotNull ItemStack icon, @NotNull String description, @NotNull AdvancementDisplay.AdvancementFrame frame);
+
+    void teamToast(@NotNull Material icon, @NotNull String description, @NotNull AdvancementDisplay.AdvancementFrame frame);
+
     double score();
 
     double point();
@@ -46,4 +53,7 @@ public interface QuestTeam {
     void setPoint(double point);
 
     void setCoin(double coin);
+
+    QuestTeamScoreboard getScoreboard();
+    void setScoreboard(QuestTeamScoreboard scoreboard);
 }

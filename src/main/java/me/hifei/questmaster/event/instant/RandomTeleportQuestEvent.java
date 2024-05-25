@@ -17,7 +17,7 @@ public class RandomTeleportQuestEvent extends InstantQuestEvent {
 
     @Override
     public void doChange() {
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             List<Entity> targets = Bukkit.selectEntities(player, "@e[distance=..128]");
             if (targets.isEmpty()) return;
             Entity target = targets.get(new Random().nextInt(targets.size()));

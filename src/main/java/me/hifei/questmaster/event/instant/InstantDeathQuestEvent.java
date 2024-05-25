@@ -12,6 +12,6 @@ public class InstantDeathQuestEvent extends InstantQuestEvent {
 
     @Override
     public void doChange() {
-        CoreManager.game.runEachPlayer((player) -> player.damage(10000, player));
+        CoreManager.manager.runEachPlayer((player) -> player.damage(10000, player));
     }
 }

@@ -60,7 +60,7 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
         state = State.STARTUP;
         QuestMasterPlugin.logger.info("<STARTUP> " + this.getName());
         CoreManager.game.getEvents().add(this);
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             player.sendMessage(getDisplayName());
             getDescriptions().forEach(player::sendMessage);
             player.sendTitle("", getDisplayName(), 10, 120, 20);
@@ -76,7 +76,7 @@ public final class EventComingQuestEvent extends NormalQuestEvent {
                 getBarStyle()
         );
         bossBar.setVisible(true);
-        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
+        CoreManager.manager.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(1);
 
         runnable = new BukkitRunnable() {

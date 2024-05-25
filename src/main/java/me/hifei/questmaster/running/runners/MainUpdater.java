@@ -13,6 +13,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainUpdater extends BukkitRunnable {
     private final ExceptionLock lock = new ExceptionLock();
 
@@ -41,16 +44,15 @@ public class MainUpdater extends BukkitRunnable {
         lock.run(() -> {
             ActionTool.tick();
             if (CoreManager.isGameStart()) {
-                for (QuestTeamScoreboard scoreboard : CoreManager.game.getScoreboardMapping().values()) {
-                    scoreboard.refresh();
-                }
+                CoreManager.manager.runEachTeam(team -> {
+                    team.getScoreboard().refresh();
+                    List<Quest> questList = new ArrayList<>(team.getQuests());
+                    for (Quest quest : questList) {
+                        if (quest.getTimer().isTimeUp() && quest.getState() == State.STARTUP) quest.timeUp();
+                    }
+                });
             }
             for (Player player : Bukkit.getOnlinePlayers()) updateTab(player);
-            for (QuestTeam team : CoreManager.manager.getTeams()) {
-                for (Quest quest : team.getQuests()) {
-                    if (quest.getTimer().isTimeUp() && quest.getState() == State.STARTUP) quest.timeUp();
-                }
-            }
         });
     }
 }

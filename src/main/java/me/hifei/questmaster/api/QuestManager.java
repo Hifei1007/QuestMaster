@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public interface QuestManager {
 
@@ -29,7 +30,7 @@ public interface QuestManager {
 
     @NotNull List<QuestTeam> getTeams();
 
-    @NotNull QuestGame createGame(@NotNull List<QuestTeam> teams, int goal);
+    @NotNull QuestGame createGame(int goal);
 
     @NotNull QuestType createType();
 
@@ -40,4 +41,6 @@ public interface QuestManager {
     void registerType(Class<? extends QuestType> questTypeClass, int weight);
 
     @NotNull QuestTeamScoreboard createScoreboard(QuestGame game, QuestTeam team);
+    void runEachPlayer(Consumer<Player> consumer);
+    void runEachTeam(Consumer<QuestTeam> consumer);
 }

@@ -46,7 +46,7 @@ public class RedGreenLightQuestEvent extends NormalQuestEvent {
     protected void tick() {
         super.tick();
         if (lightTimer.isTimeUp()) {
-            CoreManager.game.runEachPlayer((player) -> player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, 1, 0));
+            CoreManager.manager.runEachPlayer((player) -> player.playSound(player, Sound.ENTITY_ARROW_HIT_PLAYER, 1, 0));
             switch (state) {
                 case GREEN -> {
                     state = LightState.YELLOW;
@@ -68,7 +68,7 @@ public class RedGreenLightQuestEvent extends NormalQuestEvent {
         if (actionTime == 0) actionTime = 20;
         actionTime--;
         if (actionTime == 0) return;
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             switch (state) {
                 case GREEN -> player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                         new TextComponent(settings.greenMessage.replace('&', ChatColor.COLOR_CHAR)));

@@ -14,13 +14,12 @@ public class RollQuestEvent extends InstantQuestEvent {
 
     @Override
     public void doChange() {
-        CoreManager.game.runEachTeam((team) -> {
+        CoreManager.manager.runEachTeam((team) -> {
             team.getQuests().forEach(Stateful::drop);
             team.getQuests().clear();
-            CQuestGame game = (CQuestGame) CoreManager.game;
-            game.addQuest(team);
-            game.addQuest(team);
-            game.addQuest(team);
+            team.makeNewQuest();
+            team.makeNewQuest();
+            team.makeNewQuest();
         });
     }
 }

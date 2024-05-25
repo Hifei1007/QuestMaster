@@ -14,7 +14,7 @@ public class NoJumpQuestEvent extends NormalQuestEvent {
 
     protected void tick() {
         super.tick();
-        CoreManager.game.runEachPlayer((player) -> player.addPotionEffect(new PotionEffect(
+        CoreManager.manager.runEachPlayer((player) -> player.addPotionEffect(new PotionEffect(
                 PotionEffectType.JUMP,
                 3,
                 128,

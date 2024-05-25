@@ -1,5 +1,6 @@
 package me.hifei.questmaster.manager;
 
+import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.QuestGame;
 import me.hifei.questmaster.api.QuestManager;
 import me.hifei.questmaster.api.event.QuestEvent;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class CQuestManager implements QuestManager {
     private record WeightedQuestType(Class<? extends QuestType> questType, int weight) {
@@ -80,8 +82,8 @@ public class CQuestManager implements QuestManager {
     }
 
     @Override
-    public @NotNull QuestGame createGame(@NotNull List<QuestTeam> teams, int goal) {
-        return new CQuestGame(teams, goal);
+    public @NotNull QuestGame createGame(int goal) {
+        return new CQuestGame(goal);
     }
 
     private @NotNull QuestType createTypeByClass(Class<? extends QuestType> qtClass) {
@@ -134,5 +136,17 @@ public class CQuestManager implements QuestManager {
     @Override
     public @NotNull QuestTeamScoreboard createScoreboard(QuestGame game, QuestTeam team) {
         return new CQuestTeamScoreboard(game, team);
+    }
+
+    @Override
+    public void runEachPlayer(Consumer<Player> consumer) {
+        for (Player player : CoreManager.game.getPlayers()) {
+            consumer.accept(player);
+        }
+    }
+
+    @Override
+    public void runEachTeam(Consumer<QuestTeam> consumer) {
+        for (QuestTeam team : getTeams()) consumer.accept(team);
     }
 }

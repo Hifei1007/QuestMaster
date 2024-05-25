@@ -12,6 +12,6 @@ public class HungerClearNormalQuestEvent extends NormalQuestEvent {
 
     protected void tick() {
         super.tick();
-        CoreManager.game.runEachPlayer((player) -> player.setFoodLevel(0));
+        CoreManager.manager.runEachPlayer((player) -> player.setFoodLevel(0));
     }
 }

@@ -12,6 +12,6 @@ public class ClearLocationQuestEvent extends InstantQuestEvent {
 
     @Override
     public void doChange() {
-        CoreManager.game.runEachTeam((team) -> team.locations().clear());
+        CoreManager.manager.runEachTeam((team) -> team.locations().clear());
     }
 }

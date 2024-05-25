@@ -32,17 +32,14 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class CQuestGame implements QuestGame {
-    private final List<QuestTeam> teams;
     private final int goal;
     private @NotNull State state = State.WAIT;
-    private final Map<QuestTeam, QuestTeamScoreboard> scoreboardMap = new HashMap<>();
     private final List<NormalQuestEvent> events = new ArrayList<>();
 
-    CQuestGame(List<QuestTeam> teams, int goal) {
-        this.teams = teams;
+    CQuestGame(int goal) {
         this.goal = goal;
-        for (QuestTeam team : teams) {
-            scoreboardMap.put(team, CoreManager.manager.createScoreboard(this, team));
+        for (QuestTeam team : CoreManager.manager.getTeams()) {
+            team.setScoreboard(CoreManager.manager.createScoreboard(CoreManager.game, team));
         }
     }
 
@@ -58,21 +55,6 @@ public class CQuestGame implements QuestGame {
         events.add(e);
     }
 
-    @Override
-    public List<QuestTeam> getTeams() {
-        return teams;
-    }
-
-    @Override
-    public void runEachTeam(@NotNull Consumer<QuestTeam> consumer) {
-        for (QuestTeam team : getTeams()) consumer.accept(team);
-    }
-
-    @Override
-    public @NotNull Map<QuestTeam, QuestTeamScoreboard> getScoreboardMapping() {
-        return scoreboardMap;
-    }
-
 
     @Override
     public int getGoal() {
@@ -80,21 +62,18 @@ public class CQuestGame implements QuestGame {
     }
 
     @Override
-    public @NotNull List<Player> getPlayers() {
-        List<Player> list = new ArrayList<>();
-        runEachTeam((t) -> list.addAll(t.members()));
-        return list;
-    }
-
-    @Override
-    public void runEachPlayer(@NotNull Consumer<Player> consumer) {
-        for (Player player : getPlayers()) consumer.accept(player);
+    public List<Player> getPlayers() {
+        ArrayList<Player> players = new ArrayList<>();
+        CoreManager.manager.runEachTeam(team ->
+                players.addAll(team.members())
+        );
+        return players;
     }
 
     @Override
     public void checkScore(@NotNull QuestTeam team) {
         if (team.score() >= goal) {
-            runEachPlayer(player -> {
+            CoreManager.manager.runEachPlayer(player -> {
                 player.sendMessage(Message.get("game.victory.message", team.name()));
                 player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
                 player.sendTitle(
@@ -131,7 +110,7 @@ public class CQuestGame implements QuestGame {
                 progress.revokeCriteria(string);
             }
         });
-        player.setScoreboard(scoreboardMap.get(CoreManager.manager.getTeam(player)).getBukkit());
+        player.setScoreboard(Objects.requireNonNull(CoreManager.manager.getTeam(player)).getScoreboard().getBukkit());
         player.playSound(player, Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
         player.sendTitle(
                 Message.get("game.start.title"),
@@ -163,7 +142,7 @@ public class CQuestGame implements QuestGame {
         World overworld = Bukkit.getWorld("world");
         assert overworld != null;
 
-        runEachPlayer(player -> {
+        CoreManager.manager.runEachPlayer(player -> {
             player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10 * 60 * 20, 0, false, false, false));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 10 * 60 * 20, 0, false, false, false));
             player.teleport(new Location(overworld, 0, 10000, 0));
@@ -176,10 +155,10 @@ public class CQuestGame implements QuestGame {
         } while (overworld.getBlockAt(c).getType() == Material.WATER);
         Location center = c;
 
-        runEachTeam(team -> {
+        CoreManager.manager.runEachTeam(team -> {
             team.init();
             for (int i = 1; i <= 3; i++) {
-                addQuest(team);
+                team.makeNewQuest();
             }
             for (Upgrade upgrade : team.getUpgrades().values()) {
                 upgrade.startup();
@@ -213,39 +192,18 @@ public class CQuestGame implements QuestGame {
         Bukkit.broadcastMessage(Message.get("game.start.message", goal));
     }
 
-    public void addQuest(@NotNull QuestTeam team) {
-        Quest quest = CoreManager.manager.createQuest(CoreManager.manager.createType(), team);
-        quest.startup();
-        team.getQuests().add(quest);
-        runEachTeam(t -> {
-            if (t == team) {
-                for (Player player : t.members()) {
-                    player.spigot().sendMessage(
-                            Message.getComponent("game.task.get1", quest.getName()),
-                            ActionTool.addAction(Message.getComponent("game.task.get.action"), sender -> {
-                                        if (!(sender instanceof Player p)) return;
-                                        if (quest.getState() == State.DROP) return;
-                                        quest.openPanel(p);
-                                    }));
-                }
-            } else {
-                t.teamBroadcast(Message.get("game.task.get2", team.name(), quest.getName()));
-            }
-        });
-    }
-
     @Override
     public void drop() {
         if (state != State.STARTUP) return;
         state = State.DROP;
-        runEachTeam((t) -> {
+        CoreManager.manager.runEachTeam((t) -> {
             t.getQuests().forEach(Stateful::drop);
             for (Upgrade upgrade : t.getUpgrades().values()) upgrade.drop();
             t.init();
         });
         for (NormalQuestEvent event : new ArrayList<>(events)) event.drop();
         Bukkit.broadcastMessage(Message.get("game.stop.message"));
-        runEachPlayer(p -> {
+        CoreManager.manager.runEachPlayer(p -> {
             p.setScoreboard(CoreManager.emptyScoreboard);
             if (UIManager.API.isPanelOpen(p) && UIManager.API.getOpenPanel(p, PanelPosition.Top) instanceof DynamicPanel dp) {
                 UIManager.ins.changeClear(dp, () -> {});

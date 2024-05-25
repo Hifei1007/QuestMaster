@@ -22,8 +22,8 @@ public class QuestRewardListener implements Listener {
         team.setScore(team.score() + reward.score());
         team.setCoin(team.coin() + reward.coin());
         team.setPoint(team.point() + reward.point());
-        team.teamBroadcast(Message.get("game.task.complete.change", reward.score(), reward.point(), reward.coin(), reward.time()));
         for (Quest q : team.getQuests()) q.getTimer().addSec((int) quest.getReward().time());
+        team.teamBroadcast(Message.get("game.task.complete.change", reward.score(), reward.point(), reward.coin(), reward.time()));
     }
 
     @EventHandler

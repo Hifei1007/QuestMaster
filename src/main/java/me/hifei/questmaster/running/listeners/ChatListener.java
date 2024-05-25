@@ -17,7 +17,7 @@ public class ChatListener implements Listener {
         if (CoreManager.isGameStart()) {
             if (msg.startsWith("@")) {
                 String m = Message.get("chat.started.shout", name, msg.substring(1));
-                CoreManager.game.runEachPlayer(p -> p.sendMessage(m));
+                CoreManager.manager.runEachPlayer(p -> p.sendMessage(m));
             } else {
                 QuestTeam team = CoreManager.manager.getTeam(event.getPlayer());
                 if (team == null) return;

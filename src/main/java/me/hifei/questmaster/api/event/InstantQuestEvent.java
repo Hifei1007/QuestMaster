@@ -25,7 +25,7 @@ public abstract class InstantQuestEvent extends QuestEvent {
         state = State.STARTUP;
         QuestMasterPlugin.logger.info("<STARTUP> " + this.getName());
         doChange();
-        CoreManager.game.runEachPlayer((player) -> {
+        CoreManager.manager.runEachPlayer((player) -> {
             player.sendMessage(Message.get("event.prefix.instant") + getName());
             getDescriptions().forEach(player::sendMessage);
             player.sendTitle("", Message.get("event.prefix.instant") + getName(), 10, 120, 20);

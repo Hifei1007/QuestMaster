@@ -43,7 +43,7 @@ public final class EventScheduler extends NormalQuestEvent {
             drop();
         }
         if (!EventConfig.cfg.showSchedulerBossbar) return;
-        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
+        CoreManager.manager.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(timer.getProcess());
         bossBar.setTitle(getName() + Message.get("event.bossbar.suffix", timer.hour(), timer.minute(), timer.second()));
     }
@@ -73,7 +73,7 @@ public final class EventScheduler extends NormalQuestEvent {
                 getBarStyle()
         );
         bossBar.setVisible(true);
-        CoreManager.game.runEachPlayer((player) -> bossBar.addPlayer(player));
+        CoreManager.manager.runEachPlayer((player) -> bossBar.addPlayer(player));
         bossBar.setProgress(1);
     }
 
