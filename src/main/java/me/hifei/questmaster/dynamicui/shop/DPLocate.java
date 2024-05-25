@@ -1,4 +1,4 @@
-package me.hifei.questmaster.ui.dynamic.shop;
+package me.hifei.questmaster.dynamicui.shop;
 
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.team.QuestTeam;
@@ -6,9 +6,9 @@ import me.hifei.questmaster.running.config.Config;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.tools.LocateTool;
 import me.hifei.questmaster.tools.LocationTool;
-import me.hifei.questmaster.ui.core.DynamicPanel;
-import me.hifei.questmaster.ui.core.UIManager;
-import me.hifei.questmaster.ui.dynamic.DPRoot;
+import me.hifei.questmaster.api.ui.DynamicPanel;
+import me.hifei.questmaster.api.ui.UIManager;
+import me.hifei.questmaster.dynamicui.DPRoot;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

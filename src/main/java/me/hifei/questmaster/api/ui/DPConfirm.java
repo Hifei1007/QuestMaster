@@ -1,4 +1,4 @@
-package me.hifei.questmaster.ui.core;
+package me.hifei.questmaster.api.ui;
 
 import me.hifei.questmaster.api.quest.Timer;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;

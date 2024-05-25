@@ -1,8 +1,8 @@
-package me.hifei.questmaster.ui.core;
+package me.hifei.questmaster.api.ui;
 
 import me.hifei.questmaster.api.CoreManager;
-import me.hifei.questmaster.ui.dynamic.DPRoot;
-import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
+import me.hifei.questmaster.dynamicui.DPRoot;
+import me.hifei.questmaster.dynamicui.DPRootNotStarted;
 import me.rockyhawk.commandpanels.api.PanelClosedEvent;
 import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;

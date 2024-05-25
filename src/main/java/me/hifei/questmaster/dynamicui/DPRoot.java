@@ -1,19 +1,19 @@
-package me.hifei.questmaster.ui.dynamic;
+package me.hifei.questmaster.dynamicui;
 
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.team.QuestTeam;
+import me.hifei.questmaster.dynamicui.shop.DPLocate;
+import me.hifei.questmaster.dynamicui.shop.DPShopItem;
+import me.hifei.questmaster.dynamicui.shop.DPShopTeamUpgrade;
 import me.hifei.questmaster.running.config.Message;
 import me.hifei.questmaster.shop.Upgrade;
 import me.hifei.questmaster.shop.teamchest.TeamChestUpgrade;
 import me.hifei.questmaster.tools.ActionTool;
 import me.hifei.questmaster.tools.LocationTool;
-import me.hifei.questmaster.ui.core.DPConfirm;
-import me.hifei.questmaster.ui.core.DynamicPanel;
-import me.hifei.questmaster.ui.core.UIManager;
-import me.hifei.questmaster.ui.dynamic.shop.DPLocate;
-import me.hifei.questmaster.ui.dynamic.shop.DPShopItem;
-import me.hifei.questmaster.ui.dynamic.shop.DPShopTeamUpgrade;
+import me.hifei.questmaster.api.ui.DPConfirm;
+import me.hifei.questmaster.api.ui.DynamicPanel;
+import me.hifei.questmaster.api.ui.UIManager;
 import me.rockyhawk.commandpanels.api.PanelCommandEvent;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Location;

@@ -1,12 +1,12 @@
-package me.hifei.questmaster.ui.core;
+package me.hifei.questmaster.api.ui;
 
 import me.hifei.questmaster.api.CoreManager;
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.quest.Timer;
 import me.hifei.questmaster.api.state.State;
 import me.hifei.questmaster.running.config.Message;
-import me.hifei.questmaster.ui.dynamic.DPQuest;
-import me.hifei.questmaster.ui.dynamic.DPRootNotStarted;
+import me.hifei.questmaster.dynamicui.DPQuest;
+import me.hifei.questmaster.dynamicui.DPRootNotStarted;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

@@ -2,9 +2,9 @@ package me.hifei.questmaster.quest.questkillmob;
 
 import me.hifei.questmaster.api.quest.Quest;
 import me.hifei.questmaster.api.state.State;
-import me.hifei.questmaster.ui.core.DynamicPanel;
-import me.hifei.questmaster.ui.core.QuestDynamicPanel;
-import me.hifei.questmaster.ui.dynamic.DPQuest;
+import me.hifei.questmaster.api.ui.DynamicPanel;
+import me.hifei.questmaster.api.ui.QuestDynamicPanel;
+import me.hifei.questmaster.dynamicui.DPQuest;
 import me.rockyhawk.commandpanels.openpanelsmanager.PanelPosition;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
