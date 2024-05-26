@@ -141,8 +141,15 @@ public class CQuestTeam implements QuestTeam {
                                         quest.openPanel(p);
                                     }));
                 }
+                t.teamToast(
+                        Material.valueOf(Objects.requireNonNull(quest.getItem().getString("material")).toUpperCase()),
+                        Message.get("quest.toast.create.default", quest.getName()), AdvancementDisplay.AdvancementFrame.TASK);
             } else {
                 t.teamBroadcast(Message.get("game.task.get2", name(), quest.getName()));
+                t.teamToast(
+                        Material.valueOf(Objects.requireNonNull(quest.getItem().getString("material")).toUpperCase()),
+                        Message.get("quest.toast.create.other_team", t.name(), quest.getName()),
+                        AdvancementDisplay.AdvancementFrame.TASK);
             }
         });
     }
