@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 public class QuestMasterPlugin extends JavaPlugin {
     public static QuestMasterPlugin instance;
     public static Logger logger;
+    public static String version;
 
     public static void main(String[] args) {
         throw new RuntimeException("IT'S A SPIGOT PLUGIN!");
@@ -68,6 +69,7 @@ public class QuestMasterPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         logger = getLogger();
+        version = getDescription().getVersion();
 
         RollingConfig.cfg = GsonConfigLoader.loadConfig(RollingConfig.class, "rolling.json");
         EventConfig.cfg = GsonConfigLoader.loadConfig(EventConfig.class, "event.json");
